@@ -37,16 +37,18 @@ export function Training({ moduleId, onComplete }: TrainingProps) {
   const concept = content.concepts.find((c) => c.id === conceptId)!;
   const Renderer = getRenderer(exercise.type);
   const cp = progress.concepts[conceptId];
+  const activeConceptId = conceptId;   // narrowed to string for use in nested closures
+  const activeExercise = exercise;     // narrowed to Exercise for use in nested closures
 
   function handleResult(correct: boolean) {
     setAnswered(true);
     setProgress((prev) => {
-      const poolSize = content.exercises.filter((e) => e.conceptId === conceptId).length;
-      const updatedConcept = applyAnswer(prev.concepts[conceptId], correct, exercise.points, mod.masteryThreshold);
-      updatedConcept.recentExerciseIds = pushRecent(prev.concepts[conceptId].recentExerciseIds, exercise.id, poolSize);
+      const poolSize = content.exercises.filter((e) => e.conceptId === activeConceptId).length;
+      const updatedConcept = applyAnswer(prev.concepts[activeConceptId], correct, activeExercise.points, mod.masteryThreshold);
+      updatedConcept.recentExerciseIds = pushRecent(prev.concepts[activeConceptId].recentExerciseIds, activeExercise.id, poolSize);
       const next: ProgressState = {
         ...prev,
-        concepts: { ...prev.concepts, [conceptId]: updatedConcept },
+        concepts: { ...prev.concepts, [activeConceptId]: updatedConcept },
       };
       saveProgress(next);
       return next;

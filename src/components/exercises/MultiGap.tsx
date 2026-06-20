@@ -18,7 +18,7 @@ export function MultiGap({ exercise, onResult }: ExerciseProps) {
   return (
     <div>
       <p>{exercise.prompt}</p>
-      {gaps.map((g, i) => (
+      {gaps.map((_g, i) => (
         <input key={i} aria-label={`gap-${i}`} value={values[i]} disabled={done} onChange={(e) => setAt(i, e.target.value)} />
       ))}
       {!done && <button onClick={check}>Проверить</button>}
