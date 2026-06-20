@@ -5,6 +5,7 @@ import { FillGap } from './FillGap';
 import { VerbForm } from './VerbForm';
 import { ChooseWord } from './ChooseWord';
 import { MultiGap } from './MultiGap';
+import { WordOrder } from './WordOrder';
 
 export interface ExerciseProps {
   exercise: Exercise;
@@ -17,6 +18,7 @@ const registry: Partial<Record<ExerciseType, FC<ExerciseProps>>> = {
   verb_form: VerbForm,
   choose_word: ChooseWord,
   multi_gap: MultiGap,
+  word_order: WordOrder,
 };
 
 export function getRenderer(type: ExerciseType): FC<ExerciseProps> {
