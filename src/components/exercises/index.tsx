@@ -3,6 +3,8 @@ import type { Exercise, ExerciseType } from '../../types';
 import { TranslateRuEn } from './TranslateRuEn';
 import { FillGap } from './FillGap';
 import { VerbForm } from './VerbForm';
+import { ChooseWord } from './ChooseWord';
+import { MultiGap } from './MultiGap';
 
 export interface ExerciseProps {
   exercise: Exercise;
@@ -13,6 +15,8 @@ const registry: Partial<Record<ExerciseType, FC<ExerciseProps>>> = {
   translate_ru_en: TranslateRuEn,
   fill_gap: FillGap,
   verb_form: VerbForm,
+  choose_word: ChooseWord,
+  multi_gap: MultiGap,
 };
 
 export function getRenderer(type: ExerciseType): FC<ExerciseProps> {
