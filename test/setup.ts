@@ -1,17 +1,32 @@
 import '@testing-library/jest-dom/vitest';
-import { vi } from 'vitest';
 
-// Polyfill localStorage if not available or clear is missing
-if (typeof globalThis !== 'undefined' && globalThis.localStorage) {
-  if (!globalThis.localStorage.clear) {
-    const store = new Map<string, string>();
-    globalThis.localStorage = {
-      getItem: (key: string) => store.get(key) ?? null,
-      setItem: (key: string, value: string) => store.set(key, value),
-      removeItem: (key: string) => store.delete(key),
-      clear: () => store.clear(),
-      length: 0,
-      key: (index: number) => Array.from(store.keys())[index] ?? null,
-    } as any;
+// The Vitest jsdom environment in this project does not provide a functional
+// Storage implementation — `globalThis.localStorage` is an empty object with
+// no getItem/setItem/clear. Install a minimal in-memory Storage so the app's
+// localStorage-backed progress store can be exercised in tests.
+class MemoryStorage implements Storage {
+  private store = new Map<string, string>();
+  get length(): number {
+    return this.store.size;
+  }
+  clear(): void {
+    this.store.clear();
+  }
+  getItem(key: string): string | null {
+    return this.store.has(key) ? this.store.get(key)! : null;
+  }
+  key(index: number): string | null {
+    return Array.from(this.store.keys())[index] ?? null;
+  }
+  removeItem(key: string): void {
+    this.store.delete(key);
+  }
+  setItem(key: string, value: string): void {
+    this.store.set(key, String(value));
   }
 }
+
+Object.defineProperty(globalThis, 'localStorage', {
+  configurable: true,
+  value: new MemoryStorage(),
+});
