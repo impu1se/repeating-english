@@ -3,6 +3,7 @@ import type { ExerciseProps } from './index';
 
 export function MatchPairs({ exercise, onResult }: ExerciseProps) {
   const pairs = exercise.pairs ?? [];
+  const ruOrder = [...pairs].sort((a, b) => a.ru.localeCompare(b.ru));
   const [selectedEn, setSelectedEn] = useState<string | null>(null);
   const [matched, setMatched] = useState<Set<string>>(new Set()); // en values matched
   const [mistakes, setMistakes] = useState(0);
@@ -36,7 +37,7 @@ export function MatchPairs({ exercise, onResult }: ExerciseProps) {
           ))}
         </div>
         <div>
-          {pairs.map((p) => (
+          {ruOrder.map((p) => (
             <button key={p.ru} disabled={matched.has(p.en)} onClick={() => pickRu(p.ru)}>{p.ru}</button>
           ))}
         </div>

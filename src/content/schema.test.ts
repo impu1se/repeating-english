@@ -29,4 +29,9 @@ describe('validateContent', () => {
     const broken: Content = { ...base, modules: [{ ...base.modules[0], conceptIds: ['nope'] }] };
     expect(validateContent(broken)).toContain('module m1 references missing concept nope');
   });
+
+  it('reports a concept with no exercises', () => {
+    const broken: Content = { ...base, concepts: [{ ...base.concepts[0], exerciseIds: [] }] };
+    expect(validateContent(broken)).toContain('concept c1 has no exercises');
+  });
 });

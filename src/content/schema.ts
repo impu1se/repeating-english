@@ -15,5 +15,8 @@ export function validateContent(content: Content): string[] {
       if (!exerciseIds.has(eid)) errors.push(`concept ${c.id} references missing exercise ${eid}`);
     }
   }
+  for (const c of content.concepts) {
+    if (c.exerciseIds.length === 0) errors.push(`concept ${c.id} has no exercises`);
+  }
   return errors;
 }

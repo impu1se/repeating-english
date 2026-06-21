@@ -24,7 +24,9 @@ export function loadProgress(content: Content): ProgressState {
     // ensure every current concept has an entry
     const merged = freshState(content);
     for (const id of Object.keys(merged.concepts)) {
-      if (parsed.concepts[id]) merged.concepts[id] = parsed.concepts[id];
+      if (parsed.concepts[id]) {
+        merged.concepts[id] = { ...emptyConceptProgress(), ...parsed.concepts[id] };
+      }
     }
     return merged;
   } catch {
