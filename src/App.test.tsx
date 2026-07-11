@@ -2,19 +2,21 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import { content } from './content';
 
 beforeEach(() => localStorage.clear());
 
 describe('App', () => {
-  it('shows the module list on start', () => {
+  it('shows every module on start', () => {
     render(<App />);
-    expect(screen.getByText(/Present Perfect/)).toBeInTheDocument();
-    expect(screen.getByText(/Слова A2: повседневное/)).toBeInTheDocument();
+    for (const m of content.modules) {
+      expect(screen.getByRole('button', { name: new RegExp(`^${m.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\(`) })).toBeInTheDocument();
+    }
   });
 
   it('navigates into training when a module is picked', async () => {
     render(<App />);
-    await userEvent.click(screen.getByRole('button', { name: /Present Perfect/ }));
+    await userEvent.click(screen.getByRole('button', { name: /^Present Perfect \(/ }));
     expect(screen.getByText(/Опыт: ever\/never/)).toBeInTheDocument();
   });
 });
