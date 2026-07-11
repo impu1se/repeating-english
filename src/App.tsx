@@ -10,7 +10,13 @@ export default function App() {
   const [moduleId, setModuleId] = useState<string | null>(null);
 
   if (screen === 'training' && moduleId) {
-    return <Training moduleId={moduleId} onComplete={() => setScreen('summary')} />;
+    return (
+      <Training
+        moduleId={moduleId}
+        onComplete={() => setScreen('summary')}
+        onExit={() => setScreen('list')}
+      />
+    );
   }
   if (screen === 'summary' && moduleId) {
     return <ModuleSummary moduleId={moduleId} onBack={() => setScreen('list')} />;

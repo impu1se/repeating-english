@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import type { ExerciseProps } from './index';
+import { shuffle } from '../../engine/random';
 
 export function MatchPairs({ exercise, onResult }: ExerciseProps) {
   const pairs = exercise.pairs ?? [];
+  // EN column shuffled per mount, RU column alphabetical — columns stay decorrelated.
+  const [enOrder] = useState(() => shuffle(pairs));
   const ruOrder = [...pairs].sort((a, b) => a.ru.localeCompare(b.ru));
   const [selectedEn, setSelectedEn] = useState<string | null>(null);
   const [matched, setMatched] = useState<Set<string>>(new Set()); // en values matched
   const [mistakes, setMistakes] = useState(0);
+
+  const finished = pairs.length > 0 && matched.size === pairs.length;
 
   function pickEn(en: string) {
     if (matched.has(en)) return;
@@ -29,10 +34,10 @@ export function MatchPairs({ exercise, onResult }: ExerciseProps) {
 
   return (
     <div>
-      <p>{exercise.prompt}</p>
-      <div style={{ display: 'flex', gap: 16 }}>
+      <p className="prompt">{exercise.prompt}</p>
+      <div className="columns">
         <div>
-          {pairs.map((p) => (
+          {enOrder.map((p) => (
             <button key={p.en} disabled={matched.has(p.en)} aria-pressed={selectedEn === p.en} onClick={() => pickEn(p.en)}>{p.en}</button>
           ))}
         </div>
@@ -42,6 +47,11 @@ export function MatchPairs({ exercise, onResult }: ExerciseProps) {
           ))}
         </div>
       </div>
+      {finished ? (
+        <p role="status">{mistakes === 0 ? 'Верно!' : `Готово, но с ошибками: ${mistakes}`}</p>
+      ) : (
+        mistakes > 0 && <p role="status">Мимо. Ошибок: {mistakes}</p>
+      )}
     </div>
   );
 }

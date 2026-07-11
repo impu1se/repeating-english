@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { content } from '../content';
 import { loadProgress } from '../store/progress';
 
 export function ModuleSummary({ moduleId, onBack }: { moduleId: string; onBack: () => void }) {
   const mod = content.modules.find((m) => m.id === moduleId)!;
-  const progress = loadProgress(content);
+  const [progress] = useState(() => loadProgress(content));
   const rows = mod.conceptIds
     .map((id) => ({ concept: content.concepts.find((c) => c.id === id)!, errors: progress.concepts[id]?.errorCount ?? 0 }))
     .sort((a, b) => b.errors - a.errors);

@@ -8,6 +8,11 @@ describe('normalize', () => {
   it('keeps apostrophes inside words', () => {
     expect(normalize("I haven't")).toBe("i haven't");
   });
+  it('unifies typographic apostrophes (smart punctuation)', () => {
+    expect(normalize('I haven’t')).toBe("i haven't");
+    expect(normalize('don‘t')).toBe("don't");
+    expect(normalize('I haven’t')).toBe(normalize("I haven't"));
+  });
 });
 
 describe('tokenize', () => {

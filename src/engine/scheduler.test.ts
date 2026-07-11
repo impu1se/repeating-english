@@ -17,6 +17,8 @@ const content: Content = {
   ],
 };
 
+const first = () => 0; // deterministic rng: always the first candidate
+
 function progressWith(overrides: Partial<Record<string, Partial<ProgressState['concepts'][string]>>>): ProgressState {
   const base: ProgressState = {
     contentVersion: '1',
@@ -39,15 +41,29 @@ describe('pickNextConcept', () => {
   it('returns null when all mastered', () => {
     expect(pickNextConcept(content, 'm', progressWith({ c1: { mastered: true }, c2: { mastered: true } }))).toBeNull();
   });
+  it('treats a concept without a progress record as score 0, not as missing', () => {
+    const progress: ProgressState = {
+      contentVersion: '1',
+      concepts: { c1: { score: 2, mastered: false, recentExerciseIds: [], errorCount: 0 } },
+    };
+    expect(pickNextConcept(content, 'm', progress)).toBe('c2');
+  });
 });
 
 describe('pickNextExercise', () => {
   it('avoids recently shown exercises', () => {
-    const ex = pickNextExercise(content, 'c1', progressWith({ c1: { recentExerciseIds: ['e1'] } }));
-    expect(ex.id).toBe('e2');
+    const ex = pickNextExercise(content, 'c1', progressWith({ c1: { recentExerciseIds: ['e1'] } }), first);
+    expect(ex?.id).toBe('e2');
   });
-  it('falls back to pool order when all are recent', () => {
-    const ex = pickNextExercise(content, 'c1', progressWith({ c1: { recentExerciseIds: ['e1', 'e2'] } }));
-    expect(ex.id).toBe('e1');
+  it('falls back to the whole pool when everything is recent', () => {
+    const ex = pickNextExercise(content, 'c1', progressWith({ c1: { recentExerciseIds: ['e1', 'e2'] } }), first);
+    expect(ex?.id).toBe('e1');
+  });
+  it('picks randomly among fresh exercises via rng', () => {
+    const ex = pickNextExercise(content, 'c1', progressWith({}), () => 0.99);
+    expect(ex?.id).toBe('e2');
+  });
+  it('returns null for an empty pool', () => {
+    expect(pickNextExercise(content, 'nope', progressWith({}), first)).toBeNull();
   });
 });

@@ -21,4 +21,20 @@ describe('WordOrder', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Проверить' }));
     expect(onResult).toHaveBeenCalledWith(true);
   });
+
+  it('lets the user undo the last word', async () => {
+    const onResult = vi.fn();
+    render(<WordOrder exercise={ex} onResult={onResult} />);
+    await userEvent.click(screen.getByRole('button', { name: 'have' }));
+    await userEvent.click(screen.getByRole('button', { name: 'you' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Убрать слово' }));
+    expect(screen.getByLabelText('built')).toHaveTextContent(/^have$/);
+    // the undone word is clickable again
+    expect(screen.getByRole('button', { name: 'you' })).toBeEnabled();
+  });
+
+  it('cannot check an empty assembly', () => {
+    render(<WordOrder exercise={ex} onResult={vi.fn()} />);
+    expect(screen.getByRole('button', { name: 'Проверить' })).toBeDisabled();
+  });
 });

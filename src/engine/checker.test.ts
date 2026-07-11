@@ -7,13 +7,29 @@ describe('checkFreeText', () => {
   it('exact (normalized) match is correct', () => {
     expect(checkFreeText('have you ever been to london', accepted).kind).toBe('correct');
   });
-  it('one-word difference is close', () => {
+  it('typographic apostrophe still matches exactly', () => {
+    expect(checkFreeText('I haven’t seen this film', ['I haven\'t seen this film']).kind).toBe('correct');
+  });
+  it('one substituted word is close', () => {
     const v = checkFreeText('Have you ever been in London', accepted);
+    expect(v.kind).toBe('close');
+  });
+  it('two changed words are close (spec: отличие 1–2 слова)', () => {
+    const v = checkFreeText('Has you ever been in London', accepted);
     expect(v.kind).toBe('close');
   });
   it('far answer is wrong and returns accepted', () => {
     const v = checkFreeText('I like apples', accepted);
     expect(v).toEqual({ kind: 'wrong', accepted });
+  });
+  it('empty answer is wrong, never close', () => {
+    expect(checkFreeText('', ['eaten']).kind).toBe('wrong');
+    expect(checkFreeText('   ', accepted).kind).toBe('wrong');
+  });
+  it('single word: typo is close, unrelated word is wrong', () => {
+    expect(checkFreeText('eatn', ['eaten']).kind).toBe('close');
+    expect(checkFreeText('ate', ['eaten']).kind).toBe('close');
+    expect(checkFreeText('pizza', ['eaten']).kind).toBe('wrong');
   });
 });
 

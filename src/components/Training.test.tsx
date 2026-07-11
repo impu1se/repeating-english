@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { Training } from './Training';
 import type { Content } from '../types';
 
+const first = () => 0; // deterministic rng for stable exercise picks
+
 const multiConcept: Content = {
   version: 'test-multi',
   modules: [{ id: 'm', title: 'Test Module', level: 'A1', masteryThreshold: 2, conceptIds: ['c1', 'c2'] }],
@@ -23,26 +25,22 @@ beforeEach(() => localStorage.clear());
 
 describe('Training', () => {
   it('renders an exercise prompt for the chosen module', () => {
-    render(<Training moduleId="present-perfect" onComplete={vi.fn()} />);
+    render(<Training moduleId="present-perfect" onComplete={vi.fn()} onExit={vi.fn()} />);
     // module title and current concept title are shown
     expect(screen.getByRole('heading', { name: 'Present Perfect' })).toBeInTheDocument();
     expect(screen.getByText(/Опыт: ever\/never/)).toBeInTheDocument();
   });
 
   it('advances to a new exercise after answering', async () => {
-    render(<Training moduleId="present-perfect" onComplete={vi.fn()} />);
-    // Answer whatever is shown by clicking the first actionable control if present.
-    const checkBtn = screen.queryByRole('button', { name: 'Проверить' });
-    if (checkBtn) {
-      await userEvent.click(checkBtn);
-    }
-    // After a result, a "Дальше" button advances.
+    render(<Training moduleId="m" onComplete={vi.fn()} onExit={vi.fn()} content={multiConcept} rng={first} />);
+    await userEvent.type(screen.getByRole('textbox'), 'a');
+    await userEvent.click(screen.getByRole('button', { name: 'Проверить' }));
     const next = await screen.findByRole('button', { name: 'Дальше' });
     expect(next).toBeInTheDocument();
   });
 
   it('keeps the answered card and its result on screen until "Дальше" (multi-concept)', async () => {
-    render(<Training moduleId="m" onComplete={vi.fn()} content={multiConcept} />);
+    render(<Training moduleId="m" onComplete={vi.fn()} onExit={vi.fn()} content={multiConcept} rng={first} />);
     // first card belongs to c1 (both concepts score 0 -> first listed wins)
     expect(screen.getByText('C1 first ___')).toBeInTheDocument();
     await userEvent.type(screen.getByRole('textbox'), 'a');
@@ -55,5 +53,12 @@ describe('Training', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Дальше' }));
     expect(screen.getByText('C2 first ___')).toBeInTheDocument();
     expect(screen.queryByText('Верно!')).not.toBeInTheDocument();
+  });
+
+  it('lets the user exit mid-session', async () => {
+    const onExit = vi.fn();
+    render(<Training moduleId="m" onComplete={vi.fn()} onExit={onExit} content={multiConcept} rng={first} />);
+    await userEvent.click(screen.getByRole('button', { name: '← К списку' }));
+    expect(onExit).toHaveBeenCalled();
   });
 });

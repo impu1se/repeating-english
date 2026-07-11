@@ -13,9 +13,10 @@ export function pickNextConcept(
   let bestScore = Infinity;
   for (const cid of mod.conceptIds) {
     const cp = progress.concepts[cid];
-    if (!cp || cp.mastered) continue;
-    if (cp.score < bestScore) {
-      bestScore = cp.score;
+    if (cp?.mastered) continue;
+    const score = cp?.score ?? 0; // no record yet = untouched concept, weakest possible
+    if (score < bestScore) {
+      bestScore = score;
       chosen = cid;
     }
   }
@@ -26,9 +27,12 @@ export function pickNextExercise(
   content: Content,
   conceptId: string,
   progress: ProgressState,
-): Exercise {
+  rng: () => number = Math.random,
+): Exercise | null {
   const pool = content.exercises.filter((e) => e.conceptId === conceptId);
+  if (pool.length === 0) return null;
   const recent = new Set(progress.concepts[conceptId]?.recentExerciseIds ?? []);
   const fresh = pool.filter((e) => !recent.has(e.id));
-  return (fresh[0] ?? pool[0]);
+  const candidates = fresh.length > 0 ? fresh : pool;
+  return candidates[Math.floor(rng() * candidates.length)] ?? candidates[0];
 }

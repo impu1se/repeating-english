@@ -13,11 +13,17 @@ describe('ChooseWord', () => {
     await userEvent.click(screen.getByRole('button', { name: 'never' }));
     expect(onResult).toHaveBeenCalledWith(true);
   });
+  it('renders all options (shuffled)', () => {
+    render(<ChooseWord exercise={ex} onResult={vi.fn()} />);
+    expect(screen.getByRole('button', { name: 'ever' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'never' })).toBeInTheDocument();
+  });
 });
 
 describe('MultiGap', () => {
   const ex: Exercise = { id: 'e', conceptId: 'c', type: 'multi_gap', prompt: 'I ___ and ___', points: 1, gaps: [{ accepted: ['eat'] }, { accepted: ['sleep'] }] };
-  it('is correct only when all gaps match', async () => {
+
+  it('is wrong immediately when a gap is far off', async () => {
     const onResult = vi.fn();
     render(<MultiGap exercise={ex} onResult={onResult} />);
     const inputs = screen.getAllByRole('textbox');
@@ -25,5 +31,36 @@ describe('MultiGap', () => {
     await userEvent.type(inputs[1], 'wrong');
     await userEvent.click(screen.getByRole('button', { name: 'Проверить' }));
     expect(onResult).toHaveBeenCalledWith(false);
+  });
+
+  it('is correct when all gaps match', async () => {
+    const onResult = vi.fn();
+    render(<MultiGap exercise={ex} onResult={onResult} />);
+    const inputs = screen.getAllByRole('textbox');
+    await userEvent.type(inputs[0], 'eat');
+    await userEvent.type(inputs[1], 'sleep');
+    await userEvent.click(screen.getByRole('button', { name: 'Проверить' }));
+    expect(onResult).toHaveBeenCalledWith(true);
+  });
+
+  it('offers self-grade when a gap is close (hybrid per gap)', async () => {
+    const onResult = vi.fn();
+    render(<MultiGap exercise={ex} onResult={onResult} />);
+    const inputs = screen.getAllByRole('textbox');
+    await userEvent.type(inputs[0], 'eat');
+    await userEvent.type(inputs[1], 'slep'); // typo → close
+    await userEvent.click(screen.getByRole('button', { name: 'Проверить' }));
+    expect(screen.getByText('Засчитать?')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Да' }));
+    expect(onResult).toHaveBeenCalledWith(true);
+  });
+
+  it('blocks checking until all gaps are filled', async () => {
+    const onResult = vi.fn();
+    render(<MultiGap exercise={ex} onResult={onResult} />);
+    const inputs = screen.getAllByRole('textbox');
+    expect(screen.getByRole('button', { name: 'Проверить' })).toBeDisabled();
+    await userEvent.type(inputs[0], 'eat');
+    expect(screen.getByRole('button', { name: 'Проверить' })).toBeDisabled();
   });
 });

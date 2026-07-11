@@ -40,6 +40,20 @@ export function wordDiff(answer: string, reference: string): DiffToken[] {
   return out;
 }
 
-export function diffDistance(answer: string, reference: string): number {
-  return wordDiff(answer, reference).filter((t) => t.status !== 'same').length;
+// Edit distance with insert/delete/replace all costing 1, so "one changed word"
+// is distance 1 (the old extra+missing metric charged 2 for a substitution).
+// Works over word arrays and over plain strings (per character).
+export function levenshtein(a: string | readonly string[], b: string | readonly string[]): number {
+  const m = a.length;
+  const n = b.length;
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const cur = new Array<number>(n + 1);
+    cur[0] = i;
+    for (let j = 1; j <= n; j++) {
+      cur[j] = a[i - 1] === b[j - 1] ? prev[j - 1] : 1 + Math.min(prev[j - 1], prev[j], cur[j - 1]);
+    }
+    prev = cur;
+  }
+  return prev[n];
 }

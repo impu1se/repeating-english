@@ -1,0 +1,144 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.55;
+  color: #1f2430;
+  background: #fafafa;
+}
+
+#root {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+}
+
+header nav {
+  margin-bottom: 0.5rem;
+}
+
+.score {
+  color: #667;
+}
+
+.prompt {
+  font-size: 1.15rem;
+}
+
+.built {
+  min-height: 1.6em;
+  padding: 0.35rem 0.6rem;
+  border: 1px dashed #c3c8d4;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+button {
+  font: inherit;
+  padding: 0.45rem 0.95rem;
+  margin: 0.15rem 0.3rem 0.15rem 0;
+  border: 1px solid #c3c8d4;
+  border-radius: 0.55rem;
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: #6b7cff;
+  background: #f2f4ff;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+button[aria-pressed='true'] {
+  border-color: #6b7cff;
+  background: #e4e9ff;
+}
+
+button.next,
+button[type='submit'] {
+  border-color: #6b7cff;
+  background: #6b7cff;
+  color: #fff;
+}
+
+button.next:hover:not(:disabled),
+button[type='submit']:hover:not(:disabled) {
+  background: #5566ee;
+}
+
+input {
+  font: inherit;
+  padding: 0.45rem 0.65rem;
+  margin: 0.15rem 0.5rem 0.15rem 0;
+  border: 1px solid #c3c8d4;
+  border-radius: 0.55rem;
+  background: #fff;
+  min-width: 14rem;
+}
+
+input:focus {
+  outline: 2px solid #6b7cff;
+  outline-offset: 1px;
+}
+
+ul.modules {
+  list-style: none;
+  padding: 0;
+}
+
+ul.modules li {
+  margin: 0.4rem 0;
+}
+
+ul.modules button {
+  width: 100%;
+  text-align: left;
+  padding: 0.8rem 1rem;
+}
+
+.columns {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.columns > div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.gap-feedback {
+  list-style: none;
+  padding: 0;
+}
+
+[role='status'] {
+  margin: 0.7rem 0;
+}
+
+[data-status='extra'] {
+  color: #c0392b;
+  text-decoration: line-through;
+}
+
+[data-status='missing'] {
+  color: #1e8e4e;
+  text-decoration: underline;
+}

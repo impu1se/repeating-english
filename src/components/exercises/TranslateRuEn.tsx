@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import type { ExerciseProps } from './index';
 import { checkExercise, type Verdict } from '../../engine/checker';
+import { DiffLine } from './DiffLine';
 
 export function TranslateRuEn({ exercise, onResult }: ExerciseProps) {
   const [answer, setAnswer] = useState('');
   const [verdict, setVerdict] = useState<Verdict | null>(null);
 
   function check() {
+    if (verdict !== null || answer.trim() === '') return;
     const v = checkExercise(exercise, answer);
     setVerdict(v);
     if (v.kind === 'correct') onResult(true);
@@ -15,9 +17,26 @@ export function TranslateRuEn({ exercise, onResult }: ExerciseProps) {
 
   return (
     <div>
-      <p>{exercise.prompt}</p>
-      <input aria-label="answer" value={answer} disabled={verdict !== null && verdict.kind !== 'close'} onChange={(e) => setAnswer(e.target.value)} />
-      {verdict === null && <button onClick={check}>Проверить</button>}
+      <p className="prompt">{exercise.prompt}</p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          check();
+        }}
+      >
+        <input
+          aria-label="answer"
+          value={answer}
+          disabled={verdict !== null}
+          autoFocus
+          onChange={(e) => setAnswer(e.target.value)}
+        />
+        {verdict === null && (
+          <button type="submit" disabled={answer.trim() === ''}>
+            Проверить
+          </button>
+        )}
+      </form>
       {verdict?.kind === 'correct' && <p role="status">Верно!</p>}
       {verdict?.kind === 'wrong' && (
         <div role="status">
@@ -28,11 +47,7 @@ export function TranslateRuEn({ exercise, onResult }: ExerciseProps) {
       {verdict?.kind === 'close' && (
         <div role="status">
           <p>
-            {verdict.diff.map((t, i) => (
-              <span key={i} data-status={t.status} style={{ textDecoration: t.status === 'missing' ? 'underline' : t.status === 'extra' ? 'line-through' : 'none' }}>
-                {t.text}{' '}
-              </span>
-            ))}
+            <DiffLine diff={verdict.diff} />
           </p>
           <p>Эталон: {verdict.closest}</p>
           <p>Засчитать?</p>

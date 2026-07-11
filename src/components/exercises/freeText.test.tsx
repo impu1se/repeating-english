@@ -18,6 +18,21 @@ describe('TranslateRuEn', () => {
     expect(onResult).toHaveBeenCalledWith(true);
   });
 
+  it('submits on Enter', async () => {
+    const onResult = vi.fn();
+    render(<TranslateRuEn exercise={ex} onResult={onResult} />);
+    await userEvent.type(screen.getByRole('textbox'), 'I am happy{Enter}');
+    expect(onResult).toHaveBeenCalledWith(true);
+  });
+
+  it('does not allow submitting an empty answer', async () => {
+    const onResult = vi.fn();
+    render(<TranslateRuEn exercise={ex} onResult={onResult} />);
+    expect(screen.getByRole('button', { name: 'Проверить' })).toBeDisabled();
+    await userEvent.type(screen.getByRole('textbox'), '{Enter}');
+    expect(onResult).not.toHaveBeenCalled();
+  });
+
   it('asks for self-grade on a close answer and honors "Нет"', async () => {
     const onResult = vi.fn();
     render(<TranslateRuEn exercise={ex} onResult={onResult} />);
