@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'present-perfect',
   title: 'Present Perfect',
   level: 'B1',
-  masteryThreshold: 5,
+  masteryThreshold: 50,
   conceptIds: ['pp-experience'],
 };
 
@@ -14,6 +14,7 @@ export const concepts: Concept[] = [
     moduleId: 'present-perfect',
     title: 'Опыт: ever/never',
     kind: 'grammar',
+    theory: 'Present Perfect для опыта: have/has + V3. Факт «когда-либо в жизни», время не названо.\n• Have you ever been to London? — Ты когда-нибудь был в Лондоне?\n• I have never seen this film. — Я никогда не видел этот фильм.\never — «когда-нибудь» (вопросы), never — «никогда» (отрицание без not).\nЕсли время названо (yesterday, in 2020) — это уже Past Simple.',
     exerciseIds: ['pp-e1', 'pp-e2', 'pp-e3', 'pp-e4', 'pp-e5', 'pp-e6'],
   },
 ];

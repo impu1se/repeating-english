@@ -20,4 +20,13 @@ describe('seed content', () => {
       expect(types.has(t as never), `missing type ${t}`).toBe(true);
     }
   });
+  it('every grammar concept ships a theory reference', () => {
+    for (const c of content.concepts.filter((c) => c.kind === 'grammar')) {
+      expect(c.theory, `concept ${c.id}`).toBeTruthy();
+    }
+  });
+  it('uses version 2 and threshold 50 everywhere', () => {
+    expect(content.version).toBe('2');
+    for (const m of content.modules) expect(m.masteryThreshold, `module ${m.id}`).toBe(50);
+  });
 });

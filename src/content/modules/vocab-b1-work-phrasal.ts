@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'vocab-b1-work-phrasal',
   title: 'Слова B1-B2: работа и фразовые глаголы',
   level: 'B1-B2',
-  masteryThreshold: 5,
+  masteryThreshold: 50,
   conceptIds: ['vb1-work', 'vb1-phrasal'],
 };
 

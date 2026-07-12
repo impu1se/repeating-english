@@ -34,6 +34,7 @@ export interface Concept {
   moduleId: string;
   title: string;
   kind: 'grammar' | 'vocab';
+  theory?: string;       // краткое правило по-русски (RU + EN-примеры); только у grammar
   exerciseIds: string[];
 }
 

@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'vocab-a2',
   title: 'Слова A2: повседневное',
   level: 'A2',
-  masteryThreshold: 5,
+  masteryThreshold: 50,
   conceptIds: ['va2-daily'],
 };
 

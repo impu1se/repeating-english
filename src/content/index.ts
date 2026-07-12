@@ -7,9 +7,9 @@ import * as conditionals from './modules/conditionals';
 import * as vocabB1WorkPhrasal from './modules/vocab-b1-work-phrasal';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
-// adding new modules keeps it, so saved progress survives.
+// bump on breaking-изменения; порог 5→50 — breaking.
 export const content: Content = {
-  version: '1',
+  version: '2',
   modules: [
     presentPerfect.module,
     pastVsPerfect.module,

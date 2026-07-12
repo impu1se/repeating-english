@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'conditionals',
   title: 'Conditionals: First & Second',
   level: 'B1-B2',
-  masteryThreshold: 5,
+  masteryThreshold: 50,
   conceptIds: ['cond-first', 'cond-second'],
 };
 
@@ -14,6 +14,7 @@ export const concepts: Concept[] = [
     moduleId: 'conditionals',
     title: 'First Conditional: if + Present, will',
     kind: 'grammar',
+    theory: 'First Conditional — реальное условие в будущем: if + Present Simple, will + V1.\n• If it rains, we will stay at home.\nПосле if / when / unless НЕ ставим will: If she studies (не will study)…\nunless = if not: You won\'t pass unless you study.',
     exerciseIds: ['cf-e1', 'cf-e2', 'cf-e3', 'cf-e4', 'cf-e5', 'cf-e6', 'cf-e7'],
   },
   {
@@ -21,6 +22,7 @@ export const concepts: Concept[] = [
     moduleId: 'conditionals',
     title: 'Second Conditional: if + Past, would',
     kind: 'grammar',
+    theory: 'Second Conditional — воображаемая ситуация сейчас/в будущем: if + Past Simple, would + V1.\n• If I were rich, I would buy a house by the sea.\nwere — для всех лиц: If I were you, I would take the job.\nОтличие от First: ситуация маловероятна или нереальна.',
     exerciseIds: ['cs-e1', 'cs-e2', 'cs-e3', 'cs-e4', 'cs-e5', 'cs-e6', 'cs-e7'],
   },
 ];

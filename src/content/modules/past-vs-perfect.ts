@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'past-vs-perfect',
   title: 'Past Simple vs Present Perfect',
   level: 'B1',
-  masteryThreshold: 5,
+  masteryThreshold: 50,
   conceptIds: ['psp-past-simple', 'psp-contrast'],
 };
 
@@ -14,6 +14,7 @@ export const concepts: Concept[] = [
     moduleId: 'past-vs-perfect',
     title: 'Past Simple: законченное время',
     kind: 'grammar',
+    theory: 'Past Simple — законченное действие в законченном времени: V2 (или did + V1).\nМаркеры: yesterday, last week, two days ago, in 2019, when?\n• She moved to London in 2019.\n• I didn\'t watch TV last night. / Did you see him?\nОтрицание и вопрос — через did, глагол возвращается в базовую форму.',
     exerciseIds: ['psp-e1', 'psp-e2', 'psp-e3', 'psp-e4', 'psp-e5', 'psp-e6', 'psp-e7'],
   },
   {
@@ -21,6 +22,7 @@ export const concepts: Concept[] = [
     moduleId: 'past-vs-perfect',
     title: 'Контраст: Past Simple или Present Perfect',
     kind: 'grammar',
+    theory: 'Выбор между Past Simple и Present Perfect:\n• Время названо (in 2020, yesterday, ago) → Past Simple: I saw it in 2020.\n• Опыт или результат «к настоящему», время не названо → Present Perfect: I have seen it three times.\n• already / just / yet / ever / never → Present Perfect.\n• ago / last / when? → Past Simple.',
     exerciseIds: ['psc-e1', 'psc-e2', 'psc-e3', 'psc-e4', 'psc-e5', 'psc-e6', 'psc-e7'],
   },
 ];
