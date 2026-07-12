@@ -112,7 +112,7 @@ export const exercises: Exercise[] = [
 
   // ============ a1-possessives: my/mine, 's ============
   // --- translate_ru_en ---
-  { id: 'a1po-e1', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Это моя сумка.', points: 2, accepted: ['This is my bag'] },
+  { id: 'a1po-e1', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Это машина моих родителей.', points: 2, accepted: ["It is my parents' car", "It's my parents' car", "This is my parents' car"] },
   { id: 'a1po-e2', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Это её книга.', points: 2, accepted: ['This is her book'] },
   { id: 'a1po-e3', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Это машина Тома.', points: 2, accepted: ["This is Tom's car", "This car is Tom's"] },
   { id: 'a1po-e4', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Этот телефон мой.', points: 2, accepted: ['This phone is mine', 'This is my phone'] },
