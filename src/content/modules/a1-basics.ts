@@ -89,7 +89,7 @@ export const exercises: Exercise[] = [
   { id: 'a1cn-e3', conceptId: 'a1-can', type: 'translate_ru_en', prompt: 'Ты можешь мне помочь?', points: 2, accepted: ['Can you help me?', 'Could you help me?'] },
   { id: 'a1cn-e4', conceptId: 'a1-can', type: 'translate_ru_en', prompt: 'Мы не можем прийти сегодня.', points: 2, accepted: ["We can't come today", 'We cannot come today'] },
   // --- fill_gap ---
-  { id: 'a1cn-e5', conceptId: 'a1-can', type: 'fill_gap', prompt: 'I ___ speak three languages.', points: 1, accepted: ['can'] },
+  { id: 'a1cn-e5', conceptId: 'a1-can', type: 'fill_gap', prompt: 'I ___ speak three languages.', points: 1, accepted: ['can', "can't", 'cannot'] },
   { id: 'a1cn-e6', conceptId: 'a1-can', type: 'fill_gap', prompt: 'He ___ ride a bike.', points: 1, accepted: ['can', "can't", 'cannot'] },
   { id: 'a1cn-e7', conceptId: 'a1-can', type: 'fill_gap', prompt: '___ you swim?', points: 1, accepted: ['Can', 'can'] },
   // --- verb_form ---
@@ -117,8 +117,8 @@ export const exercises: Exercise[] = [
   { id: 'a1th-e3', conceptId: 'a1-there-is', type: 'translate_ru_en', prompt: 'Рядом нет банка.', points: 2, accepted: ["There isn't a bank nearby", 'There is no bank nearby', "There's no bank nearby"] },
   { id: 'a1th-e4', conceptId: 'a1-there-is', type: 'translate_ru_en', prompt: 'Здесь есть банкомат?', points: 2, accepted: ['Is there a cash machine here?', 'Is there an ATM here?'] },
   // --- fill_gap ---
-  { id: 'a1th-e5', conceptId: 'a1-there-is', type: 'fill_gap', prompt: 'There ___ a shop near my house.', points: 1, accepted: ['is'] },
-  { id: 'a1th-e6', conceptId: 'a1-there-is', type: 'fill_gap', prompt: 'There ___ many people at the party.', points: 1, accepted: ['are'] },
+  { id: 'a1th-e5', conceptId: 'a1-there-is', type: 'fill_gap', prompt: 'There ___ a shop near my house.', points: 1, accepted: ['is', "isn't", 'is not'] },
+  { id: 'a1th-e6', conceptId: 'a1-there-is', type: 'fill_gap', prompt: 'There ___ many people at the party.', points: 1, accepted: ['are', "aren't", 'are not'] },
   { id: 'a1th-e7', conceptId: 'a1-there-is', type: 'fill_gap', prompt: '___ there a problem?', points: 1, accepted: ['Is', 'is'] },
   // --- verb_form ---
   { id: 'a1th-e8', conceptId: 'a1-there-is', type: 'verb_form', prompt: 'There (be) ___ a cat in the garden.', points: 1, accepted: ['is'] },
@@ -130,8 +130,8 @@ export const exercises: Exercise[] = [
   { id: 'a1th-e13', conceptId: 'a1-there-is', type: 'choose_word', prompt: '___ there any shops nearby?', points: 1, options: ['Are', 'Is', 'Do'], accepted: ['Are'] },
   { id: 'a1th-e14', conceptId: 'a1-there-is', type: 'choose_word', prompt: 'There is ___ milk in the glass.', points: 1, options: ['some', 'many', 'a'], accepted: ['some'] },
   // --- word_order ---
-  { id: 'a1th-e15', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «В саду есть дерево»', points: 1, bank: ['there', 'is', 'a', 'tree', 'in', 'the', 'garden'], accepted: ['there is a tree in the garden'] },
-  { id: 'a1th-e16', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «В городе нет метро»', points: 1, bank: ['there', 'is', 'no', 'metro', 'in', 'the', 'city'], accepted: ['there is no metro in the city'] },
+  { id: 'a1th-e15', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «В саду есть дерево»', points: 1, bank: ['there', 'is', 'a', 'tree', 'in', 'the', 'garden'], accepted: ['there is a tree in the garden', 'in the garden there is a tree'] },
+  { id: 'a1th-e16', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «В городе нет метро»', points: 1, bank: ['there', 'is', 'no', 'metro', 'in', 'the', 'city'], accepted: ['there is no metro in the city', 'in the city there is no metro'] },
   { id: 'a1th-e17', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «Здесь есть хорошие рестораны?»', points: 1, bank: ['are', 'there', 'any', 'good', 'restaurants', 'here'], accepted: ['are there any good restaurants here'] },
   // --- multi_gap ---
   { id: 'a1th-e18', conceptId: 'a1-there-is', type: 'multi_gap', prompt: 'There ___ a park nearby, but there ___ no shops.', points: 1, gaps: [{ accepted: ['is'] }, { accepted: ['are'] }] },
