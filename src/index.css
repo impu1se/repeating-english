@@ -142,3 +142,27 @@ ul.modules button {
   color: #1e8e4e;
   text-decoration: underline;
 }
+
+.banner {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #e0b400;
+  border-radius: 0.55rem;
+  background: #fff7d6;
+}
+
+details.theory {
+  margin: 0.5rem 0;
+}
+
+details.theory summary {
+  cursor: pointer;
+  color: #5566ee;
+}
+
+details.theory p {
+  white-space: pre-line;
+  margin: 0.5rem 0 0.25rem;
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid #c3c8d4;
+  background: #fff;
+}

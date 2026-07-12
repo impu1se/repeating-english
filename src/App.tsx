@@ -13,8 +13,8 @@ export default function App() {
     return (
       <Training
         moduleId={moduleId}
-        onComplete={() => setScreen('summary')}
         onExit={() => setScreen('list')}
+        onSummary={() => setScreen('summary')}
       />
     );
   }
