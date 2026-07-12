@@ -83,7 +83,7 @@ export const exercises: Exercise[] = [
   { id: 'b2sh-e9', conceptId: 'b2-should-have', type: 'verb_form', prompt: 'You should (tell) ___ me earlier — I would have helped you.', points: 1, accepted: ['have told'] },
   { id: 'b2sh-e10', conceptId: 'b2-should-have', type: 'verb_form', prompt: 'We could (win) ___ the game, but our best player was injured.', points: 1, accepted: ['have won'] },
   // --- choose_word ---
-  { id: 'b2sh-e11', conceptId: 'b2-should-have', type: 'choose_word', prompt: 'You ___ told me the meeting was cancelled — I waited an hour!', points: 1, options: ['should have', 'could have', 'must have'], accepted: ['should have'] },
+  { id: 'b2sh-e11', conceptId: 'b2-should-have', type: 'choose_word', prompt: 'She ___ travelled the world after university — she had saved enough money — but she took a job instead and she has no regrets.', points: 1, options: ['could have', 'should have', 'must have'], accepted: ['could have'] },
   { id: 'b2sh-e12', conceptId: 'b2-should-have', type: 'choose_word', prompt: 'I ___ so rude to her yesterday — I feel awful now.', points: 1, options: ["shouldn't have been", "shouldn't be", "mustn't have been"], accepted: ["shouldn't have been"] },
   { id: 'b2sh-e13', conceptId: 'b2-should-have', type: 'choose_word', prompt: 'We ___ the flight, but the taxi got stuck in traffic.', points: 1, options: ['could have caught', 'could catch', 'can have caught'], accepted: ['could have caught'] },
   { id: 'b2sh-e14', conceptId: 'b2-should-have', type: 'choose_word', prompt: "Why didn't you ask me? I ___ have lent you the money — I had plenty.", points: 1, options: ['could', 'must', "can't"], accepted: ['could'] },
