@@ -19,6 +19,8 @@ import * as b1VerbPatterns from './modules/b1-verb-patterns';
 import * as b1Relative from './modules/b1-relative';
 import * as b2Conditionals from './modules/b2-conditionals';
 import * as b2Passive from './modules/b2-passive';
+import * as b2Reported from './modules/b2-reported';
+import * as b2PastModals from './modules/b2-past-modals';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
 // bump on breaking-изменения; порог 5→50 — breaking.
@@ -44,6 +46,8 @@ export const content: Content = {
     b1Relative.module,
     b2Conditionals.module,
     b2Passive.module,
+    b2Reported.module,
+    b2PastModals.module,
   ],
   concepts: [
     ...presentPerfect.concepts,
@@ -65,6 +69,8 @@ export const content: Content = {
     ...b1Relative.concepts,
     ...b2Conditionals.concepts,
     ...b2Passive.concepts,
+    ...b2Reported.concepts,
+    ...b2PastModals.concepts,
   ],
   exercises: [
     ...presentPerfect.exercises,
@@ -86,6 +92,8 @@ export const content: Content = {
     ...b1Relative.exercises,
     ...b2Conditionals.exercises,
     ...b2Passive.exercises,
+    ...b2Reported.exercises,
+    ...b2PastModals.exercises,
   ],
 };
 
