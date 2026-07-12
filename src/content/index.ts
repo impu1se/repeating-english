@@ -5,6 +5,9 @@ import * as vocabA2 from './modules/vocab-a2';
 import * as pastVsPerfect from './modules/past-vs-perfect';
 import * as conditionals from './modules/conditionals';
 import * as vocabB1WorkPhrasal from './modules/vocab-b1-work-phrasal';
+import * as a1BePresentSimple from './modules/a1-be-present-simple';
+import * as a1NounsArticles from './modules/a1-nouns-articles';
+import * as a1Basics from './modules/a1-basics';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
 // bump on breaking-изменения; порог 5→50 — breaking.
@@ -16,6 +19,9 @@ export const content: Content = {
     conditionals.module,
     vocabA2.module,
     vocabB1WorkPhrasal.module,
+    a1BePresentSimple.module,
+    a1NounsArticles.module,
+    a1Basics.module,
   ],
   concepts: [
     ...presentPerfect.concepts,
@@ -23,6 +29,9 @@ export const content: Content = {
     ...conditionals.concepts,
     ...vocabA2.concepts,
     ...vocabB1WorkPhrasal.concepts,
+    ...a1BePresentSimple.concepts,
+    ...a1NounsArticles.concepts,
+    ...a1Basics.concepts,
   ],
   exercises: [
     ...presentPerfect.exercises,
@@ -30,6 +39,9 @@ export const content: Content = {
     ...conditionals.exercises,
     ...vocabA2.exercises,
     ...vocabB1WorkPhrasal.exercises,
+    ...a1BePresentSimple.exercises,
+    ...a1NounsArticles.exercises,
+    ...a1Basics.exercises,
   ],
 };
 
