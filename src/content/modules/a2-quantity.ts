@@ -43,7 +43,7 @@ export const exercises: Exercise[] = [
   // ============ a2-countability ============
   // --- translate_ru_en ---
   { id: 'a2ct-e1', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'Мне нужен совет.', points: 2, accepted: ['I need some advice', 'I need advice'] },
-  { id: 'a2ct-e2', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'У меня есть немного денег.', points: 2, accepted: ['I have some money'] },
+  { id: 'a2ct-e2', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'У меня есть немного денег.', points: 2, accepted: ['I have some money', 'I have a little money'] },
   { id: 'a2ct-e3', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'Это хорошая новость.', points: 2, accepted: ['This is good news', 'That is good news'] },
   { id: 'a2ct-e4', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'У нас нет мебели в этой комнате.', points: 2, accepted: ["We don't have any furniture in this room", 'We do not have any furniture in this room'] },
   // --- fill_gap ---
@@ -72,16 +72,16 @@ export const exercises: Exercise[] = [
   // --- translate_ru_en ---
   { id: 'a2mm-e1', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'У меня не так много времени.', points: 2, accepted: ["I don't have much time", 'I do not have much time'] },
   { id: 'a2mm-e2', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'Сколько у тебя друзей?', points: 2, accepted: ['How many friends do you have?'] },
-  { id: 'a2mm-e3', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'У нас есть немного времени до поезда.', points: 2, accepted: ['We have a little time before the train'] },
+  { id: 'a2mm-e3', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'У нас есть немного времени до поезда.', points: 2, accepted: ['We have a little time before the train', 'We have some time before the train'] },
   { id: 'a2mm-e4', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'У неё много домашней работы.', points: 2, accepted: ['She has a lot of homework'] },
   // --- fill_gap ---
   { id: 'a2mm-e5', conceptId: 'a2-much-many', type: 'fill_gap', prompt: 'How ___ sugar do you want in your coffee?', points: 1, accepted: ['much'] },
   { id: 'a2mm-e6', conceptId: 'a2-much-many', type: 'fill_gap', prompt: 'How ___ books did you read last year?', points: 1, accepted: ['many'] },
   { id: 'a2mm-e7', conceptId: 'a2-much-many', type: 'fill_gap', prompt: "We have very ___ time, so let's hurry.", points: 1, accepted: ['little'] },
   // --- verb_form ---
-  { id: 'a2mm-e8', conceptId: 'a2-much-many', type: 'verb_form', prompt: 'How ___ milk is left in the bottle?', points: 1, accepted: ['much'] },
-  { id: 'a2mm-e9', conceptId: 'a2-much-many', type: 'verb_form', prompt: 'How ___ students are in your group?', points: 1, accepted: ['many'] },
-  { id: 'a2mm-e10', conceptId: 'a2-much-many', type: 'verb_form', prompt: "We have very ___ time before the train leaves — let's run!", points: 1, accepted: ['little'] },
+  { id: 'a2mm-e8', conceptId: 'a2-much-many', type: 'verb_form', prompt: 'Hurry up — we have (little) ___ time today than we had yesterday.', points: 1, accepted: ['less'] },
+  { id: 'a2mm-e9', conceptId: 'a2-much-many', type: 'verb_form', prompt: 'There are (few) ___ cars parked here than in the city centre.', points: 1, accepted: ['fewer'] },
+  { id: 'a2mm-e10', conceptId: 'a2-much-many', type: 'verb_form', prompt: 'I drink (much) ___ coffee now than I did last year.', points: 1, accepted: ['more'] },
   // --- choose_word ---
   { id: 'a2mm-e11', conceptId: 'a2-much-many', type: 'choose_word', prompt: "I don't have ___ money for a taxi.", points: 1, options: ['much', 'many', 'a lot'], accepted: ['much'] },
   { id: 'a2mm-e12', conceptId: 'a2-much-many', type: 'choose_word', prompt: 'How ___ children do you have?', points: 1, options: ['many', 'much', 'few'], accepted: ['many'] },

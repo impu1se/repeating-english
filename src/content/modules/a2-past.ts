@@ -89,7 +89,7 @@ export const exercises: Exercise[] = [
   { id: 'a2pt-e3', conceptId: 'a2-past-simple', type: 'translate_ru_en', prompt: 'Мы поехали в Италию два года назад.', points: 2, accepted: ['We went to Italy two years ago'] },
   { id: 'a2pt-e4', conceptId: 'a2-past-simple', type: 'translate_ru_en', prompt: 'Я не видел его вчера.', points: 2, accepted: ["I didn't see him yesterday", 'I did not see him yesterday'] },
   // --- fill_gap ---
-  { id: 'a2pt-e5', conceptId: 'a2-past-simple', type: 'fill_gap', prompt: 'I was hungry, so I ___ a sandwich.', points: 1, accepted: ['made', 'had'] },
+  { id: 'a2pt-e5', conceptId: 'a2-past-simple', type: 'fill_gap', prompt: 'I was hungry, so I ___ a sandwich.', points: 1, accepted: ['made', 'had', 'ate'] },
   { id: 'a2pt-e6', conceptId: 'a2-past-simple', type: 'fill_gap', prompt: 'There was a loud noise, so everybody ___ outside.', points: 1, accepted: ['ran', 'went'] },
   { id: 'a2pt-e7', conceptId: 'a2-past-simple', type: 'fill_gap', prompt: 'She ___ her homework before dinner yesterday.', points: 1, accepted: ['finished', 'did'] },
   // --- verb_form ---
