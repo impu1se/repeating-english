@@ -32,16 +32,23 @@ function progressWith(overrides: Partial<Record<string, Partial<ProgressState['c
 }
 
 describe('pickNextConcept', () => {
-  it('picks the lowest-score non-mastered concept', () => {
+  it('picks the lowest-score concept', () => {
     expect(pickNextConcept(content, 'm', progressWith({ c1: { score: 3 }, c2: { score: 1 } }))).toBe('c2');
   });
-  it('skips mastered concepts', () => {
-    expect(pickNextConcept(content, 'm', progressWith({ c1: { mastered: true } }))).toBe('c2');
+  it('keeps mastered concepts in rotation (lowest score still wins)', () => {
+    expect(
+      pickNextConcept(content, 'm', progressWith({ c1: { score: 55, mastered: true }, c2: { score: 3 } })),
+    ).toBe('c2');
   });
-  it('returns null when all mastered', () => {
-    expect(pickNextConcept(content, 'm', progressWith({ c1: { mastered: true }, c2: { mastered: true } }))).toBeNull();
+  it('picks a mastered concept when it has the lowest score', () => {
+    expect(
+      pickNextConcept(content, 'm', progressWith({ c1: { score: 50, mastered: true }, c2: { score: 61, mastered: true } })),
+    ).toBe('c1');
   });
-  it('treats a concept without a progress record as score 0, not as missing', () => {
+  it('returns null for an unknown module', () => {
+    expect(pickNextConcept(content, 'nope', progressWith({}))).toBeNull();
+  });
+  it('treats a concept without a progress record as score 0', () => {
     const progress: ProgressState = {
       contentVersion: '1',
       concepts: { c1: { score: 2, mastered: false, recentExerciseIds: [], errorCount: 0 } },

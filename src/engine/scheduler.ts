@@ -12,9 +12,9 @@ export function pickNextConcept(
   let chosen: string | null = null;
   let bestScore = Infinity;
   for (const cid of mod.conceptIds) {
-    const cp = progress.concepts[cid];
-    if (cp?.mastered) continue;
-    const score = cp?.score ?? 0; // no record yet = untouched concept, weakest possible
+    // mastered concepts stay in rotation — the gym never closes;
+    // lowest score first keeps the weakest concept trained hardest
+    const score = progress.concepts[cid]?.score ?? 0;
     if (score < bestScore) {
       bestScore = score;
       chosen = cid;
