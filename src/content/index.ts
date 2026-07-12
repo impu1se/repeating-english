@@ -12,6 +12,9 @@ import * as a2Past from './modules/a2-past';
 import * as a2ContinuousFuture from './modules/a2-continuous-future';
 import * as a2Comparisons from './modules/a2-comparisons';
 import * as a2Quantity from './modules/a2-quantity';
+import * as b1PastTenses from './modules/b1-past-tenses';
+import * as b1Modals from './modules/b1-modals';
+import * as b1Passive from './modules/b1-passive';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
 // bump on breaking-изменения; порог 5→50 — breaking.
@@ -30,6 +33,9 @@ export const content: Content = {
     a2ContinuousFuture.module,
     a2Comparisons.module,
     a2Quantity.module,
+    b1PastTenses.module,
+    b1Modals.module,
+    b1Passive.module,
   ],
   concepts: [
     ...presentPerfect.concepts,
@@ -44,6 +50,9 @@ export const content: Content = {
     ...a2ContinuousFuture.concepts,
     ...a2Comparisons.concepts,
     ...a2Quantity.concepts,
+    ...b1PastTenses.concepts,
+    ...b1Modals.concepts,
+    ...b1Passive.concepts,
   ],
   exercises: [
     ...presentPerfect.exercises,
@@ -58,6 +67,9 @@ export const content: Content = {
     ...a2ContinuousFuture.exercises,
     ...a2Comparisons.exercises,
     ...a2Quantity.exercises,
+    ...b1PastTenses.exercises,
+    ...b1Modals.exercises,
+    ...b1Passive.exercises,
   ],
 };
 
