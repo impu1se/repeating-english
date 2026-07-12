@@ -16,8 +16,10 @@ export function applyAnswer(
   threshold: number,
 ): ConceptProgress {
   if (correct) {
-    const score = Math.min(threshold, prev.score + points);
-    return { ...prev, score, mastered: score >= threshold };
+    const score = prev.score + points;
+    // no cap: the score is total volume of work, gym-style;
+    // mastered is sticky — once earned, never revoked
+    return { ...prev, score, mastered: prev.mastered || score >= threshold };
   }
   return { ...prev, score: Math.max(0, prev.score - 1), errorCount: prev.errorCount + 1 };
 }
