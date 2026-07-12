@@ -29,7 +29,7 @@ export const concepts: Concept[] = [
     title: 'much / many / a lot of, (a) few, (a) little',
     kind: 'grammar',
     theory:
-      "much — с неисчисляемыми (money, time, water); many — с исчисляемыми во множественном числе (books, people). a lot of — с обоими, более нейтрально и употребительно в утверждениях.\n• I don't have much time. She has many friends. We have a lot of homework / a lot of books.\nВопрос о количестве: How much...? (неисчисляемые), How many...? (исчисляемые):\n• How much money do you need? How many people are coming?\na few / few — немного/мало (с исчисляемыми, few — почти нет, негативный оттенок):\n• I have a few friends here. (немного, это хорошо) Few people came. (почти никто, это плохо)\na little / little — немного/мало (с неисчисляемыми, little — почти нет):\n• We have a little time before the train. There is little hope left.",
+      "much — с неисчисляемыми (money, time, water); many — с исчисляемыми во множественном числе (books, people). a lot of — с обоими, более нейтрально и употребительно в утверждениях.\n• I don't have much time. She has many friends. We have a lot of homework / a lot of books.\nВопрос о количестве: How much...? (неисчисляемые), How many...? (исчисляемые):\n• How much money do you need? How many people are coming?\na few / few — немного/мало (с исчисляемыми, few — почти нет, негативный оттенок):\n• I have a few friends here. (немного, это хорошо) Few people came. (почти никто, это плохо)\na little / little — немного/мало (с неисчисляемыми, little — почти нет):\n• We have a little time before the train. There is little hope left.\nСравнение: much → more, little → less, few → fewer.\n• We have less time than before. There are fewer cars on this street than last year.",
     exerciseIds: [
       'a2mm-e1', 'a2mm-e2', 'a2mm-e3', 'a2mm-e4', 'a2mm-e5',
       'a2mm-e6', 'a2mm-e7', 'a2mm-e8', 'a2mm-e9', 'a2mm-e10',
@@ -43,7 +43,7 @@ export const exercises: Exercise[] = [
   // ============ a2-countability ============
   // --- translate_ru_en ---
   { id: 'a2ct-e1', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'Мне нужен совет.', points: 2, accepted: ['I need some advice', 'I need advice'] },
-  { id: 'a2ct-e2', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'У меня есть немного денег.', points: 2, accepted: ['I have some money', 'I have a little money'] },
+  { id: 'a2ct-e2', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'У меня есть немного денег.', points: 2, accepted: ['I have some money', 'I have some cash', 'I have a little money', "I've got some money"] },
   { id: 'a2ct-e3', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'Это хорошая новость.', points: 2, accepted: ['This is good news', 'That is good news'] },
   { id: 'a2ct-e4', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'У нас нет мебели в этой комнате.', points: 2, accepted: ["We don't have any furniture in this room", 'We do not have any furniture in this room'] },
   // --- fill_gap ---

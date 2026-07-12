@@ -56,7 +56,7 @@ export const concepts: Concept[] = [
 export const exercises: Exercise[] = [
   // ============ a1-some-any ============
   // --- translate_ru_en ---
-  { id: 'a1sa-e1', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'У меня есть немного денег.', points: 2, accepted: ['I have some money', 'I have some cash'] },
+  { id: 'a1sa-e1', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'У меня есть немного денег.', points: 2, accepted: ['I have some money', 'I have some cash', 'I have a little money', "I've got some money"] },
   { id: 'a1sa-e2', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'У тебя есть яблоки?', points: 2, accepted: ['Do you have any apples?'] },
   { id: 'a1sa-e3', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'У нас нет молока.', points: 2, accepted: ["We don't have any milk", 'We have no milk', 'We do not have any milk'] },
   { id: 'a1sa-e4', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'Можно мне немного воды?', points: 2, accepted: ['Can I have some water?', 'Could I have some water?'] },

@@ -42,7 +42,7 @@ export const concepts: Concept[] = [
 export const exercises: Exercise[] = [
   // ============ b1-gerund-infinitive ============
   // --- translate_ru_en ---
-  { id: 'b1gi-e1', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'Ей нравится готовить по выходным.', points: 2, accepted: ['She likes cooking at the weekends', 'She likes to cook at the weekends', 'She loves cooking at the weekends'] },
+  { id: 'b1gi-e1', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'Ей нравится готовить по выходным.', points: 2, accepted: ['She likes cooking at the weekends', 'She likes to cook at the weekends', 'She loves cooking at the weekends', 'She likes cooking on weekends', 'She likes to cook on weekends', 'She loves cooking on weekends'] },
   { id: 'b1gi-e2', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'Мы планируем переехать в другой город в следующем году.', points: 2, accepted: ['We plan to move to another city next year', "We're planning to move to another city next year", 'Next year we plan to move to another city'] },
   { id: 'b1gi-e3', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'Он бросил пить кофе, потому что плохо спал.', points: 2, accepted: ["He stopped drinking coffee because he wasn't sleeping well", "He stopped drinking coffee because he didn't sleep well", "He gave up drinking coffee because he wasn't sleeping well"] },
   { id: 'b1gi-e4', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'По дороге домой мы остановились, чтобы купить хлеб.', points: 2, accepted: ['On the way home, we stopped to buy some bread', 'On the way home we stopped to buy bread', 'We stopped to buy some bread on the way home'] },

@@ -41,7 +41,7 @@ export const exercises: Exercise[] = [
   { id: 'cf-e2', conceptId: 'cond-first', type: 'choose_word', prompt: 'If she ___ hard, she will pass the exam.', points: 1, options: ['studies', 'will study', 'study'], accepted: ['studies'] },
   { id: 'cf-e3', conceptId: 'cond-first', type: 'verb_form', prompt: 'If we (be) ___ late, they will start without us.', points: 1, accepted: ['are'] },
   { id: 'cf-e4', conceptId: 'cond-first', type: 'fill_gap', prompt: "I'll call you when I ___ home.", points: 1, accepted: ['get', 'arrive', 'come'] },
-  { id: 'cf-e5', conceptId: 'cond-first', type: 'word_order', prompt: 'Соберите: «Если ты устанешь, мы сделаем перерыв»', points: 1, bank: ['if', 'you', 'get', 'tired', 'we', 'will', 'take', 'a', 'break'], accepted: ['if you get tired we will take a break'] },
+  { id: 'cf-e5', conceptId: 'cond-first', type: 'word_order', prompt: 'Соберите: «Если ты устанешь, мы сделаем перерыв»', points: 1, bank: ['if', 'you', 'get', 'tired', 'we', 'will', 'take', 'a', 'break'], accepted: ['if you get tired we will take a break', 'we will take a break if you get tired'] },
   { id: 'cf-e6', conceptId: 'cond-first', type: 'multi_gap', prompt: 'If he ___ (miss) the bus, he ___ (be) late.', points: 1, gaps: [{ accepted: ['misses'] }, { accepted: ['will be', "'ll be"] }] },
   { id: 'cf-e7', conceptId: 'cond-first', type: 'choose_word', prompt: "You won't pass the exam ___ you study.", points: 1, options: ['unless', 'if', 'when'], accepted: ['unless'] },
   // --- First Conditional: extension (when/as soon as, unless) ---
@@ -64,7 +64,7 @@ export const exercises: Exercise[] = [
   { id: 'cs-e2', conceptId: 'cond-second', type: 'choose_word', prompt: 'If I ___ you, I would take the job.', points: 1, options: ['were', 'am', 'would be'], accepted: ['were'] },
   { id: 'cs-e3', conceptId: 'cond-second', type: 'verb_form', prompt: 'If she (have) ___ more time, she would travel.', points: 1, accepted: ['had'] },
   { id: 'cs-e4', conceptId: 'cond-second', type: 'fill_gap', prompt: 'What would you do if you ___ a million dollars?', points: 1, accepted: ['won', 'had', 'got', 'found'] },
-  { id: 'cs-e5', conceptId: 'cond-second', type: 'word_order', prompt: 'Соберите: «Если бы я знал ответ, я бы сказал тебе»', points: 1, bank: ['if', 'I', 'knew', 'the', 'answer', 'I', 'would', 'tell', 'you'], accepted: ['if I knew the answer I would tell you'] },
+  { id: 'cs-e5', conceptId: 'cond-second', type: 'word_order', prompt: 'Соберите: «Если бы я знал ответ, я бы сказал тебе»', points: 1, bank: ['if', 'I', 'knew', 'the', 'answer', 'I', 'would', 'tell', 'you'], accepted: ['if I knew the answer I would tell you', 'I would tell you if I knew the answer'] },
   { id: 'cs-e6', conceptId: 'cond-second', type: 'multi_gap', prompt: 'If we ___ (live) closer, we ___ (see) each other more often.', points: 1, gaps: [{ accepted: ['lived'] }, { accepted: ['would see', "'d see"] }] },
   { id: 'cs-e7', conceptId: 'cond-second', type: 'choose_word', prompt: 'I would help you if I ___.', points: 1, options: ['could', 'can', 'will'], accepted: ['could'] },
   // --- Second Conditional: extension (If I were you — advice) ---

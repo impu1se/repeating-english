@@ -44,7 +44,7 @@ export const exercises: Exercise[] = [
   // --- translate_ru_en ---
   { id: 'a2cm-e1', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Этот дом больше, чем тот.', points: 2, accepted: ['This house is bigger than that one'] },
   { id: 'a2cm-e2', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Это упражнение более сложное, чем предыдущее.', points: 2, accepted: ['This exercise is more difficult than the previous one', 'This exercise is more difficult than the last one'] },
-  { id: 'a2cm-e3', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Она такая же высокая, как её брат.', points: 2, accepted: ['She is as tall as her brother'] },
+  { id: 'a2cm-e3', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Она такая же высокая, как её брат.', points: 2, accepted: ['She is as tall as her brother', "She's as tall as her brother"] },
   { id: 'a2cm-e4', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Погода сегодня хуже, чем вчера.', points: 2, accepted: ['The weather is worse today than yesterday', 'The weather today is worse than yesterday'] },
   // --- fill_gap ---
   { id: 'a2cm-e5', conceptId: 'a2-comparative', type: 'fill_gap', prompt: 'My new phone is much ___ than my old one — the camera and battery are great.', points: 1, accepted: ['better'] },
@@ -71,9 +71,9 @@ export const exercises: Exercise[] = [
   // ============ a2-superlative ============
   // --- translate_ru_en ---
   { id: 'a2sp-e1', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Это самый высокий дом в городе.', points: 2, accepted: ['This is the tallest building in the city', 'This is the tallest house in the city'] },
-  { id: 'a2sp-e2', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Он самый умный студент в классе.', points: 2, accepted: ['He is the most intelligent student in the class', 'He is the smartest student in the class'] },
+  { id: 'a2sp-e2', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Он самый умный студент в классе.', points: 2, accepted: ['He is the most intelligent student in the class', 'He is the smartest student in the class', "He's the most intelligent student in the class", "He's the smartest student in the class"] },
   { id: 'a2sp-e3', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Эта сумка слишком тяжёлая — я не могу её нести.', points: 2, accepted: ["This bag is too heavy — I can't carry it", 'This bag is too heavy — I cannot carry it'] },
-  { id: 'a2sp-e4', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Она недостаточно высокая, чтобы достать полку.', points: 2, accepted: ["She isn't tall enough to reach the shelf", 'She is not tall enough to reach the shelf'] },
+  { id: 'a2sp-e4', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Она недостаточно высокая, чтобы достать полку.', points: 2, accepted: ["She isn't tall enough to reach the shelf", 'She is not tall enough to reach the shelf', "She's not tall enough to reach the shelf"] },
   // --- fill_gap ---
   { id: 'a2sp-e5', conceptId: 'a2-superlative', type: 'fill_gap', prompt: "This is ___ film I've ever seen — I loved every minute of it.", points: 1, accepted: ['the best'] },
   { id: 'a2sp-e6', conceptId: 'a2-superlative', type: 'fill_gap', prompt: 'This soup is ___ to eat now — it was too hot five minutes ago.', points: 1, accepted: ['cool enough', 'warm enough'] },
