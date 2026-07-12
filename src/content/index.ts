@@ -8,6 +8,10 @@ import * as vocabB1WorkPhrasal from './modules/vocab-b1-work-phrasal';
 import * as a1BePresentSimple from './modules/a1-be-present-simple';
 import * as a1NounsArticles from './modules/a1-nouns-articles';
 import * as a1Basics from './modules/a1-basics';
+import * as a2Past from './modules/a2-past';
+import * as a2ContinuousFuture from './modules/a2-continuous-future';
+import * as a2Comparisons from './modules/a2-comparisons';
+import * as a2Quantity from './modules/a2-quantity';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
 // bump on breaking-изменения; порог 5→50 — breaking.
@@ -22,6 +26,10 @@ export const content: Content = {
     a1BePresentSimple.module,
     a1NounsArticles.module,
     a1Basics.module,
+    a2Past.module,
+    a2ContinuousFuture.module,
+    a2Comparisons.module,
+    a2Quantity.module,
   ],
   concepts: [
     ...presentPerfect.concepts,
@@ -32,6 +40,10 @@ export const content: Content = {
     ...a1BePresentSimple.concepts,
     ...a1NounsArticles.concepts,
     ...a1Basics.concepts,
+    ...a2Past.concepts,
+    ...a2ContinuousFuture.concepts,
+    ...a2Comparisons.concepts,
+    ...a2Quantity.concepts,
   ],
   exercises: [
     ...presentPerfect.exercises,
@@ -42,6 +54,10 @@ export const content: Content = {
     ...a1BePresentSimple.exercises,
     ...a1NounsArticles.exercises,
     ...a1Basics.exercises,
+    ...a2Past.exercises,
+    ...a2ContinuousFuture.exercises,
+    ...a2Comparisons.exercises,
+    ...a2Quantity.exercises,
   ],
 };
 
