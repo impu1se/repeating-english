@@ -15,15 +15,23 @@ export const concepts: Concept[] = [
     title: 'Past Simple: законченное время',
     kind: 'grammar',
     theory: 'Past Simple — законченное действие в законченном времени: V2 (или did + V1).\nМаркеры: yesterday, last week, two days ago, in 2019, when?\n• She moved to London in 2019.\n• I didn\'t watch TV last night. / Did you see him?\nОтрицание и вопрос — через did, глагол возвращается в базовую форму.',
-    exerciseIds: ['psp-e1', 'psp-e2', 'psp-e3', 'psp-e4', 'psp-e5', 'psp-e6', 'psp-e7'],
+    exerciseIds: [
+      'psp-e1', 'psp-e2', 'psp-e3', 'psp-e4', 'psp-e5', 'psp-e6', 'psp-e7',
+      'psp-e8', 'psp-e9', 'psp-e10', 'psp-e11', 'psp-e12', 'psp-e13', 'psp-e14',
+      'psp-e15', 'psp-e16', 'psp-e17', 'psp-e18', 'psp-e19', 'psp-e20',
+    ],
   },
   {
     id: 'psp-contrast',
     moduleId: 'past-vs-perfect',
     title: 'Контраст: Past Simple или Present Perfect',
     kind: 'grammar',
-    theory: 'Выбор между Past Simple и Present Perfect:\n• Время названо (in 2020, yesterday, ago) → Past Simple: I saw it in 2020.\n• Опыт или результат «к настоящему», время не названо → Present Perfect: I have seen it three times.\n• already / just / yet / ever / never → Present Perfect.\n• ago / last / when? → Past Simple.',
-    exerciseIds: ['psc-e1', 'psc-e2', 'psc-e3', 'psc-e4', 'psc-e5', 'psc-e6', 'psc-e7'],
+    theory: 'Выбор между Past Simple и Present Perfect:\n• Время названо (in 2020, yesterday, ago) → Past Simple: I saw it in 2020.\n• Опыт или результат «к настоящему», время не названо → Present Perfect: I have seen it three times.\n• already / just / yet / ever / never → Present Perfect.\n• ago / last / when? → Past Simple.\n• Незаконченный период (today, this week, this month), если он ещё не закончился → Present Perfect: I have called him three times today.',
+    exerciseIds: [
+      'psc-e1', 'psc-e2', 'psc-e3', 'psc-e4', 'psc-e5', 'psc-e6', 'psc-e7',
+      'psc-e8', 'psc-e9', 'psc-e10', 'psc-e11', 'psc-e12', 'psc-e13', 'psc-e14',
+      'psc-e15', 'psc-e16', 'psc-e17', 'psc-e18', 'psc-e19', 'psc-e20',
+    ],
   },
 ];
 
@@ -36,6 +44,20 @@ export const exercises: Exercise[] = [
   { id: 'psp-e5', conceptId: 'psp-past-simple', type: 'word_order', prompt: 'Соберите: «Она переехала в Лондон в 2019 году»', points: 1, bank: ['she', 'moved', 'to', 'London', 'in', '2019'], accepted: ['she moved to London in 2019'] },
   { id: 'psp-e6', conceptId: 'psp-past-simple', type: 'multi_gap', prompt: 'I ___ (meet) him at the party, but we ___ (not talk) much.', points: 1, gaps: [{ accepted: ['met'] }, { accepted: ["didn't talk", 'did not talk'] }] },
   { id: 'psp-e7', conceptId: 'psp-past-simple', type: 'choose_word', prompt: 'When ___ you arrive?', points: 1, options: ['did', 'have', 'do'], accepted: ['did'] },
+  // --- Past Simple: extension (new scenarios, same rules) ---
+  { id: 'psp-e8', conceptId: 'psp-past-simple', type: 'translate_ru_en', prompt: 'Мы поужинали в новом ресторане в субботу.', points: 2, accepted: ['We had dinner at a new restaurant on Saturday', 'We had dinner in a new restaurant on Saturday'] },
+  { id: 'psp-e9', conceptId: 'psp-past-simple', type: 'translate_ru_en', prompt: 'Он позвонил мне два часа назад.', points: 2, accepted: ['He called me two hours ago', 'He phoned me two hours ago'] },
+  { id: 'psp-e10', conceptId: 'psp-past-simple', type: 'translate_ru_en', prompt: 'Они поженились в 2015 году.', points: 2, accepted: ['They got married in 2015', 'They married in 2015'] },
+  { id: 'psp-e11', conceptId: 'psp-past-simple', type: 'fill_gap', prompt: 'We ___ a great time at the party last night.', points: 1, accepted: ['had'] },
+  { id: 'psp-e12', conceptId: 'psp-past-simple', type: 'fill_gap', prompt: 'I ___ my umbrella at home yesterday, so I got wet.', points: 1, accepted: ['left', 'forgot'] },
+  { id: 'psp-e13', conceptId: 'psp-past-simple', type: 'verb_form', prompt: 'They (buy) ___ a new car last month.', points: 1, accepted: ['bought'] },
+  { id: 'psp-e14', conceptId: 'psp-past-simple', type: 'verb_form', prompt: 'I (not sleep) ___ well last night.', points: 1, accepted: ["didn't sleep", 'did not sleep'] },
+  { id: 'psp-e15', conceptId: 'psp-past-simple', type: 'choose_word', prompt: 'She ___ to the gym three times last week.', points: 1, options: ['went', 'has gone', 'goes'], accepted: ['went'] },
+  { id: 'psp-e16', conceptId: 'psp-past-simple', type: 'choose_word', prompt: '___ they arrive on time yesterday?', points: 1, options: ['Did', 'Have', 'Were'], accepted: ['Did'] },
+  { id: 'psp-e17', conceptId: 'psp-past-simple', type: 'word_order', prompt: 'Соберите: «Вчера вечером я приготовил ужин»', points: 1, bank: ['i', 'cooked', 'dinner', 'last', 'night'], accepted: ['i cooked dinner last night', 'last night i cooked dinner'] },
+  { id: 'psp-e18', conceptId: 'psp-past-simple', type: 'word_order', prompt: 'Соберите: «Она не пришла на встречу вчера»', points: 1, bank: ['she', 'did', 'not', 'come', 'to', 'the', 'meeting', 'yesterday'], accepted: ['she did not come to the meeting yesterday', 'yesterday she did not come to the meeting'] },
+  { id: 'psp-e19', conceptId: 'psp-past-simple', type: 'multi_gap', prompt: 'Yesterday she ___ (wake) up late and ___ (miss) her train.', points: 1, gaps: [{ accepted: ['woke'] }, { accepted: ['missed'] }] },
+  { id: 'psp-e20', conceptId: 'psp-past-simple', type: 'multi_gap', prompt: 'We ___ (not go) to the beach last weekend because it ___ (rain) all day.', points: 1, gaps: [{ accepted: ["didn't go", 'did not go'] }, { accepted: ['rained'] }] },
 
   // --- Contrast: experience/result vs finished time ---
   { id: 'psc-e1', conceptId: 'psp-contrast', type: 'choose_word', prompt: 'I ___ this film three times.', points: 1, options: ['have seen', 'saw', 'see'], accepted: ['have seen'] },
@@ -45,4 +67,18 @@ export const exercises: Exercise[] = [
   { id: 'psc-e5', conceptId: 'psp-contrast', type: 'fill_gap', prompt: "She hasn't ___ me back yet.", points: 1, accepted: ['called', 'phoned'] },
   { id: 'psc-e6', conceptId: 'psp-contrast', type: 'multi_gap', prompt: 'I ___ (live) here since 2020, but before that I ___ (live) in Kazan.', points: 1, gaps: [{ accepted: ['have lived', 'have been living'] }, { accepted: ['lived'] }] },
   { id: 'psc-e7', conceptId: 'psp-contrast', type: 'word_order', prompt: 'Соберите: «Я никогда не пробовал устрицы»', points: 1, bank: ['I', 'have', 'never', 'tried', 'oysters'], accepted: ['I have never tried oysters'] },
+  // --- Contrast: extension (this week / today — unfinished period → Present Perfect) ---
+  { id: 'psc-e8', conceptId: 'psp-contrast', type: 'translate_ru_en', prompt: 'Я звонил ему три раза сегодня.', points: 2, accepted: ['I have called him three times today', "I've called him three times today", 'I have phoned him three times today', "I've phoned him three times today"] },
+  { id: 'psc-e9', conceptId: 'psp-contrast', type: 'translate_ru_en', prompt: 'Мы не виделись на этой неделе.', points: 2, accepted: ["We haven't seen each other this week", 'We have not seen each other this week'] },
+  { id: 'psc-e10', conceptId: 'psp-contrast', type: 'translate_ru_en', prompt: 'Вчера она купила новую сумку.', points: 2, accepted: ['She bought a new bag yesterday', 'Yesterday she bought a new bag'] },
+  { id: 'psc-e11', conceptId: 'psp-contrast', type: 'fill_gap', prompt: 'I have already ___ three cups of coffee this morning.', points: 1, accepted: ['had', 'drunk'] },
+  { id: 'psc-e12', conceptId: 'psp-contrast', type: 'fill_gap', prompt: "We haven't finished the project ___, even though it's due today.", points: 1, accepted: ['yet'] },
+  { id: 'psc-e13', conceptId: 'psp-contrast', type: 'verb_form', prompt: 'I (see) ___ him twice this week.', points: 1, accepted: ['have seen', "'ve seen"] },
+  { id: 'psc-e14', conceptId: 'psp-contrast', type: 'verb_form', prompt: 'Yesterday, she (finish) ___ the report before lunch.', points: 1, accepted: ['finished'] },
+  { id: 'psc-e15', conceptId: 'psp-contrast', type: 'choose_word', prompt: "I ___ two emails already today, and it's still early.", points: 1, options: ['have written', 'wrote', 'write'], accepted: ['have written'] },
+  { id: 'psc-e16', conceptId: 'psp-contrast', type: 'choose_word', prompt: '___ you seen the new episode yet, or should I avoid spoilers?', points: 1, options: ['Have', 'Did', 'Were'], accepted: ['Have'] },
+  { id: 'psc-e17', conceptId: 'psp-contrast', type: 'word_order', prompt: 'Соберите: «Я уже написал два письма сегодня»', points: 1, bank: ['i', 'have', 'already', 'written', 'two', 'letters', 'today'], accepted: ['i have already written two letters today'] },
+  { id: 'psc-e18', conceptId: 'psp-contrast', type: 'word_order', prompt: 'Соберите: «Она купила новый телефон вчера»', points: 1, bank: ['she', 'bought', 'a', 'new', 'phone', 'yesterday'], accepted: ['she bought a new phone yesterday'] },
+  { id: 'psc-e19', conceptId: 'psp-contrast', type: 'multi_gap', prompt: 'I ___ (call) him twice today, but he ___ (not answer) yet.', points: 1, gaps: [{ accepted: ['have called', "'ve called"] }, { accepted: ["hasn't answered", 'has not answered'] }] },
+  { id: 'psc-e20', conceptId: 'psp-contrast', type: 'multi_gap', prompt: 'Yesterday I ___ (see) three films, but this week I ___ (see) only one.', points: 1, gaps: [{ accepted: ['saw'] }, { accepted: ['have seen', "'ve seen"] }] },
 ];
