@@ -26,7 +26,7 @@ export const concepts: Concept[] = [
     moduleId: 'present-perfect',
     title: 'just / already / yet: только что, уже, ещё',
     kind: 'grammar',
-    theory: "just, already, yet — слова-спутники Present Perfect, показывают позицию действия во времени.\n• just («только что») — между have/has и V3: I have just finished my homework. — Я только что закончил домашнее задание.\n• already («уже») — тоже между have/has и V3, в утверждениях: She has already left. — Она уже ушла.\n• yet («ещё», «уже») — в конце предложения, в вопросах и отрицаниях: Have you finished yet? I haven't finished yet.\nyet не используется в утвердительных предложениях.\nalready в вопросах звучит как удивление: Have you finished already?",
+    theory: "just, already, yet — слова-спутники Present Perfect, показывают позицию действия во времени.\n• just («только что») — между have/has и V3: I have just finished my homework. — Я только что закончил домашнее задание.\n• already («уже») — тоже между have/has и V3, в утверждениях: She has already left. — Она уже ушла.\n• yet («ещё», «уже») — в конце предложения, в вопросах и отрицаниях: Have you finished yet? I haven't finished yet.\nyet не используется в утвердительных предложениях.\nalready в вопросах звучит как удивление: Have you finished already?\nalready может стоять и в конце: I've done it already.",
     exerciseIds: [
       'pja-e1', 'pja-e2', 'pja-e3', 'pja-e4', 'pja-e5', 'pja-e6', 'pja-e7',
       'pja-e8', 'pja-e9', 'pja-e10', 'pja-e11', 'pja-e12', 'pja-e13', 'pja-e14',
@@ -74,8 +74,8 @@ export const exercises: Exercise[] = [
   // --- translate_ru_en ---
   { id: 'pja-e1', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Я только что закончил домашнее задание.', points: 2, accepted: ['I have just finished my homework', "I've just finished my homework", 'I have just done my homework', "I've just done my homework"] },
   { id: 'pja-e2', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Она уже ушла.', points: 2, accepted: ['She has already left', "She's already left", 'She has left already', "She's left already"] },
-  { id: 'pja-e3', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Ты уже поел?', points: 2, accepted: ['Have you eaten yet?', 'Have you already eaten?'] },
-  { id: 'pja-e4', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Мы ещё не решили.', points: 2, accepted: ["We haven't decided yet", 'We have not decided yet'] },
+  { id: 'pja-e3', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Ты уже поел?', points: 2, accepted: ['Have you eaten yet?', 'Have you already eaten?', 'Have you eaten already?'] },
+  { id: 'pja-e4', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Мы ещё не решили.', points: 2, accepted: ["We haven't decided yet", 'We have not decided yet', "We haven't made a decision yet"] },
   // --- fill_gap ---
   { id: 'pja-e5', conceptId: 'pp-just-already-yet', type: 'fill_gap', prompt: 'I have just ___ my coffee.', points: 1, accepted: ['finished', 'had', 'drunk'] },
   { id: 'pja-e6', conceptId: 'pp-just-already-yet', type: 'fill_gap', prompt: "She hasn't called me ___.", points: 1, accepted: ['yet'] },
@@ -102,8 +102,8 @@ export const exercises: Exercise[] = [
   // --- translate_ru_en ---
   { id: 'pfs-e1', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Я живу здесь уже пять лет.', points: 2, accepted: ['I have lived here for five years', "I've lived here for five years", 'I have been living here for five years', "I've been living here for five years"] },
   { id: 'pfs-e2', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Она работает здесь с 2018 года.', points: 2, accepted: ['She has worked here since 2018', "She's worked here since 2018", 'She has been working here since 2018', "She's been working here since 2018"] },
-  { id: 'pfs-e3', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Как долго ты его знаешь?', points: 2, accepted: ['How long have you known him?'] },
-  { id: 'pfs-e4', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Мы не виделись с прошлого понедельника.', points: 2, accepted: ["We haven't seen each other since last Monday", 'We have not seen each other since last Monday'] },
+  { id: 'pfs-e3', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Как долго ты его знаешь?', points: 2, accepted: ['How long have you known him?', 'For how long have you known him?', 'How long have you known him for?'] },
+  { id: 'pfs-e4', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Мы не виделись с прошлого понедельника.', points: 2, accepted: ["We haven't seen each other since last Monday", 'We have not seen each other since last Monday', "We haven't seen one another since last Monday"] },
   // --- fill_gap ---
   { id: 'pfs-e5', conceptId: 'pp-for-since', type: 'fill_gap', prompt: 'I have known her ___ ten years.', points: 1, accepted: ['for'] },
   { id: 'pfs-e6', conceptId: 'pp-for-since', type: 'fill_gap', prompt: 'He has lived in Paris ___ he was a child.', points: 1, accepted: ['since'] },
