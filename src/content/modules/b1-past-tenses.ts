@@ -71,7 +71,7 @@ export const exercises: Exercise[] = [
   // --- choose_word ---
   { id: 'b1pc-e11', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: 'We ___ having dinner when you called.', points: 1, options: ['were', 'was', 'are'], accepted: ['were'] },
   { id: 'b1pc-e12', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: '___ she called, I was cleaning the kitchen.', points: 1, options: ['When', 'While', 'During'], accepted: ['When'] },
-  { id: 'b1pc-e13', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: 'I ___ when the lights went out.', points: 1, options: ['was reading', 'read', 'am reading'], accepted: ['was reading'] },
+  { id: 'b1pc-e13', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: 'I ___ when the lights went out.', points: 1, options: ['was reading', 'have read', 'am reading'], accepted: ['was reading'] },
   { id: 'b1pc-e14', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: '___ was he doing when the accident happened?', points: 1, options: ['What', 'Which', 'Whose'], accepted: ['What'] },
   // --- word_order ---
   { id: 'b1pc-e15', conceptId: 'b1-past-continuous', type: 'word_order', prompt: 'Соберите: «Он читал книгу, когда зазвонил телефон»', points: 1, bank: ['he', 'was', 'reading', 'a', 'book', 'when', 'the', 'phone', 'rang'], accepted: ['he was reading a book when the phone rang', 'when the phone rang he was reading a book'] },
@@ -84,18 +84,18 @@ export const exercises: Exercise[] = [
 
   // ============ b1-used-to ============
   // --- translate_ru_en ---
-  { id: 'b1ut-e1', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Раньше я играл в футбол каждые выходные.', points: 2, accepted: ['I used to play football every weekend', 'I used to play soccer every weekend', 'Every weekend I used to play football'] },
+  { id: 'b1ut-e1', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Раньше я играл в футбол каждые выходные.', points: 2, accepted: ['I used to play football every weekend', 'I used to play soccer every weekend', 'Every weekend I used to play football', 'I would play football every weekend', 'I would play soccer every weekend', 'Every weekend I would play football'] },
   { id: 'b1ut-e2', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Он раньше не любил кофе.', points: 2, accepted: ["He didn't use to like coffee", 'He did not use to like coffee', 'He never used to like coffee'] },
-  { id: 'b1ut-e3', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Мы раньше ходили в этот ресторан каждую пятницу.', points: 2, accepted: ['We used to go to this restaurant every Friday', 'We used to eat at this restaurant every Friday', 'Every Friday we used to go to this restaurant'] },
+  { id: 'b1ut-e3', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Мы раньше ходили в этот ресторан каждую пятницу.', points: 2, accepted: ['We used to go to this restaurant every Friday', 'We used to eat at this restaurant every Friday', 'Every Friday we used to go to this restaurant', 'We would go to this restaurant every Friday', 'We would eat at this restaurant every Friday', 'Every Friday we would go to this restaurant'] },
   { id: 'b1ut-e4', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Дети раньше боялись собак.', points: 2, accepted: ['The children used to be afraid of dogs', 'The kids used to be afraid of dogs', 'The children used to be scared of dogs'] },
   // --- fill_gap ---
   { id: 'b1ut-e5', conceptId: 'b1-used-to', type: 'fill_gap', prompt: 'I ___ to smoke, but I stopped five years ago.', points: 1, accepted: ['used'] },
   { id: 'b1ut-e6', conceptId: 'b1-used-to', type: 'fill_gap', prompt: "She didn't ___ to eat vegetables when she was a child.", points: 1, accepted: ['use'] },
   { id: 'b1ut-e7', conceptId: 'b1-used-to', type: 'fill_gap', prompt: '___ you use to play the piano when you were young?', points: 1, accepted: ['did'] },
   // --- verb_form ---
-  { id: 'b1ut-e8', conceptId: 'b1-used-to', type: 'verb_form', prompt: 'When I was young, I (visit) ___ my grandmother every summer.', points: 1, accepted: ['used to visit'] },
+  { id: 'b1ut-e8', conceptId: 'b1-used-to', type: 'verb_form', prompt: 'When I was young, I (visit) ___ my grandmother every summer.', points: 1, accepted: ['used to visit', 'would visit'] },
   { id: 'b1ut-e9', conceptId: 'b1-used-to', type: 'verb_form', prompt: 'She (not like) ___ spicy food, but now she loves it.', points: 1, accepted: ["didn't use to like", 'did not use to like'] },
-  { id: 'b1ut-e10', conceptId: 'b1-used-to', type: 'verb_form', prompt: 'They (play) ___ football together every Sunday when they were kids.', points: 1, accepted: ['used to play'] },
+  { id: 'b1ut-e10', conceptId: 'b1-used-to', type: 'verb_form', prompt: 'They (play) ___ football together every Sunday when they were kids.', points: 1, accepted: ['used to play', 'would play'] },
   // --- choose_word ---
   { id: 'b1ut-e11', conceptId: 'b1-used-to', type: 'choose_word', prompt: 'I ___ to play tennis when I was at school.', points: 1, options: ['used', 'use', 'was using'], accepted: ['used'] },
   { id: 'b1ut-e12', conceptId: 'b1-used-to', type: 'choose_word', prompt: "She didn't ___ to drink coffee.", points: 1, options: ['use', 'used', 'uses'], accepted: ['use'] },
@@ -106,7 +106,7 @@ export const exercises: Exercise[] = [
   { id: 'b1ut-e16', conceptId: 'b1-used-to', type: 'word_order', prompt: 'Соберите: «Раньше он не пил кофе»', points: 1, bank: ['he', "didn't", 'use', 'to', 'drink', 'coffee'], accepted: ["he didn't use to drink coffee"] },
   { id: 'b1ut-e17', conceptId: 'b1-used-to', type: 'word_order', prompt: 'Соберите: «Ты раньше играл на гитаре?»', points: 1, bank: ['did', 'you', 'use', 'to', 'play', 'the', 'guitar'], accepted: ['did you use to play the guitar'] },
   // --- multi_gap ---
-  { id: 'b1ut-e18', conceptId: 'b1-used-to', type: 'multi_gap', prompt: 'When I was a child, I ___ (visit) my grandparents every summer, but I ___ (not like) long car journeys.', points: 1, gaps: [{ accepted: ['used to visit'] }, { accepted: ["didn't use to like", 'did not use to like'] }] },
+  { id: 'b1ut-e18', conceptId: 'b1-used-to', type: 'multi_gap', prompt: 'When I was a child, I ___ (visit) my grandparents every summer, but I ___ (not like) long car journeys.', points: 1, gaps: [{ accepted: ['used to visit', 'would visit'] }, { accepted: ["didn't use to like", 'did not use to like'] }] },
   { id: 'b1ut-e19', conceptId: 'b1-used-to', type: 'multi_gap', prompt: '___ you use to play sports at school? No, I ___.', points: 1, gaps: [{ accepted: ['did'] }, { accepted: ["didn't", 'did not'] }] },
   { id: 'b1ut-e20', conceptId: 'b1-used-to', type: 'multi_gap', prompt: 'She ___ (not eat) meat, but now she ___ (eat) it every day.', points: 1, gaps: [{ accepted: ["didn't use to eat", 'did not use to eat'] }, { accepted: ['eats'] }] },
 
@@ -132,7 +132,7 @@ export const exercises: Exercise[] = [
   // --- word_order ---
   { id: 'b1pp-e15', conceptId: 'b1-past-perfect', type: 'word_order', prompt: 'Соберите: «Когда мы приехали на вокзал, поезд уже ушёл»', points: 1, bank: ['when', 'we', 'arrived', 'at', 'the', 'station', 'the', 'train', 'had', 'already', 'left'], accepted: ['when we arrived at the station the train had already left', 'the train had already left when we arrived at the station'] },
   { id: 'b1pp-e16', conceptId: 'b1-past-perfect', type: 'word_order', prompt: 'Соберите: «Она никогда не видела снег до переезда в Канаду»', points: 1, bank: ['she', 'had', 'never', 'seen', 'snow', 'before', 'she', 'moved', 'to', 'Canada'], accepted: ['she had never seen snow before she moved to Canada', 'before she moved to Canada she had never seen snow'] },
-  { id: 'b1pp-e17', conceptId: 'b1-past-perfect', type: 'word_order', prompt: 'Соберите: «Ты закончил отчёт к тому времени, как пришёл начальник?»', points: 1, bank: ['had', 'you', 'finished', 'the', 'report', 'by', 'the', 'time', 'the', 'boss', 'arrived'], accepted: ['had you finished the report by the time the boss arrived'] },
+  { id: 'b1pp-e17', conceptId: 'b1-past-perfect', type: 'word_order', prompt: 'Соберите: «Ты закончил отчёт к тому времени, как пришёл начальник?»', points: 1, bank: ['had', 'you', 'finished', 'the', 'report', 'by', 'the', 'time', 'the', 'boss', 'arrived'], accepted: ['had you finished the report by the time the boss arrived', 'by the time the boss arrived had you finished the report'] },
   // --- multi_gap ---
   { id: 'b1pp-e18', conceptId: 'b1-past-perfect', type: 'multi_gap', prompt: 'When we ___ (arrive), the train had already ___ (leave).', points: 1, gaps: [{ accepted: ['arrived'] }, { accepted: ['left'] }] },
   { id: 'b1pp-e19', conceptId: 'b1-past-perfect', type: 'multi_gap', prompt: 'By the time she ___ (call) me, I had already ___ (leave) the office.', points: 1, gaps: [{ accepted: ['called'] }, { accepted: ['left'] }] },

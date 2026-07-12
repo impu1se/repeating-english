@@ -64,7 +64,7 @@ export const exercises: Exercise[] = [
   { id: 'b1mo-e16', conceptId: 'b1-modals-obligation', type: 'word_order', prompt: 'Соберите: «Тебе не обязательно готовить ужин сегодня»', points: 1, bank: ['you', "don't", 'have', 'to', 'cook', 'dinner', 'today'], accepted: ["you don't have to cook dinner today", "today you don't have to cook dinner"] },
   { id: 'b1mo-e17', conceptId: 'b1-modals-obligation', type: 'word_order', prompt: 'Соберите: «Тебе стоит больше отдыхать»', points: 1, bank: ['you', 'should', 'rest', 'more'], accepted: ['you should rest more'] },
   // --- multi_gap ---
-  { id: 'b1mo-e18', conceptId: 'b1-modals-obligation', type: 'multi_gap', prompt: "You ___ park here — it's forbidden, but on Sundays you ___ pay for parking.", points: 1, gaps: [{ accepted: ["mustn't", 'must not'] }, { accepted: ["don't have to", 'do not have to'] }] },
+  { id: 'b1mo-e18', conceptId: 'b1-modals-obligation', type: 'multi_gap', prompt: "You ___ park here on weekdays — it's forbidden, but on Sundays you ___ pay for parking.", points: 1, gaps: [{ accepted: ["mustn't", 'must not'] }, { accepted: ["don't have to", 'do not have to'] }] },
   { id: 'b1mo-e19', conceptId: 'b1-modals-obligation', type: 'multi_gap', prompt: 'Yesterday I ___ (have to) finish the report, but tomorrow I ___ (not have to) come to the office at all.', points: 1, gaps: [{ accepted: ['had to'] }, { accepted: ["won't have to", 'will not have to'] }] },
   { id: 'b1mo-e20', conceptId: 'b1-modals-obligation', type: 'multi_gap', prompt: "You ___ drink more water every day, and you ___ skip meals — it's bad for you.", points: 1, gaps: [{ accepted: ['should'] }, { accepted: ["shouldn't", 'should not'] }] },
 
