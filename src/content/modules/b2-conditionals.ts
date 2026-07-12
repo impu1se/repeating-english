@@ -90,7 +90,7 @@ export const exercises: Exercise[] = [
   { id: 'b2mc-e4', conceptId: 'b2-mixed-conditional', type: 'translate_ru_en', prompt: 'Если бы она не боялась высоты, она бы поднялась на гору вчера.', points: 2, accepted: ["If she weren't afraid of heights, she would have climbed the mountain yesterday", "If she wasn't afraid of heights, she would have climbed the mountain yesterday", "If she weren't afraid of heights, she'd have climbed the mountain yesterday", "If she wasn't afraid of heights, she'd have climbed the mountain yesterday"] },
   // --- fill_gap ---
   { id: 'b2mc-e5', conceptId: 'b2-mixed-conditional', type: 'fill_gap', prompt: 'If I had taken that job, I ___ rich now.', points: 1, accepted: ['would be', "'d be"] },
-  { id: 'b2mc-e6', conceptId: 'b2-mixed-conditional', type: 'fill_gap', prompt: "If she ___ more careful, she wouldn't have crashed the car yesterday.", points: 1, accepted: ['were', 'was'] },
+  { id: 'b2mc-e6', conceptId: 'b2-mixed-conditional', type: 'fill_gap', prompt: "She's always so careless. If she ___ more careful, she wouldn't have crashed the car yesterday.", points: 1, accepted: ['were', 'was'] },
   { id: 'b2mc-e7', conceptId: 'b2-mixed-conditional', type: 'fill_gap', prompt: 'If I were more organised, I ___ have forgotten the tickets yesterday.', points: 1, accepted: ["wouldn't", 'would not'] },
   // --- verb_form ---
   { id: 'b2mc-e8', conceptId: 'b2-mixed-conditional', type: 'verb_form', prompt: 'If they (finish) ___ the project last year, they would be running their own company now.', points: 1, accepted: ['had finished'] },
@@ -98,7 +98,7 @@ export const exercises: Exercise[] = [
   { id: 'b2mc-e10', conceptId: 'b2-mixed-conditional', type: 'verb_form', prompt: "If she hadn't lost her passport, she (be) ___ in Paris right now.", points: 1, accepted: ['would be'] },
   // --- choose_word ---
   { id: 'b2mc-e11', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: 'If I had learned to swim as a kid, I ___ nervous around water now.', points: 1, options: ["wouldn't be", "wouldn't have been", "don't be"], accepted: ["wouldn't be"] },
-  { id: 'b2mc-e12', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: "If he ___ more patient, he wouldn't have shouted at his brother yesterday.", points: 1, options: ['were', 'had been', 'is'], accepted: ['were'] },
+  { id: 'b2mc-e12', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: "He's always so impatient. If he ___ more patient, he wouldn't have shouted at his brother yesterday.", points: 1, options: ['were', 'had been', 'is'], accepted: ['were'] },
   { id: 'b2mc-e13', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: "If we hadn't taken that wrong turn, we ___ lost right now.", points: 1, options: ["wouldn't be", "wouldn't have been", "aren't"], accepted: ["wouldn't be"] },
   { id: 'b2mc-e14', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: "If she weren't so stubborn, she ___ her mistake yesterday.", points: 1, options: ['would have admitted', 'would admit', 'admitted'], accepted: ['would have admitted'] },
   // --- word_order ---
@@ -107,7 +107,7 @@ export const exercises: Exercise[] = [
   { id: 'b2mc-e17', conceptId: 'b2-mixed-conditional', type: 'word_order', prompt: 'Соберите: «Если бы мы не потерялись, мы были бы сейчас дома»', points: 1, bank: ['if', 'we', "hadn't", 'got', 'lost', 'we', 'would', 'be', 'at', 'home', 'now'], accepted: ["if we hadn't got lost we would be at home now", "we would be at home now if we hadn't got lost"] },
   // --- multi_gap ---
   { id: 'b2mc-e18', conceptId: 'b2-mixed-conditional', type: 'multi_gap', prompt: 'If I ___ (study) harder at university, I ___ (have) a better job now.', points: 1, gaps: [{ accepted: ['had studied'] }, { accepted: ['would have'] }] },
-  { id: 'b2mc-e19', conceptId: 'b2-mixed-conditional', type: 'multi_gap', prompt: 'If she ___ (be) more confident, she ___ (apply) for the promotion last month.', points: 1, gaps: [{ accepted: ['were', 'was'] }, { accepted: ['would have applied'] }] },
+  { id: 'b2mc-e19', conceptId: 'b2-mixed-conditional', type: 'multi_gap', prompt: "She's always so shy. If she ___ (be) more confident, she ___ (apply) for the promotion last month.", points: 1, gaps: [{ accepted: ['were', 'was'] }, { accepted: ['would have applied'] }] },
   { id: 'b2mc-e20', conceptId: 'b2-mixed-conditional', type: 'multi_gap', prompt: 'If we ___ (not miss) the earlier train, we ___ (be) home by now.', points: 1, gaps: [{ accepted: ["hadn't missed", 'had not missed'] }, { accepted: ['would be'] }] },
 
   // ============ b2-wish ============
