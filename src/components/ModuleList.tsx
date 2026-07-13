@@ -12,24 +12,32 @@ const levelRank = (level: string) => {
 export function ModuleList({ onPick }: { onPick: (moduleId: string) => void }) {
   const [progress] = useState(() => loadProgress(content));
   const modules = [...content.modules].sort((a, b) => levelRank(a.level) - levelRank(b.level));
+  const levels = [...new Set(modules.map((m) => m.level))]; // sorted above, so ranks ascend
   return (
     <div>
       <h1>English Gym</h1>
-      <p className="score">тренажёрный зал английского</p>
-      <ul className="modules">
-        {modules.map((m) => {
-          const total = m.conceptIds.length;
-          const mastered = m.conceptIds.filter((id) => progress.concepts[id]?.mastered).length;
-          const complete = isModuleComplete(m.conceptIds, progress.concepts);
-          return (
-            <li key={m.id}>
-              <button onClick={() => onPick(m.id)}>
-                {complete ? '✓ ' : ''}{m.title} ({m.level}) — освоено {mastered}/{total}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <p className="subtitle">тренажёрный зал английского</p>
+      {levels.map((level) => (
+        <section key={level} className="level">
+          <h2 className="level-header">{level}</h2>
+          <ul className="modules">
+            {modules
+              .filter((m) => m.level === level)
+              .map((m) => {
+                const total = m.conceptIds.length;
+                const mastered = m.conceptIds.filter((id) => progress.concepts[id]?.mastered).length;
+                const complete = isModuleComplete(m.conceptIds, progress.concepts);
+                return (
+                  <li key={m.id}>
+                    <button onClick={() => onPick(m.id)}>
+                      {complete ? '✓ ' : ''}{m.title} — освоено {mastered}/{total}
+                    </button>
+                  </li>
+                );
+              })}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }

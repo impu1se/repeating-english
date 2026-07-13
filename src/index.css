@@ -29,8 +29,23 @@ header nav {
   margin-bottom: 0.5rem;
 }
 
-.score {
+.score,
+.subtitle {
   color: #667;
+}
+
+.subtitle {
+  margin-top: -0.5rem;
+}
+
+.level-header {
+  margin: 1.6rem 0 0.4rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #667;
+  border-bottom: 1px solid #dfe3ec;
 }
 
 .prompt {

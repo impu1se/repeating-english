@@ -17,6 +17,18 @@ describe('ModuleList', () => {
     expect([...ranks].sort((a, b) => a - b)).toEqual(ranks);
   });
 
+  it('groups modules under level section headers in CEFR order', () => {
+    render(<ModuleList onPick={vi.fn()} />);
+    const headers = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent ?? '');
+    expect(headers).toEqual(['A1', 'A2', 'B1', 'B1-B2', 'B2']);
+    // каждый модуль лежит в секции своего уровня
+    for (const m of content.modules) {
+      const section = screen.getByRole('heading', { level: 2, name: m.level }).closest('section')!;
+      const buttons = Array.from(section.querySelectorAll('button')).map((b) => b.textContent ?? '');
+      expect(buttons.some((b) => b.includes(m.title)), `${m.id} in ${m.level}`).toBe(true);
+    }
+  });
+
   it('marks a fully mastered module with a check', () => {
     const progress = loadProgress(content);
     const mod = content.modules[0];

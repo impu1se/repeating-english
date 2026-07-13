@@ -10,13 +10,13 @@ describe('App', () => {
   it('shows every module on start', () => {
     render(<App />);
     for (const m of content.modules) {
-      expect(screen.getByRole('button', { name: new RegExp(`^${m.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} \\(`) })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: new RegExp(`^${m.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} —`) })).toBeInTheDocument();
     }
   });
 
   it('navigates into training when a module is picked', async () => {
     render(<App />);
-    await userEvent.click(screen.getByRole('button', { name: /^Present Perfect \(/ }));
+    await userEvent.click(screen.getByRole('button', { name: /^Present Perfect —/ }));
     expect(screen.getByText(/Опыт: ever\/never/)).toBeInTheDocument();
   });
 });
