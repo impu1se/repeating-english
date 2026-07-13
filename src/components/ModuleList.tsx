@@ -9,35 +9,62 @@ const levelRank = (level: string) => {
   return i === -1 ? LEVEL_ORDER.length : i;
 };
 
-export function ModuleList({ onPick }: { onPick: (moduleId: string) => void }) {
+export interface ModuleListProps {
+  onPick: (moduleId: string) => void;
+  initialLevel?: string | null; // открыть сразу внутри уровня (возврат из тренировки)
+}
+
+export function ModuleList({ onPick, initialLevel = null }: ModuleListProps) {
   const [progress] = useState(() => loadProgress(content));
+  const [level, setLevel] = useState<string | null>(initialLevel);
   const modules = [...content.modules].sort((a, b) => levelRank(a.level) - levelRank(b.level));
-  const levels = [...new Set(modules.map((m) => m.level))]; // sorted above, so ranks ascend
+
+  if (level === null) {
+    const levels = [...new Set(modules.map((m) => m.level))]; // sorted above, so ranks ascend
+    return (
+      <div>
+        <h1>English Gym</h1>
+        <p className="subtitle">тренажёрный зал английского</p>
+        <ul className="modules levels">
+          {levels.map((lv) => {
+            const group = modules.filter((m) => m.level === lv);
+            const done = group.filter((m) => isModuleComplete(m.conceptIds, progress.concepts)).length;
+            return (
+              <li key={lv}>
+                <button onClick={() => setLevel(lv)}>
+                  {done === group.length ? '✓ ' : ''}{lv} — освоено {done}/{group.length} модулей
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+
+  const group = modules.filter((m) => m.level === level);
   return (
     <div>
-      <h1>English Gym</h1>
-      <p className="subtitle">тренажёрный зал английского</p>
-      {levels.map((level) => (
-        <section key={level} className="level">
-          <h2 className="level-header">{level}</h2>
-          <ul className="modules">
-            {modules
-              .filter((m) => m.level === level)
-              .map((m) => {
-                const total = m.conceptIds.length;
-                const mastered = m.conceptIds.filter((id) => progress.concepts[id]?.mastered).length;
-                const complete = isModuleComplete(m.conceptIds, progress.concepts);
-                return (
-                  <li key={m.id}>
-                    <button onClick={() => onPick(m.id)}>
-                      {complete ? '✓ ' : ''}{m.title} — освоено {mastered}/{total}
-                    </button>
-                  </li>
-                );
-              })}
-          </ul>
-        </section>
-      ))}
+      <header>
+        <nav>
+          <button onClick={() => setLevel(null)}>← Уровни</button>
+        </nav>
+        <h2 className="level-header">{level}</h2>
+      </header>
+      <ul className="modules">
+        {group.map((m) => {
+          const total = m.conceptIds.length;
+          const mastered = m.conceptIds.filter((id) => progress.concepts[id]?.mastered).length;
+          const complete = isModuleComplete(m.conceptIds, progress.concepts);
+          return (
+            <li key={m.id}>
+              <button onClick={() => onPick(m.id)}>
+                {complete ? '✓ ' : ''}{m.title} — освоено {mastered}/{total}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

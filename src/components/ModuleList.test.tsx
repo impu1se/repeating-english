@@ -1,40 +1,53 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ModuleList } from './ModuleList';
 import { content } from '../content';
 import { saveProgress, loadProgress } from '../store/progress';
 
 beforeEach(() => localStorage.clear());
 
+const LEVELS = ['A1', 'A2', 'B1', 'B1-B2', 'B2'];
+const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 describe('ModuleList', () => {
-  it('is titled English Gym and sorts modules by level', () => {
+  it('shows level folders in CEFR order at the root, without modules', () => {
     render(<ModuleList onPick={vi.fn()} />);
     expect(screen.getByRole('heading', { name: /English Gym/ })).toBeInTheDocument();
-    const labels = screen.getAllByRole('button').map((b) => b.textContent ?? '');
-    const levelOf = (label: string) => content.modules.find((m) => label.includes(m.title))!.level;
-    const order = ['A1', 'A2', 'B1', 'B1-B2', 'B2'];
-    const ranks = labels.map((l) => order.indexOf(levelOf(l)));
-    expect([...ranks].sort((a, b) => a - b)).toEqual(ranks);
+    const rows = screen.getAllByRole('button').map((b) => b.textContent ?? '');
+    expect(rows.map((r) => r.split(' — ')[0])).toEqual(LEVELS);
+    expect(screen.queryByText(/Present Perfect/)).not.toBeInTheDocument();
   });
 
-  it('groups modules under level section headers in CEFR order', () => {
+  it('drills into a level, lists only its modules, and goes back', async () => {
     render(<ModuleList onPick={vi.fn()} />);
-    const headers = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent ?? '');
-    expect(headers).toEqual(['A1', 'A2', 'B1', 'B1-B2', 'B2']);
-    // каждый модуль лежит в секции своего уровня
-    for (const m of content.modules) {
-      const section = screen.getByRole('heading', { level: 2, name: m.level }).closest('section')!;
-      const buttons = Array.from(section.querySelectorAll('button')).map((b) => b.textContent ?? '');
-      expect(buttons.some((b) => b.includes(m.title)), `${m.id} in ${m.level}`).toBe(true);
+    await userEvent.click(screen.getByRole('button', { name: /^A1 —/ }));
+    for (const m of content.modules.filter((m) => m.level === 'A1')) {
+      expect(screen.getByRole('button', { name: new RegExp(`^${esc(m.title)} —`) })).toBeInTheDocument();
     }
+    expect(screen.queryByRole('button', { name: /^Present Perfect —/ })).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: '← Уровни' }));
+    expect(screen.getByRole('button', { name: /^A1 —/ })).toBeInTheDocument();
   });
 
-  it('marks a fully mastered module with a check', () => {
+  it('opens directly inside a level when initialLevel is given', () => {
+    render(<ModuleList onPick={vi.fn()} initialLevel="B1" />);
+    expect(screen.getByRole('button', { name: /^Present Perfect —/ })).toBeInTheDocument();
+  });
+
+  it('reports the picked module id from inside a level', async () => {
+    const onPick = vi.fn();
+    render(<ModuleList onPick={onPick} initialLevel="B1" />);
+    await userEvent.click(screen.getByRole('button', { name: /^Present Perfect —/ }));
+    expect(onPick).toHaveBeenCalledWith('present-perfect');
+  });
+
+  it('marks a fully mastered module with a check inside its level', () => {
     const progress = loadProgress(content);
-    const mod = content.modules[0];
+    const mod = content.modules.find((m) => m.level === 'A1')!;
     for (const cid of mod.conceptIds) progress.concepts[cid] = { score: 50, mastered: true, recentExerciseIds: [], errorCount: 0 };
     saveProgress(progress);
-    render(<ModuleList onPick={vi.fn()} />);
-    expect(screen.getByRole('button', { name: new RegExp('✓ ' + mod.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) })).toBeInTheDocument();
+    render(<ModuleList onPick={vi.fn()} initialLevel="A1" />);
+    expect(screen.getByRole('button', { name: new RegExp('✓ ' + esc(mod.title)) })).toBeInTheDocument();
   });
 });

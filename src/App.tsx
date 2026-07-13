@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { content } from './content';
 import { ModuleList } from './components/ModuleList';
 import { Training } from './components/Training';
 import { ModuleSummary } from './components/ModuleSummary';
@@ -21,8 +22,11 @@ export default function App() {
   if (screen === 'summary' && moduleId) {
     return <ModuleSummary moduleId={moduleId} onBack={() => setScreen('list')} />;
   }
+  // возврат из тренировки ведёт в папку уровня последнего модуля, не в корень
+  const lastLevel = moduleId ? content.modules.find((m) => m.id === moduleId)?.level ?? null : null;
   return (
     <ModuleList
+      initialLevel={lastLevel}
       onPick={(id) => {
         setModuleId(id);
         setScreen('training');
