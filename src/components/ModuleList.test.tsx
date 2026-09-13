@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ModuleList } from './ModuleList';
 import { content } from '../content';
@@ -14,7 +14,7 @@ describe('ModuleList', () => {
   it('shows level folders in CEFR order at the root, without modules', () => {
     render(<ModuleList onPick={vi.fn()} />);
     expect(screen.getByRole('heading', { name: /English Gym/ })).toBeInTheDocument();
-    const rows = screen.getAllByRole('button').map((b) => b.textContent ?? '');
+    const rows = within(screen.getByRole('list')).getAllByRole('button').map((b) => b.textContent ?? '');
     expect(rows.map((r) => r.split(' — ')[0])).toEqual(LEVELS);
     expect(screen.queryByText(/Present Perfect/)).not.toBeInTheDocument();
   });

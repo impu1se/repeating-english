@@ -23,26 +23,33 @@ function thresholdByConcept(content: Content): Map<string, number> {
   return map;
 }
 
+// Накладывает чужой набор концептов на текущий контент: неизвестные концепты
+// отбрасываются, новые остаются нулевыми, освоенность пересчитывается по
+// актуальному порогу модуля (порог мог снизиться с прошлого запуска).
+export function mergeConcepts(
+  content: Content,
+  incoming: Record<string, ConceptProgress>,
+): ProgressState {
+  const merged = freshState(content);
+  const thresholds = thresholdByConcept(content);
+  for (const id of Object.keys(merged.concepts)) {
+    const src = incoming[id];
+    if (!src) continue;
+    const restored = { ...emptyConceptProgress(), ...src };
+    const threshold = thresholds.get(id);
+    if (threshold !== undefined && restored.score >= threshold) restored.mastered = true;
+    merged.concepts[id] = restored;
+  }
+  return merged;
+}
+
 export function loadProgress(content: Content): ProgressState {
   const raw = localStorage.getItem(KEY);
   if (!raw) return freshState(content);
   try {
     const parsed = JSON.parse(raw) as ProgressState;
     if (parsed.contentVersion !== content.version) return freshState(content);
-    // ensure every current concept has an entry
-    const merged = freshState(content);
-    const thresholds = thresholdByConcept(content);
-    for (const id of Object.keys(merged.concepts)) {
-      if (parsed.concepts[id]) {
-        const restored = { ...emptyConceptProgress(), ...parsed.concepts[id] };
-        // порог мог снизиться с прошлого запуска — накопленный счёт уже покрывает его,
-        // так что mastered присваивается сразу, а не ждёт следующего верного ответа
-        const threshold = thresholds.get(id);
-        if (threshold !== undefined && restored.score >= threshold) restored.mastered = true;
-        merged.concepts[id] = restored;
-      }
-    }
-    return merged;
+    return mergeConcepts(content, parsed.concepts);
   } catch {
     return freshState(content);
   }

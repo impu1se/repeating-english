@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { content } from '../content';
 import { loadProgress } from '../store/progress';
 import { isModuleComplete, moduleProgress } from '../engine/scoring';
+import { ProgressBackup } from './ProgressBackup';
 
 const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B1-B2', 'B2'];
 const levelRank = (level: string) => {
@@ -15,7 +16,7 @@ export interface ModuleListProps {
 }
 
 export function ModuleList({ onPick, initialLevel = null }: ModuleListProps) {
-  const [progress] = useState(() => loadProgress(content));
+  const [progress, setProgress] = useState(() => loadProgress(content));
   const [level, setLevel] = useState<string | null>(initialLevel);
   const modules = [...content.modules].sort((a, b) => levelRank(a.level) - levelRank(b.level));
 
@@ -38,6 +39,7 @@ export function ModuleList({ onPick, initialLevel = null }: ModuleListProps) {
             );
           })}
         </ul>
+        <ProgressBackup onImported={() => setProgress(loadProgress(content))} />
       </div>
     );
   }
