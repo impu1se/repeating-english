@@ -12,11 +12,20 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      injectRegister: false,
+      registerType: 'prompt',
+      injectRegister: null,
       devOptions: { enabled: false },
       // start_url и scope плагин выводит из base — руками не задаём,
       // иначе они разойдутся при сборке под Capacitor.
       // orientation не пишем: Safari его игнорирует для веб-приложений.
+      workbox: {
+        // Весь контент лежит в одном JS-бандле, поэтому офлайн = precache всего.
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
+        // Дефолтный лимит Workbox — 2 МиБ; бандл растёт вместе с контентом.
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        navigateFallback: 'index.html',
+        cleanupOutdatedCaches: true,
+      },
       manifest: {
         name: 'English Gym',
         short_name: 'English Gym',
