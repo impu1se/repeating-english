@@ -12,7 +12,7 @@
 
 ## Global Constraints
 
-- Новых **runtime**-зависимостей нет. `package.json` в секции `dependencies` остаётся `react` + `react-dom`. Разрешённые новые **devDependencies**: `vite-plugin-pwa@^1.3.0`, `@vite-pwa/assets-generator@^1.0.4`. Версия генератора именно первая: `vite-plugin-pwa@1.3.0` объявляет его как peer `^1.0.0`, и npm 11 откажется ставить вторую с ошибкой разрешения зависимостей.
+- Новых **runtime**-зависимостей нет. `package.json` в секции `dependencies` остаётся `react` + `react-dom`. Разрешённые новые **devDependencies**: `vite-plugin-pwa@^1.3.0`, `@vite-pwa/assets-generator@^1.0.4`, `@types/node` (только типы, нужен из-за `process.env` в конфиге Vite). Версия генератора именно первая: `vite-plugin-pwa@1.3.0` объявляет его как peer `^1.0.0`, и npm 11 откажется ставить вторую с ошибкой разрешения зависимостей.
 - После каждой задачи `npm test` и `npm run build` зелёные. Базовая линия на старте: 17 файлов, 98 тестов, сборка 492 КБ.
 - TypeScript strict, `noUnusedLocals`, `noUnusedParameters` включены — мёртвый код не соберётся.
 - Комментарии в коде и весь текст интерфейса — на русском, как в остальном проекте.
@@ -637,9 +637,7 @@ git push
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 ```
 
-```html
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-```
+Строку `apple-mobile-web-app-status-bar-style` НЕ трогать: она остаётся со значением `default`. Вариант `black-translucent` рисует системные часы и значки светлыми поверх содержимого страницы, а фон приложения светлый — в светлой теме они становятся нечитаемыми. Отступы безопасных зон из шага 2 нужны и при `default`: снизу под системную полосу, по бокам в альбомной ориентации.
 
 - [ ] **Step 2: Добавить отступы безопасных зон**
 
@@ -696,6 +694,8 @@ html {
   min-height: 2.75rem;
   touch-action: manipulation;
 ```
+
+Там же заменить строку `margin: 0.15rem 0.5rem 0.15rem 0;` на `margin: 0.15rem 0;`. Внешний отступ не входит в `border-box`, поэтому поле шириной 100% вместе с правым отступом вылезает за свою форму. При ширине 100% поля всё равно встают в столбик, боковой зазор им не нужен.
 
 Поля мультипропуска при этом встают в столбик — на экране шириной 390 пикселей это единственный читаемый вариант.
 
@@ -956,7 +956,8 @@ button[type='submit'] {
 input {
   font: inherit;
   padding: 0.45rem 0.65rem;
-  margin: 0.15rem 0.5rem 0.15rem 0;
+  /* без боковых отступов: поле шириной 100% с margin вылезло бы за форму */
+  margin: 0.15rem 0;
   border: 1px solid var(--border);
   border-radius: 0.55rem;
   background: var(--surface);
