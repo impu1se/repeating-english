@@ -29,6 +29,11 @@ export function TranslateRuEn({ exercise, onResult }: ExerciseProps) {
           value={answer}
           disabled={verdict !== null}
           autoFocus
+          autoCapitalize="none"
+          autoCorrect="off"
+          autoComplete="off"
+          spellCheck={false}
+          enterKeyHint="go"
           onChange={(e) => setAnswer(e.target.value)}
         />
         {verdict === null && (

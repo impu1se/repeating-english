@@ -58,6 +58,11 @@ export function MultiGap({ exercise, onResult }: ExerciseProps) {
             aria-label={`gap-${i}`}
             value={values[i]}
             disabled={phase.kind !== 'input'}
+            autoCapitalize="none"
+            autoCorrect="off"
+            autoComplete="off"
+            spellCheck={false}
+            enterKeyHint="go"
             onChange={(e) => setAt(i, e.target.value)}
           />
         ))}
