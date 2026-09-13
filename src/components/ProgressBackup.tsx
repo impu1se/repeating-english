@@ -31,10 +31,17 @@ export function ProgressBackup({ onImported }: ProgressBackupProps) {
       try {
         await navigator.share({ files: [file], title: name });
         setStatus('Прогресс выгружен');
-        return;
-      } catch {
-        // шторку закрыли — падаем в буфер обмена
+      } catch (err) {
+        // share() расходует пользовательский жест: буфер обмена после отказа
+        // всё равно не сработает, поэтому в него не проваливаемся. Отмену
+        // самим пользователем (закрыл шторку) не считаем ошибкой и молчим.
+        if (err instanceof Error && err.name === 'AbortError') {
+          setStatus(null);
+        } else {
+          setStatus('Не удалось поделиться прогрессом');
+        }
       }
+      return;
     }
     try {
       await navigator.clipboard.writeText(json);

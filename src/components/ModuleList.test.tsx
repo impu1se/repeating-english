@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { ModuleList } from './ModuleList';
 import { content } from '../content';
 import { saveProgress, loadProgress } from '../store/progress';
+import { serializeProgress } from '../store/backup';
 
 beforeEach(() => localStorage.clear());
 
@@ -49,5 +50,25 @@ describe('ModuleList', () => {
     saveProgress(progress);
     render(<ModuleList onPick={vi.fn()} initialLevel="A1" />);
     expect(screen.getByRole('button', { name: new RegExp('✓ ' + esc(mod.title)) })).toBeInTheDocument();
+  });
+
+  it('перечитывает прогресс после загрузки резервной копии', async () => {
+    const module = content.modules[0];
+    const group = content.modules.filter((m) => m.level === module.level);
+    const state = loadProgress(content);
+    for (const id of module.conceptIds) {
+      state.concepts[id] = { ...state.concepts[id], score: module.masteryThreshold };
+    }
+    const file = new File([serializeProgress(state)], 'progress.json', { type: 'application/json' });
+
+    render(<ModuleList onPick={vi.fn()} />);
+    const levelRow = () =>
+      screen.getByRole('button', { name: new RegExp('^(✓ )?' + esc(module.level) + ' — освоено') });
+    expect(levelRow()).toHaveTextContent(`освоено 0/${group.length}`);
+
+    await userEvent.upload(screen.getByLabelText('файл прогресса'), file);
+
+    expect(await screen.findByRole('status')).toHaveTextContent(/Восстановлено концептов/);
+    expect(levelRow()).toHaveTextContent(`освоено 1/${group.length}`);
   });
 });

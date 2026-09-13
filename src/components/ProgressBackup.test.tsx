@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProgressBackup } from './ProgressBackup';
 import { content } from '../content';
@@ -45,5 +45,37 @@ describe('ProgressBackup', () => {
 
     expect(await screen.findByRole('status')).toHaveTextContent('буфер обмена');
     expect(writeText).toHaveBeenCalledOnce();
+  });
+
+  it('молчит, когда пользователь сам закрыл шторку «Поделиться»', async () => {
+    const share = vi.fn().mockRejectedValue(Object.assign(new Error('cancel'), { name: 'AbortError' }));
+    const canShare = vi.fn().mockReturnValue(true);
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'share', { configurable: true, value: share });
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: canShare });
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
+    render(<ProgressBackup onImported={() => {}} />);
+
+    await userEvent.click(screen.getByRole('button', { name: 'Выгрузить прогресс' }));
+    await waitFor(() => expect(share).toHaveBeenCalledOnce());
+    await new Promise((resolve) => setTimeout(resolve, 0)); // дать catch-обработчику отработать
+
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+    expect(writeText).not.toHaveBeenCalled();
+  });
+
+  it('сообщает о неудаче «Поделиться», не проваливаясь в буфер обмена', async () => {
+    const share = vi.fn().mockRejectedValue(new Error('boom'));
+    const canShare = vi.fn().mockReturnValue(true);
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'share', { configurable: true, value: share });
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: canShare });
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
+    render(<ProgressBackup onImported={() => {}} />);
+
+    await userEvent.click(screen.getByRole('button', { name: 'Выгрузить прогресс' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Не удалось поделиться прогрессом');
+    expect(writeText).not.toHaveBeenCalled();
   });
 });
