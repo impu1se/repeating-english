@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a1-basics',
   title: 'Базовые конструкции: some/any, can, there is',
   level: 'A1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a1-some-any', 'a1-can', 'a1-there-is'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a1sa-e6', 'a1sa-e7', 'a1sa-e8', 'a1sa-e9', 'a1sa-e10',
       'a1sa-e11', 'a1sa-e12', 'a1sa-e13', 'a1sa-e14', 'a1sa-e15',
       'a1sa-e16', 'a1sa-e17', 'a1sa-e18', 'a1sa-e19', 'a1sa-e20',
+      'a1sa-e21', 'a1sa-e22', 'a1sa-e23', 'a1sa-e24', 'a1sa-e25', 'a1sa-e26', 'a1sa-e27', 'a1sa-e28', 'a1sa-e29', 'a1sa-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a1cn-e6', 'a1cn-e7', 'a1cn-e8', 'a1cn-e9', 'a1cn-e10',
       'a1cn-e11', 'a1cn-e12', 'a1cn-e13', 'a1cn-e14', 'a1cn-e15',
       'a1cn-e16', 'a1cn-e17', 'a1cn-e18', 'a1cn-e19', 'a1cn-e20',
+      'a1cn-e21', 'a1cn-e22', 'a1cn-e23', 'a1cn-e24', 'a1cn-e25', 'a1cn-e26', 'a1cn-e27', 'a1cn-e28', 'a1cn-e29', 'a1cn-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'a1th-e6', 'a1th-e7', 'a1th-e8', 'a1th-e9', 'a1th-e10',
       'a1th-e11', 'a1th-e12', 'a1th-e13', 'a1th-e14', 'a1th-e15',
       'a1th-e16', 'a1th-e17', 'a1th-e18', 'a1th-e19', 'a1th-e20',
+      'a1th-e21', 'a1th-e22', 'a1th-e23', 'a1th-e24', 'a1th-e25', 'a1th-e26', 'a1th-e27', 'a1th-e28', 'a1th-e29', 'a1th-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'a1th-e18', conceptId: 'a1-there-is', type: 'multi_gap', prompt: 'There ___ a park nearby, but there ___ no shops.', points: 1, gaps: [{ accepted: ['is'] }, { accepted: ['are'] }] },
   { id: 'a1th-e19', conceptId: 'a1-there-is', type: 'multi_gap', prompt: '___ there a bank near here? No, there ___ not.', points: 1, gaps: [{ accepted: ['Is', 'is'] }, { accepted: ['is'] }] },
   { id: 'a1th-e20', conceptId: 'a1-there-is', type: 'multi_gap', prompt: 'There ___ some eggs, but there ___ not any milk.', points: 1, gaps: [{ accepted: ['are'] }, { accepted: ['is'] }] },
+  // ---- добор: a1-some-any ----
+  { id: 'a1sa-e21', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'Здесь кто-нибудь есть?', points: 2, accepted: ['Is there anybody here?', 'Is anybody here?', 'Is there anyone here?', 'Is anyone here?'] },
+  { id: 'a1sa-e22', conceptId: 'a1-some-any', type: 'translate_ru_en', prompt: 'Я ничего об этом не знаю.', points: 2, accepted: ["I don't know anything about it", 'I know nothing about it', 'I do not know anything about it'] },
+  { id: 'a1sa-e23', conceptId: 'a1-some-any', type: 'fill_gap', prompt: 'I need ___ help with this box.', points: 1, accepted: ['some'] },
+  { id: 'a1sa-e24', conceptId: 'a1-some-any', type: 'fill_gap', prompt: "There isn't ___ sugar left.", points: 1, accepted: ['any'] },
+  { id: 'a1sa-e25', conceptId: 'a1-some-any', type: 'verb_form', prompt: 'There (be) ___ some milk in the bottle.', points: 1, accepted: ['is'] },
+  { id: 'a1sa-e26', conceptId: 'a1-some-any', type: 'choose_word', prompt: 'Would you like ___ to drink?', points: 1, options: ['something', 'anything', 'some'], accepted: ['something'] },
+  { id: 'a1sa-e27', conceptId: 'a1-some-any', type: 'choose_word', prompt: "I looked everywhere, but I couldn't find ___.", points: 1, options: ['anything', 'something', 'any'], accepted: ['anything'] },
+  { id: 'a1sa-e28', conceptId: 'a1-some-any', type: 'word_order', prompt: 'Соберите: «Здесь кто-то есть»', points: 1, bank: ['there', 'is', 'somebody', 'here'], accepted: ['there is somebody here'] },
+  { id: 'a1sa-e29', conceptId: 'a1-some-any', type: 'word_order', prompt: 'Соберите: «У меня нет никаких вопросов»', points: 1, bank: ['I', "don't", 'have', 'any', 'questions'], accepted: ["I don't have any questions"] },
+  { id: 'a1sa-e30', conceptId: 'a1-some-any', type: 'multi_gap', prompt: "I have ___ questions, but I don't have ___ answers.", points: 1, gaps: [{ accepted: ['some'] }, { accepted: ['any'] }] },
+
+  // ---- добор: a1-can ----
+  { id: 'a1cn-e21', conceptId: 'a1-can', type: 'translate_ru_en', prompt: 'Здесь можно курить?', points: 2, accepted: ['Can I smoke here?', 'Can we smoke here?'] },
+  { id: 'a1cn-e22', conceptId: 'a1-can', type: 'translate_ru_en', prompt: 'Он умеет играть на гитаре, но не умеет петь.', points: 2, accepted: ["He can play the guitar but he can't sing", 'He can play the guitar but he cannot sing'] },
+  { id: 'a1cn-e23', conceptId: 'a1-can', type: 'fill_gap', prompt: '___ I use your phone, please?', points: 1, accepted: ['can', 'could', 'may'] },
+  { id: 'a1cn-e24', conceptId: 'a1-can', type: 'fill_gap', prompt: 'Can you hear me? — No, I ___.', points: 1, accepted: ["can't", 'cannot', 'can not'] },
+  { id: 'a1cn-e25', conceptId: 'a1-can', type: 'verb_form', prompt: 'She can (swim) ___ very fast.', points: 1, accepted: ['swim'] },
+  { id: 'a1cn-e26', conceptId: 'a1-can', type: 'choose_word', prompt: 'Can she drive? — Yes, she ___.', points: 1, options: ['can', 'cans', 'does'], accepted: ['can'] },
+  { id: 'a1cn-e27', conceptId: 'a1-can', type: 'choose_word', prompt: 'He ___ come tomorrow — he is busy all day.', points: 1, options: ["can't", 'can not to', 'cannot to'], accepted: ["can't"] },
+  { id: 'a1cn-e28', conceptId: 'a1-can', type: 'word_order', prompt: 'Соберите: «Можно мне войти?»', points: 1, bank: ['can', 'I', 'come', 'in'], accepted: ['can I come in'] },
+  { id: 'a1cn-e29', conceptId: 'a1-can', type: 'word_order', prompt: 'Соберите: «Мы не умеем кататься на лыжах»', points: 1, bank: ['we', "can't", 'ski'], accepted: ["we can't ski"] },
+  { id: 'a1cn-e30', conceptId: 'a1-can', type: 'multi_gap', prompt: 'I ___ speak English, but I ___ speak Japanese at all.', points: 1, gaps: [{ accepted: ['can'] }, { accepted: ["can't", 'cannot', 'can not'] }] },
+
+  // ---- добор: a1-there-is ----
+  { id: 'a1th-e21', conceptId: 'a1-there-is', type: 'translate_ru_en', prompt: 'Сколько человек в комнате?', points: 2, accepted: ['How many people are there in the room?', 'How many people are in the room?'] },
+  { id: 'a1th-e22', conceptId: 'a1-there-is', type: 'translate_ru_en', prompt: 'На столе нет книг.', points: 2, accepted: ["There aren't any books on the table", 'There are no books on the table', 'There are not any books on the table'] },
+  { id: 'a1th-e23', conceptId: 'a1-there-is', type: 'fill_gap', prompt: 'How many students ___ there in your class?', points: 1, accepted: ['are'] },
+  { id: 'a1th-e24', conceptId: 'a1-there-is', type: 'fill_gap', prompt: 'There ___ any bread in the kitchen.', points: 1, accepted: ["isn't", 'is not'] },
+  { id: 'a1th-e25', conceptId: 'a1-there-is', type: 'verb_form', prompt: 'There (be) ___ two chairs and a table in the room.', points: 1, accepted: ['are'] },
+  { id: 'a1th-e26', conceptId: 'a1-there-is', type: 'choose_word', prompt: '___ there any milk left?', points: 1, options: ['Is', 'Are', 'Have'], accepted: ['Is'] },
+  { id: 'a1th-e27', conceptId: 'a1-there-is', type: 'choose_word', prompt: 'There ___ a lot of cars in the street today.', points: 1, options: ['are', 'is', 'have'], accepted: ['are'] },
+  { id: 'a1th-e28', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «Сколько окон в этой комнате?»', points: 1, bank: ['how', 'many', 'windows', 'are', 'there', 'in', 'this', 'room'], accepted: ['how many windows are there in this room'] },
+  { id: 'a1th-e29', conceptId: 'a1-there-is', type: 'word_order', prompt: 'Соберите: «В холодильнике нет молока»', points: 1, bank: ['there', 'is', 'no', 'milk', 'in', 'the', 'fridge'], accepted: ['there is no milk in the fridge'] },
+  { id: 'a1th-e30', conceptId: 'a1-there-is', type: 'multi_gap', prompt: 'There ___ a sofa and there ___ two armchairs in the living room.', points: 1, gaps: [{ accepted: ['is'] }, { accepted: ['are'] }] },
 ];

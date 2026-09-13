@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a2-quantity',
   title: 'Количество: исчисляемость, much/many/few/little',
   level: 'A2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a2-countability', 'a2-much-many'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a2ct-e6', 'a2ct-e7', 'a2ct-e8', 'a2ct-e9', 'a2ct-e10',
       'a2ct-e11', 'a2ct-e12', 'a2ct-e13', 'a2ct-e14', 'a2ct-e15',
       'a2ct-e16', 'a2ct-e17', 'a2ct-e18', 'a2ct-e19', 'a2ct-e20',
+      'a2ct-e21', 'a2ct-e22', 'a2ct-e23', 'a2ct-e24', 'a2ct-e25', 'a2ct-e26', 'a2ct-e27', 'a2ct-e28', 'a2ct-e29', 'a2ct-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a2mm-e6', 'a2mm-e7', 'a2mm-e8', 'a2mm-e9', 'a2mm-e10',
       'a2mm-e11', 'a2mm-e12', 'a2mm-e13', 'a2mm-e14', 'a2mm-e15',
       'a2mm-e16', 'a2mm-e17', 'a2mm-e18', 'a2mm-e19', 'a2mm-e20',
+      'a2mm-e21', 'a2mm-e22', 'a2mm-e23', 'a2mm-e24', 'a2mm-e25', 'a2mm-e26', 'a2mm-e27', 'a2mm-e28', 'a2mm-e29', 'a2mm-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'a2mm-e18', conceptId: 'a2-much-many', type: 'multi_gap', prompt: 'How ___ time do we have, and how ___ people are coming?', points: 1, gaps: [{ accepted: ['much'] }, { accepted: ['many'] }] },
   { id: 'a2mm-e19', conceptId: 'a2-much-many', type: 'multi_gap', prompt: "We have ___ money, so we're okay, but very ___ time, so let's hurry.", points: 1, gaps: [{ accepted: ['a little'] }, { accepted: ['little'] }] },
   { id: 'a2mm-e20', conceptId: 'a2-much-many', type: 'multi_gap', prompt: '___ friends showed up, which was nice, but ___ snacks were left — the table was almost empty.', points: 1, gaps: [{ accepted: ['a few'] }, { accepted: ['few'] }] },
+  // ---- добор: a2-countability ----
+  { id: 'a2ct-e21', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'Мне нужен лист бумаги.', points: 2, accepted: ['I need a piece of paper', 'I need a sheet of paper'] },
+  { id: 'a2ct-e22', conceptId: 'a2-countability', type: 'translate_ru_en', prompt: 'Работа была тяжёлой, но интересной.', points: 2, accepted: ['The work was hard but interesting', 'The work was difficult but interesting'] },
+  { id: 'a2ct-e23', conceptId: 'a2-countability', type: 'fill_gap', prompt: 'Can I have a ___ of water, please?', points: 1, accepted: ['glass', 'bottle', 'cup'] },
+  { id: 'a2ct-e24', conceptId: 'a2-countability', type: 'fill_gap', prompt: 'She has beautiful long ___.', points: 1, accepted: ['hair'] },
+  { id: 'a2ct-e25', conceptId: 'a2-countability', type: 'verb_form', prompt: 'Your advice (be) ___ always useful.', points: 1, accepted: ['is'] },
+  { id: 'a2ct-e26', conceptId: 'a2-countability', type: 'choose_word', prompt: 'We had wonderful ___ in Spain last summer.', points: 1, options: ['weather', 'weathers', 'a weather'], accepted: ['weather'] },
+  { id: 'a2ct-e27', conceptId: 'a2-countability', type: 'choose_word', prompt: 'He bought two ___ of bread at the bakery.', points: 1, options: ['loaves', 'loafs', 'loaf'], accepted: ['loaves'] },
+  { id: 'a2ct-e28', conceptId: 'a2-countability', type: 'word_order', prompt: 'Соберите: «Мне нужен стакан воды»', points: 1, bank: ['I', 'need', 'a', 'glass', 'of', 'water'], accepted: ['I need a glass of water'] },
+  { id: 'a2ct-e29', conceptId: 'a2-countability', type: 'word_order', prompt: 'Соберите: «У нас была хорошая погода»', points: 1, bank: ['we', 'had', 'good', 'weather'], accepted: ['we had good weather'] },
+  { id: 'a2ct-e30', conceptId: 'a2-countability', type: 'multi_gap', prompt: 'I bought two ___ (bottle) of milk and a ___ (piece) of cheese.', points: 1, gaps: [{ accepted: ['bottles'] }, { accepted: ['piece'] }] },
+
+  // ---- добор: a2-much-many ----
+  { id: 'a2mm-e21', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'В чае слишком много сахара.', points: 2, accepted: ['There is too much sugar in the tea', "There's too much sugar in the tea"] },
+  { id: 'a2mm-e22', conceptId: 'a2-much-many', type: 'translate_ru_en', prompt: 'У нас достаточно времени.', points: 2, accepted: ['We have enough time', "We've got enough time"] },
+  { id: 'a2mm-e23', conceptId: 'a2-much-many', type: 'fill_gap', prompt: 'There were too ___ people at the concert.', points: 1, accepted: ['many'] },
+  { id: 'a2mm-e24', conceptId: 'a2-much-many', type: 'fill_gap', prompt: 'I have ___ of work to do this week.', points: 1, accepted: ['plenty', 'lots', 'a lot'] },
+  { id: 'a2mm-e25', conceptId: 'a2-much-many', type: 'verb_form', prompt: 'How much money (be) ___ there in your wallet?', points: 1, accepted: ['is'] },
+  { id: 'a2mm-e26', conceptId: 'a2-much-many', type: 'choose_word', prompt: 'She speaks ___ English — just a few words.', points: 1, options: ['a little', 'a few', 'little of'], accepted: ['a little'] },
+  { id: 'a2mm-e27', conceptId: 'a2-much-many', type: 'choose_word', prompt: 'We have ___ chairs for everyone.', points: 1, options: ['enough', 'enough of', 'the enough'], accepted: ['enough'] },
+  { id: 'a2mm-e28', conceptId: 'a2-much-many', type: 'word_order', prompt: 'Соберите: «В комнате слишком много народу»', points: 1, bank: ['there', 'are', 'too', 'many', 'people', 'in', 'the', 'room'], accepted: ['there are too many people in the room'] },
+  { id: 'a2mm-e29', conceptId: 'a2-much-many', type: 'word_order', prompt: 'Соберите: «У нас достаточно денег»', points: 1, bank: ['we', 'have', 'enough', 'money'], accepted: ['we have enough money'] },
+  { id: 'a2mm-e30', conceptId: 'a2-much-many', type: 'multi_gap', prompt: 'There is too ___ noise here and there are too ___ cars.', points: 1, gaps: [{ accepted: ['much'] }, { accepted: ['many'] }] },
 ];

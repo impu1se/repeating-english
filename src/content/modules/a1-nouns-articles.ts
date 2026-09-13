@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a1-nouns-articles',
   title: 'Существительные и артикли',
   level: 'A1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a1-articles', 'a1-plurals', 'a1-possessives'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a1ar-e6', 'a1ar-e7', 'a1ar-e8', 'a1ar-e9', 'a1ar-e10',
       'a1ar-e11', 'a1ar-e12', 'a1ar-e13', 'a1ar-e14', 'a1ar-e15',
       'a1ar-e16', 'a1ar-e17', 'a1ar-e18', 'a1ar-e19', 'a1ar-e20',
+      'a1ar-e21', 'a1ar-e22', 'a1ar-e23', 'a1ar-e24', 'a1ar-e25', 'a1ar-e26', 'a1ar-e27', 'a1ar-e28', 'a1ar-e29', 'a1ar-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a1pl-e6', 'a1pl-e7', 'a1pl-e8', 'a1pl-e9', 'a1pl-e10',
       'a1pl-e11', 'a1pl-e12', 'a1pl-e13', 'a1pl-e14', 'a1pl-e15',
       'a1pl-e16', 'a1pl-e17', 'a1pl-e18', 'a1pl-e19', 'a1pl-e20',
+      'a1pl-e21', 'a1pl-e22', 'a1pl-e23', 'a1pl-e24', 'a1pl-e25', 'a1pl-e26', 'a1pl-e27', 'a1pl-e28', 'a1pl-e29', 'a1pl-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'a1po-e6', 'a1po-e7', 'a1po-e8', 'a1po-e9', 'a1po-e10',
       'a1po-e11', 'a1po-e12', 'a1po-e13', 'a1po-e14', 'a1po-e15',
       'a1po-e16', 'a1po-e17', 'a1po-e18', 'a1po-e19', 'a1po-e20',
+      'a1po-e21', 'a1po-e22', 'a1po-e23', 'a1po-e24', 'a1po-e25', 'a1po-e26', 'a1po-e27', 'a1po-e28', 'a1po-e29', 'a1po-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'a1po-e18', conceptId: 'a1-possessives', type: 'multi_gap', prompt: 'I have a book, and you have a book too. This is ___ book, and that is ___ book.', points: 1, gaps: [{ accepted: ['my'] }, { accepted: ['your'] }] },
   { id: 'a1po-e19', conceptId: 'a1-possessives', type: 'multi_gap', prompt: 'I know you think this is your car. Actually, this car is ___, not ___.', points: 1, gaps: [{ accepted: ['mine'] }, { accepted: ['yours'] }] },
   { id: 'a1po-e20', conceptId: 'a1-possessives', type: 'multi_gap', prompt: "Tom has a sister. ___ sister's name is Anna. I have a brother too. ___ brother's name is Max.", points: 1, gaps: [{ accepted: ['his', 'His'] }, { accepted: ['my', 'My'] }] },
+  // ---- добор: a1-articles ----
+  { id: 'a1ar-e21', conceptId: 'a1-articles', type: 'translate_ru_en', prompt: 'Она играет на гитаре каждый вечер.', points: 2, accepted: ['She plays the guitar every evening'] },
+  { id: 'a1ar-e22', conceptId: 'a1-articles', type: 'translate_ru_en', prompt: 'Я езжу на работу на автобусе.', points: 2, accepted: ['I go to work by bus', 'I travel to work by bus'] },
+  { id: 'a1ar-e23', conceptId: 'a1-articles', type: 'fill_gap', prompt: 'She plays ___ piano very well.', points: 1, accepted: ['the'] },
+  { id: 'a1ar-e24', conceptId: 'a1-articles', type: 'fill_gap', prompt: 'It was ___ best day of my life.', points: 1, accepted: ['the'] },
+  { id: 'a1ar-e25', conceptId: 'a1-articles', type: 'verb_form', prompt: 'The news (be) ___ very good today.', points: 1, accepted: ['is'] },
+  { id: 'a1ar-e26', conceptId: 'a1-articles', type: 'choose_word', prompt: 'He is ___ European student.', points: 1, options: ['a', 'an', 'the'], accepted: ['a'] },
+  { id: 'a1ar-e27', conceptId: 'a1-articles', type: 'choose_word', prompt: 'Do you speak ___ at home?', points: 1, options: ['English', 'the English', 'an English'], accepted: ['English'] },
+  { id: 'a1ar-e28', conceptId: 'a1-articles', type: 'word_order', prompt: 'Соберите: «Он играет на пианино»', points: 1, bank: ['he', 'plays', 'the', 'piano'], accepted: ['he plays the piano'] },
+  { id: 'a1ar-e29', conceptId: 'a1-articles', type: 'word_order', prompt: 'Соберите: «Сегодня солнце очень яркое»', points: 1, bank: ['the', 'sun', 'is', 'very', 'bright', 'today'], accepted: ['the sun is very bright today', 'today the sun is very bright'] },
+  { id: 'a1ar-e30', conceptId: 'a1-articles', type: 'multi_gap', prompt: 'She is ___ engineer, and her husband is ___ teacher.', points: 1, gaps: [{ accepted: ['an'] }, { accepted: ['a'] }] },
+
+  // ---- добор: a1-plurals ----
+  { id: 'a1pl-e21', conceptId: 'a1-plurals', type: 'translate_ru_en', prompt: 'В моём городе много магазинов.', points: 2, accepted: ['There are many shops in my town', 'There are a lot of shops in my town', 'My town has many shops'] },
+  { id: 'a1pl-e22', conceptId: 'a1-plurals', type: 'translate_ru_en', prompt: 'Эти женщины — врачи.', points: 2, accepted: ['These women are doctors'] },
+  { id: 'a1pl-e23', conceptId: 'a1-plurals', type: 'fill_gap', prompt: 'A cat catches ___ — small grey animals.', points: 1, accepted: ['mice'] },
+  { id: 'a1pl-e24', conceptId: 'a1-plurals', type: 'fill_gap', prompt: 'He washed the dirty ___ after dinner.', points: 1, accepted: ['dishes', 'plates'] },
+  { id: 'a1pl-e25', conceptId: 'a1-plurals', type: 'verb_form', prompt: 'The women (be) ___ waiting outside.', points: 1, accepted: ['are'] },
+  { id: 'a1pl-e26', conceptId: 'a1-plurals', type: 'choose_word', prompt: 'I have two ___ in my kitchen drawer.', points: 1, options: ['knives', 'knifes', 'knife'], accepted: ['knives'] },
+  { id: 'a1pl-e27', conceptId: 'a1-plurals', type: 'choose_word', prompt: 'She gave me some useful ___.', points: 1, options: ['advice', 'advices', 'an advice'], accepted: ['advice'] },
+  { id: 'a1pl-e28', conceptId: 'a1-plurals', type: 'word_order', prompt: 'Соберите: «В парке три женщины»', points: 1, bank: ['there', 'are', 'three', 'women', 'in', 'the', 'park'], accepted: ['there are three women in the park'] },
+  { id: 'a1pl-e29', conceptId: 'a1-plurals', type: 'word_order', prompt: 'Соберите: «У меня много друзей»', points: 1, bank: ['I', 'have', 'a', 'lot', 'of', 'friends'], accepted: ['I have a lot of friends'] },
+  { id: 'a1pl-e30', conceptId: 'a1-plurals', type: 'multi_gap', prompt: 'There ___ a lot of information in this book, but there ___ only three chapters.', points: 1, gaps: [{ accepted: ['is'] }, { accepted: ['are'] }] },
+
+  // ---- добор: a1-possessives ----
+  { id: 'a1po-e21', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Чей это зонт?', points: 2, accepted: ['Whose umbrella is this?', 'Whose is this umbrella?'] },
+  { id: 'a1po-e22', conceptId: 'a1-possessives', type: 'translate_ru_en', prompt: 'Собака потеряла свою игрушку.', points: 2, accepted: ['The dog lost its toy', 'The dog has lost its toy'] },
+  { id: 'a1po-e23', conceptId: 'a1-possessives', type: 'fill_gap', prompt: 'The cat is looking for ___ food.', points: 1, accepted: ['its'] },
+  { id: 'a1po-e24', conceptId: 'a1-possessives', type: 'fill_gap', prompt: "___ jacket is this? — It's Anna's.", points: 1, accepted: ['whose'] },
+  { id: 'a1po-e25', conceptId: 'a1-possessives', type: 'verb_form', prompt: 'Whose keys (be) ___ these on the table?', points: 1, accepted: ['are'] },
+  { id: 'a1po-e26', conceptId: 'a1-possessives', type: 'choose_word', prompt: 'The dog hurt ___ leg while running.', points: 1, options: ['its', "it's", 'it'], accepted: ['its'] },
+  { id: 'a1po-e27', conceptId: 'a1-possessives', type: 'choose_word', prompt: 'This is the ___ room — both boys sleep here.', points: 1, options: ["boys'", "boy's", 'boys'], accepted: ["boys'"] },
+  { id: 'a1po-e28', conceptId: 'a1-possessives', type: 'word_order', prompt: 'Соберите: «Чья это книга?»', points: 1, bank: ['whose', 'book', 'is', 'this'], accepted: ['whose book is this'] },
+  { id: 'a1po-e29', conceptId: 'a1-possessives', type: 'word_order', prompt: 'Соберите: «Он друг моей сестры»', points: 1, bank: ['he', 'is', 'my', "sister's", 'friend'], accepted: ["he is my sister's friend"] },
+  { id: 'a1po-e30', conceptId: 'a1-possessives', type: 'multi_gap', prompt: 'This bag is ___ (she), and those keys are ___ (they).', points: 1, gaps: [{ accepted: ['hers'] }, { accepted: ['theirs'] }] },
 ];

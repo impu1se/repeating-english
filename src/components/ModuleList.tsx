@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { content } from '../content';
 import { loadProgress } from '../store/progress';
-import { isModuleComplete } from '../engine/scoring';
+import { isModuleComplete, moduleProgress } from '../engine/scoring';
 
 const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B1-B2', 'B2'];
 const levelRank = (level: string) => {
@@ -56,10 +56,14 @@ export function ModuleList({ onPick, initialLevel = null }: ModuleListProps) {
           const total = m.conceptIds.length;
           const mastered = m.conceptIds.filter((id) => progress.concepts[id]?.mastered).length;
           const complete = isModuleComplete(m.conceptIds, progress.concepts);
+          const mp = moduleProgress(m.conceptIds, progress.concepts, m.masteryThreshold);
           return (
             <li key={m.id}>
               <button onClick={() => onPick(m.id)}>
-                {complete ? '✓ ' : ''}{m.title} — освоено {mastered}/{total}
+                {complete ? '✓ ' : ''}{m.title} — освоено {mastered}/{total} · {mp.score}/{mp.total}
+                <span className="bar" aria-hidden="true">
+                  <span className="bar-fill" style={{ width: `${(mp.score / mp.total) * 100}%` }} />
+                </span>
               </button>
             </li>
           );

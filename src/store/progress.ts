@@ -2,7 +2,6 @@ import type { Content } from '../types';
 import { emptyConceptProgress, type ConceptProgress } from '../engine/scoring';
 
 const KEY = 're:progress';
-export const RECENT_WINDOW = 5;
 
 export interface ProgressState {
   contentVersion: string;
@@ -15,6 +14,15 @@ function freshState(content: Content): ProgressState {
   return { contentVersion: content.version, concepts };
 }
 
+// conceptId -> порог его модуля; нужен, чтобы пересчитать mastered при загрузке
+function thresholdByConcept(content: Content): Map<string, number> {
+  const map = new Map<string, number>();
+  for (const m of content.modules) {
+    for (const cid of m.conceptIds) map.set(cid, m.masteryThreshold);
+  }
+  return map;
+}
+
 export function loadProgress(content: Content): ProgressState {
   const raw = localStorage.getItem(KEY);
   if (!raw) return freshState(content);
@@ -23,9 +31,15 @@ export function loadProgress(content: Content): ProgressState {
     if (parsed.contentVersion !== content.version) return freshState(content);
     // ensure every current concept has an entry
     const merged = freshState(content);
+    const thresholds = thresholdByConcept(content);
     for (const id of Object.keys(merged.concepts)) {
       if (parsed.concepts[id]) {
-        merged.concepts[id] = { ...emptyConceptProgress(), ...parsed.concepts[id] };
+        const restored = { ...emptyConceptProgress(), ...parsed.concepts[id] };
+        // порог мог снизиться с прошлого запуска — накопленный счёт уже покрывает его,
+        // так что mastered присваивается сразу, а не ждёт следующего верного ответа
+        const threshold = thresholds.get(id);
+        if (threshold !== undefined && restored.score >= threshold) restored.mastered = true;
+        merged.concepts[id] = restored;
       }
     }
     return merged;
@@ -38,8 +52,11 @@ export function saveProgress(state: ProgressState): void {
   localStorage.setItem(KEY, JSON.stringify(state));
 }
 
+// «Мешок»: упражнение не повторяется, пока не показаны все остальные из пула.
+// Когда круг пройден, мешок обнуляется — в нём остаётся только что показанная
+// карточка, чтобы она не выпала дважды подряд на стыке кругов.
 export function pushRecent(prev: string[], exerciseId: string, poolSize: number): string[] {
-  const window = Math.min(poolSize - 1, RECENT_WINDOW);
-  if (window <= 0) return [];
-  return [...prev, exerciseId].slice(-window);
+  if (poolSize <= 1) return [];
+  const next = [...prev.filter((id) => id !== exerciseId), exerciseId];
+  return next.length >= poolSize ? [exerciseId] : next;
 }

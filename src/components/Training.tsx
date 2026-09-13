@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { content as defaultContent } from '../content';
 import { pickNextConcept, pickNextExercise } from '../engine/scheduler';
-import { applyAnswer, isModuleComplete } from '../engine/scoring';
+import { applyAnswer, isModuleComplete, moduleProgress } from '../engine/scoring';
 import { loadProgress, saveProgress, pushRecent, type ProgressState } from '../store/progress';
 import { getRenderer } from './exercises';
 import type { Content } from '../types';
@@ -47,6 +47,7 @@ export function Training({ moduleId, onExit, onSummary, content = defaultContent
   const concept = content.concepts.find((c) => c.id === conceptId)!;
   const Renderer = getRenderer(exercise.type);
   const cp = progress.concepts[conceptId];
+  const modProgress = moduleProgress(mod.conceptIds, progress.concepts, mod.masteryThreshold);
   const activeConceptId = conceptId;
   const activeExercise = exercise;
 
@@ -79,6 +80,12 @@ export function Training({ moduleId, onExit, onSummary, content = defaultContent
           <button onClick={onSummary}>Итоги</button>
         </nav>
         <h2>{mod.title}</h2>
+        <p className="module-score">
+          <span>{`Модуль: ${modProgress.score} / ${modProgress.total}`}</span>
+          <span className="bar" aria-hidden="true">
+            <span className="bar-fill" style={{ width: `${(modProgress.score / modProgress.total) * 100}%` }} />
+          </span>
+        </p>
         <p className="score">
           {concept.title} — {cp.mastered ? `${cp.score} ✓` : `${cp.score} / ${mod.masteryThreshold}`}
         </p>

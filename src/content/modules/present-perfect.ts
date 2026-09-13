@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'present-perfect',
   title: 'Present Perfect',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['pp-experience', 'pp-just-already-yet', 'pp-for-since'],
 };
 
@@ -19,6 +19,7 @@ export const concepts: Concept[] = [
       'pp-e1', 'pp-e2', 'pp-e3', 'pp-e4', 'pp-e5', 'pp-e6',
       'pp-e7', 'pp-e8', 'pp-e9', 'pp-e10', 'pp-e11', 'pp-e12', 'pp-e13', 'pp-e14',
       'pp-e15', 'pp-e16', 'pp-e17', 'pp-e18', 'pp-e19', 'pp-e20',
+      'pp-e21', 'pp-e22', 'pp-e23', 'pp-e24', 'pp-e25', 'pp-e26', 'pp-e27', 'pp-e28', 'pp-e29', 'pp-e30',
     ],
   },
   {
@@ -31,6 +32,7 @@ export const concepts: Concept[] = [
       'pja-e1', 'pja-e2', 'pja-e3', 'pja-e4', 'pja-e5', 'pja-e6', 'pja-e7',
       'pja-e8', 'pja-e9', 'pja-e10', 'pja-e11', 'pja-e12', 'pja-e13', 'pja-e14',
       'pja-e15', 'pja-e16', 'pja-e17', 'pja-e18', 'pja-e19', 'pja-e20',
+      'pja-e21', 'pja-e22', 'pja-e23', 'pja-e24', 'pja-e25', 'pja-e26', 'pja-e27', 'pja-e28', 'pja-e29', 'pja-e30',
     ],
   },
   {
@@ -43,6 +45,7 @@ export const concepts: Concept[] = [
       'pfs-e1', 'pfs-e2', 'pfs-e3', 'pfs-e4', 'pfs-e5', 'pfs-e6', 'pfs-e7',
       'pfs-e8', 'pfs-e9', 'pfs-e10', 'pfs-e11', 'pfs-e12', 'pfs-e13', 'pfs-e14',
       'pfs-e15', 'pfs-e16', 'pfs-e17', 'pfs-e18', 'pfs-e19', 'pfs-e20',
+      'pfs-e21', 'pfs-e22', 'pfs-e23', 'pfs-e24', 'pfs-e25', 'pfs-e26', 'pfs-e27', 'pfs-e28', 'pfs-e29', 'pfs-e30',
     ],
   },
 ];
@@ -125,4 +128,39 @@ export const exercises: Exercise[] = [
   { id: 'pfs-e18', conceptId: 'pp-for-since', type: 'multi_gap', prompt: 'I have lived here ___ ten years, but my brother has lived here ___ 2010.', points: 1, gaps: [{ accepted: ['for'] }, { accepted: ['since'] }] },
   { id: 'pfs-e19', conceptId: 'pp-for-since', type: 'multi_gap', prompt: 'She ___ (work) here since 2019, and she ___ (know) her boss for six years.', points: 1, gaps: [{ accepted: ['has worked', "'s worked", 'has been working'] }, { accepted: ['has known', "'s known"] }] },
   { id: 'pfs-e20', conceptId: 'pp-for-since', type: 'multi_gap', prompt: 'How long have you ___ (know) your neighbours, and how long have you ___ (live) in this city?', points: 1, gaps: [{ accepted: ['known'] }, { accepted: ['lived'] }] },
+  // ---- добор: pp-experience ----
+  { id: 'pp-e21', conceptId: 'pp-experience', type: 'translate_ru_en', prompt: 'Я был в Италии дважды.', points: 2, accepted: ['I have been to Italy twice', "I've been to Italy twice"] },
+  { id: 'pp-e22', conceptId: 'pp-experience', type: 'translate_ru_en', prompt: 'Её нет — она уехала в Париж.', points: 2, accepted: ["She isn't here — she has gone to Paris", "She's not here — she's gone to Paris", "She isn't here — she's gone to Paris"] },
+  { id: 'pp-e23', conceptId: 'pp-experience', type: 'fill_gap', prompt: 'She has ___ to the shops — she will be back in an hour.', points: 1, accepted: ['gone'] },
+  { id: 'pp-e24', conceptId: 'pp-experience', type: 'fill_gap', prompt: "It's the first time I ___ ever driven a car.", points: 1, accepted: ['have', "'ve"] },
+  { id: 'pp-e25', conceptId: 'pp-experience', type: 'verb_form', prompt: 'I have never (drive) ___ such a fast car.', points: 1, accepted: ['driven'] },
+  { id: 'pp-e26', conceptId: 'pp-experience', type: 'choose_word', prompt: 'They have ___ to Japan three times and they are home now.', points: 1, options: ['been', 'gone', 'went'], accepted: ['been'] },
+  { id: 'pp-e27', conceptId: 'pp-experience', type: 'choose_word', prompt: 'Have you ever ___ a horse?', points: 1, options: ['ridden', 'rode', 'ride'], accepted: ['ridden'] },
+  { id: 'pp-e28', conceptId: 'pp-experience', type: 'word_order', prompt: 'Соберите: «Я никогда не был в Африке»', points: 1, bank: ['I', 'have', 'never', 'been', 'to', 'Africa'], accepted: ['I have never been to Africa'] },
+  { id: 'pp-e29', conceptId: 'pp-experience', type: 'word_order', prompt: 'Соберите: «Мы были в Испании дважды»', points: 1, bank: ['we', 'have', 'been', 'to', 'Spain', 'twice'], accepted: ['we have been to Spain twice'] },
+  { id: 'pp-e30', conceptId: 'pp-experience', type: 'multi_gap', prompt: 'Tom has ___ (go) to Berlin — he is still there. I have ___ (be) there twice.', points: 1, gaps: [{ accepted: ['gone'] }, { accepted: ['been'] }] },
+
+  // ---- добор: pp-just-already-yet ----
+  { id: 'pja-e21', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Он всё ещё не позвонил.', points: 2, accepted: ["He still hasn't called", 'He has still not called', 'He still has not called'] },
+  { id: 'pja-e22', conceptId: 'pp-just-already-yet', type: 'translate_ru_en', prompt: 'Ты уже отправил письмо?', points: 2, accepted: ['Have you sent the letter yet?', 'Have you already sent the letter?', 'Have you sent the email yet?'] },
+  { id: 'pja-e23', conceptId: 'pp-just-already-yet', type: 'fill_gap', prompt: 'They ___ have not made a decision, and the meeting was a week ago.', points: 1, accepted: ['still'] },
+  { id: 'pja-e24', conceptId: 'pp-just-already-yet', type: 'fill_gap', prompt: "I have ___ seen this film — let's watch another one.", points: 1, accepted: ['already'] },
+  { id: 'pja-e25', conceptId: 'pp-just-already-yet', type: 'verb_form', prompt: 'She has just (take) ___ the dog for a walk.', points: 1, accepted: ['taken'] },
+  { id: 'pja-e26', conceptId: 'pp-just-already-yet', type: 'choose_word', prompt: "We ___ haven't received the parcel.", points: 1, options: ['still', 'yet', 'already'], accepted: ['still'] },
+  { id: 'pja-e27', conceptId: 'pp-just-already-yet', type: 'choose_word', prompt: 'Have they finished the report ___?', points: 1, options: ['yet', 'still', 'just'], accepted: ['yet'] },
+  { id: 'pja-e28', conceptId: 'pp-just-already-yet', type: 'word_order', prompt: 'Соберите: «Он всё ещё не ответил»', points: 1, bank: ['he', 'still', "hasn't", 'answered'], accepted: ["he still hasn't answered"] },
+  { id: 'pja-e29', conceptId: 'pp-just-already-yet', type: 'word_order', prompt: 'Соберите: «Я только что видел её»', points: 1, bank: ['I', 'have', 'just', 'seen', 'her'], accepted: ['I have just seen her'] },
+  { id: 'pja-e30', conceptId: 'pp-just-already-yet', type: 'multi_gap', prompt: 'I have ___ finished my part, but they have not started ___.', points: 1, gaps: [{ accepted: ['already'] }, { accepted: ['yet'] }] },
+
+  // ---- добор: pp-for-since ----
+  { id: 'pfs-e21', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Мы не виделись целую вечность.', points: 2, accepted: ["We haven't seen each other for ages", "We haven't seen each other for a long time"] },
+  { id: 'pfs-e22', conceptId: 'pp-for-since', type: 'translate_ru_en', prompt: 'Прошло два года с тех пор, как я его видел.', points: 2, accepted: ['It has been two years since I saw him', "It's been two years since I saw him"] },
+  { id: 'pfs-e23', conceptId: 'pp-for-since', type: 'fill_gap', prompt: 'I have had this car ___ 2019.', points: 1, accepted: ['since'] },
+  { id: 'pfs-e24', conceptId: 'pp-for-since', type: 'fill_gap', prompt: 'She has been ill ___ three days.', points: 1, accepted: ['for'] },
+  { id: 'pfs-e25', conceptId: 'pp-for-since', type: 'verb_form', prompt: 'We (not speak) ___ since the argument last month.', points: 1, accepted: ["haven't spoken", 'have not spoken'] },
+  { id: 'pfs-e26', conceptId: 'pp-for-since', type: 'choose_word', prompt: 'He has worked here ___ he left school.', points: 1, options: ['since', 'for', 'from'], accepted: ['since'] },
+  { id: 'pfs-e27', conceptId: 'pp-for-since', type: 'choose_word', prompt: 'They have been married ___ twenty years.', points: 1, options: ['for', 'since', 'during'], accepted: ['for'] },
+  { id: 'pfs-e28', conceptId: 'pp-for-since', type: 'word_order', prompt: 'Соберите: «Я не видел его с понедельника»', points: 1, bank: ['I', "haven't", 'seen', 'him', 'since', 'Monday'], accepted: ["I haven't seen him since Monday"] },
+  { id: 'pfs-e29', conceptId: 'pp-for-since', type: 'word_order', prompt: 'Соберите: «Мы ждём уже два часа»', points: 1, bank: ['we', 'have', 'been', 'waiting', 'for', 'two', 'hours'], accepted: ['we have been waiting for two hours'] },
+  { id: 'pfs-e30', conceptId: 'pp-for-since', type: 'multi_gap', prompt: 'I have known him ___ five years, and I have lived here ___ 2020.', points: 1, gaps: [{ accepted: ['for'] }, { accepted: ['since'] }] },
 ];

@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b2-passive',
   title: 'Пассивный залог (продвинутый) и каузативная конструкция',
   level: 'B2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b2-passive-advanced', 'b2-causative'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b2pa-e6', 'b2pa-e7', 'b2pa-e8', 'b2pa-e9', 'b2pa-e10',
       'b2pa-e11', 'b2pa-e12', 'b2pa-e13', 'b2pa-e14', 'b2pa-e15',
       'b2pa-e16', 'b2pa-e17', 'b2pa-e18', 'b2pa-e19', 'b2pa-e20',
+      'b2pa-e21', 'b2pa-e22', 'b2pa-e23', 'b2pa-e24', 'b2pa-e25', 'b2pa-e26', 'b2pa-e27', 'b2pa-e28', 'b2pa-e29', 'b2pa-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b2cs-e6', 'b2cs-e7', 'b2cs-e8', 'b2cs-e9', 'b2cs-e10',
       'b2cs-e11', 'b2cs-e12', 'b2cs-e13', 'b2cs-e14', 'b2cs-e15',
       'b2cs-e16', 'b2cs-e17', 'b2cs-e18', 'b2cs-e19', 'b2cs-e20',
+      'b2cs-e21', 'b2cs-e22', 'b2cs-e23', 'b2cs-e24', 'b2cs-e25', 'b2cs-e26', 'b2cs-e27', 'b2cs-e28', 'b2cs-e29', 'b2cs-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b2cs-e18', conceptId: 'b2-causative', type: 'multi_gap', prompt: 'I ___ (have) my hair cut yesterday, and tomorrow I ___ (have) my teeth checked.', points: 1, gaps: [{ accepted: ['had'] }, { accepted: ['will have', "'ll have"] }] },
   { id: 'b2cs-e19', conceptId: 'b2-causative', type: 'multi_gap', prompt: "She got her nails ___ (do) yesterday, and now she's getting her hair ___ (colour) too.", points: 1, gaps: [{ accepted: ['done'] }, { accepted: ['coloured', 'colored'] }] },
   { id: 'b2cs-e20', conceptId: 'b2-causative', type: 'multi_gap', prompt: "We haven't ___ (have) the roof fixed yet, but we've already ___ (have) the windows replaced.", points: 1, gaps: [{ accepted: ['had'] }, { accepted: ['had'] }] },
+  // ---- добор: b2-passive-advanced ----
+  { id: 'b2pa-e21', conceptId: 'b2-passive-advanced', type: 'translate_ru_en', prompt: 'Говорят, что он живёт в Лондоне.', points: 2, accepted: ['It is said that he lives in London', 'He is said to live in London'] },
+  { id: 'b2pa-e22', conceptId: 'b2-passive-advanced', type: 'translate_ru_en', prompt: 'Считается, что эта картина стоит миллион.', points: 2, accepted: ['This painting is believed to be worth a million', 'It is believed that this painting is worth a million'] },
+  { id: 'b2pa-e23', conceptId: 'b2-passive-advanced', type: 'fill_gap', prompt: 'It ___ believed that the treasure is still hidden somewhere on the island.', points: 1, accepted: ['is'] },
+  { id: 'b2pa-e24', conceptId: 'b2-passive-advanced', type: 'fill_gap', prompt: 'He hates ___ interrupted while he is working.', points: 1, accepted: ['being'] },
+  { id: 'b2pa-e25', conceptId: 'b2-passive-advanced', type: 'verb_form', prompt: 'The suspect is thought (leave) ___ the country last night.', points: 1, accepted: ['to have left'] },
+  { id: 'b2pa-e26', conceptId: 'b2-passive-advanced', type: 'choose_word', prompt: 'She ___ promoted last month after three years in the role.', points: 1, options: ['got', 'get', 'was got'], accepted: ['got'] },
+  { id: 'b2pa-e27', conceptId: 'b2-passive-advanced', type: 'choose_word', prompt: 'The new bridge is expected ___ by next summer.', points: 1, options: ['to be completed', 'to complete', 'being completed'], accepted: ['to be completed'] },
+  { id: 'b2pa-e28', conceptId: 'b2-passive-advanced', type: 'word_order', prompt: 'Соберите: «Говорят, что он очень богат»', points: 1, bank: ['he', 'is', 'said', 'to', 'be', 'very', 'rich'], accepted: ['he is said to be very rich'] },
+  { id: 'b2pa-e29', conceptId: 'b2-passive-advanced', type: 'word_order', prompt: 'Соберите: «Он терпеть не может, когда его перебивают»', points: 1, bank: ['he', 'hates', 'being', 'interrupted'], accepted: ['he hates being interrupted'] },
+  { id: 'b2pa-e30', conceptId: 'b2-passive-advanced', type: 'multi_gap', prompt: 'It ___ (say) that the company is in trouble, and the CEO is ___ (expect) to resign.', points: 1, gaps: [{ accepted: ['is said'] }, { accepted: ['expected'] }] },
+
+  // ---- добор: b2-causative ----
+  { id: 'b2cs-e21', conceptId: 'b2-causative', type: 'translate_ru_en', prompt: 'Я попросил его починить кран.', points: 2, accepted: ['I got him to fix the tap', 'I had him fix the tap'] },
+  { id: 'b2cs-e22', conceptId: 'b2-causative', type: 'translate_ru_en', prompt: 'Нам покрасят дом в следующем месяце.', points: 2, accepted: ['We are having our house painted next month', 'We will have our house painted next month'] },
+  { id: 'b2cs-e23', conceptId: 'b2-causative', type: 'fill_gap', prompt: 'I need to get my laptop ___ — the screen is broken.', points: 1, accepted: ['fixed', 'repaired'] },
+  { id: 'b2cs-e24', conceptId: 'b2-causative', type: 'fill_gap', prompt: 'She got her brother ___ help her with the move.', points: 1, accepted: ['to'] },
+  { id: 'b2cs-e25', conceptId: 'b2-causative', type: 'verb_form', prompt: 'We are having the roof (repair) ___ at the moment.', points: 1, accepted: ['repaired'] },
+  { id: 'b2cs-e26', conceptId: 'b2-causative', type: 'choose_word', prompt: 'They had the mechanic ___ the engine before the trip.', points: 1, options: ['check', 'to check', 'checking'], accepted: ['check'] },
+  { id: 'b2cs-e27', conceptId: 'b2-causative', type: 'choose_word', prompt: 'I got my sister ___ me to the airport.', points: 1, options: ['to drive', 'drive', 'driving'], accepted: ['to drive'] },
+  { id: 'b2cs-e28', conceptId: 'b2-causative', type: 'word_order', prompt: 'Соберите: «Нам покрасят дом в следующем месяце»', points: 1, bank: ['we', 'are', 'having', 'our', 'house', 'painted', 'next', 'month'], accepted: ['we are having our house painted next month'] },
+  { id: 'b2cs-e29', conceptId: 'b2-causative', type: 'word_order', prompt: 'Соберите: «Я попросил её проверить отчёт»', points: 1, bank: ['I', 'got', 'her', 'to', 'check', 'the', 'report'], accepted: ['I got her to check the report'] },
+  { id: 'b2cs-e30', conceptId: 'b2-causative', type: 'multi_gap', prompt: 'I am having my car ___ (service) tomorrow, and I got my neighbour ___ (drive) me to work.', points: 1, gaps: [{ accepted: ['serviced'] }, { accepted: ['to drive'] }] },
 ];

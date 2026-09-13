@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a2-comparisons',
   title: 'Сравнения: сравнительная и превосходная степень',
   level: 'A2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a2-comparative', 'a2-superlative'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a2cm-e6', 'a2cm-e7', 'a2cm-e8', 'a2cm-e9', 'a2cm-e10',
       'a2cm-e11', 'a2cm-e12', 'a2cm-e13', 'a2cm-e14', 'a2cm-e15',
       'a2cm-e16', 'a2cm-e17', 'a2cm-e18', 'a2cm-e19', 'a2cm-e20',
+      'a2cm-e21', 'a2cm-e22', 'a2cm-e23', 'a2cm-e24', 'a2cm-e25', 'a2cm-e26', 'a2cm-e27', 'a2cm-e28', 'a2cm-e29', 'a2cm-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a2sp-e6', 'a2sp-e7', 'a2sp-e8', 'a2sp-e9', 'a2sp-e10',
       'a2sp-e11', 'a2sp-e12', 'a2sp-e13', 'a2sp-e14', 'a2sp-e15',
       'a2sp-e16', 'a2sp-e17', 'a2sp-e18', 'a2sp-e19', 'a2sp-e20',
+      'a2sp-e21', 'a2sp-e22', 'a2sp-e23', 'a2sp-e24', 'a2sp-e25', 'a2sp-e26', 'a2sp-e27', 'a2sp-e28', 'a2sp-e29', 'a2sp-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'a2sp-e18', conceptId: 'a2-superlative', type: 'multi_gap', prompt: "This is ___ (good) restaurant in town, but it's also ___ (expensive).", points: 1, gaps: [{ accepted: ['the best'] }, { accepted: ['the most expensive'] }] },
   { id: 'a2sp-e19', conceptId: 'a2-superlative', type: 'multi_gap', prompt: 'This soup is ___ (hot) to eat right now, but it will be ___ (cool) in a few minutes.', points: 1, gaps: [{ accepted: ['too hot'] }, { accepted: ['cool enough'] }] },
   { id: 'a2sp-e20', conceptId: 'a2-superlative', type: 'multi_gap', prompt: 'She is ___ (young) person in the office, but she is ___ (experienced) of all the managers.', points: 1, gaps: [{ accepted: ['the youngest'] }, { accepted: ['the most experienced'] }] },
+  // ---- добор: a2-comparative ----
+  { id: 'a2cm-e21', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Он не такой высокий, как его брат.', points: 2, accepted: ["He isn't as tall as his brother", 'He is not as tall as his brother'] },
+  { id: 'a2cm-e22', conceptId: 'a2-comparative', type: 'translate_ru_en', prompt: 'Чем больше ты практикуешься, тем лучше говоришь.', points: 2, accepted: ['The more you practise, the better you speak', 'The more you practice, the better you speak'] },
+  { id: 'a2cm-e23', conceptId: 'a2-comparative', type: 'fill_gap', prompt: 'This café is not as expensive ___ the one near the station.', points: 1, accepted: ['as'] },
+  { id: 'a2cm-e24', conceptId: 'a2-comparative', type: 'fill_gap', prompt: 'The weather is getting warmer ___ warmer every day.', points: 1, accepted: ['and'] },
+  { id: 'a2cm-e25', conceptId: 'a2-comparative', type: 'verb_form', prompt: 'My new laptop is (fast) ___ than the old one.', points: 1, accepted: ['faster'] },
+  { id: 'a2cm-e26', conceptId: 'a2-comparative', type: 'choose_word', prompt: 'She is ___ as her sister — they both got top marks.', points: 1, options: ['as clever', 'clever', 'more clever'], accepted: ['as clever'] },
+  { id: 'a2cm-e27', conceptId: 'a2-comparative', type: 'choose_word', prompt: 'This test was ___ difficult than I expected.', points: 1, options: ['less', 'least', 'the less'], accepted: ['less'] },
+  { id: 'a2cm-e28', conceptId: 'a2-comparative', type: 'word_order', prompt: 'Соберите: «Сегодня теплее, чем вчера»', points: 1, bank: ['today', 'is', 'warmer', 'than', 'yesterday'], accepted: ['today is warmer than yesterday'] },
+  { id: 'a2cm-e29', conceptId: 'a2-comparative', type: 'word_order', prompt: 'Соберите: «Она не такая быстрая, как я»', points: 1, bank: ['she', 'is', 'not', 'as', 'fast', 'as', 'me'], accepted: ['she is not as fast as me'] },
+  { id: 'a2cm-e30', conceptId: 'a2-comparative', type: 'multi_gap', prompt: 'This book is ___ (interesting) than that one, but it is not as ___ (long) as the first one.', points: 1, gaps: [{ accepted: ['more interesting'] }, { accepted: ['long'] }] },
+
+  // ---- добор: a2-superlative ----
+  { id: 'a2sp-e21', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Это один из самых старых городов Европы.', points: 2, accepted: ['It is one of the oldest cities in Europe', "It's one of the oldest cities in Europe", 'This is one of the oldest cities in Europe'] },
+  { id: 'a2sp-e22', conceptId: 'a2-superlative', type: 'translate_ru_en', prompt: 'Он самый быстрый бегун в команде.', points: 2, accepted: ['He is the fastest runner in the team', "He's the fastest runner in the team", 'He is the fastest runner on the team'] },
+  { id: 'a2sp-e23', conceptId: 'a2-superlative', type: 'fill_gap', prompt: 'It is the best restaurant ___ the city.', points: 1, accepted: ['in'] },
+  { id: 'a2sp-e24', conceptId: 'a2-superlative', type: 'fill_gap', prompt: "That's the ___ expensive option — it costs almost nothing.", points: 1, accepted: ['least'] },
+  { id: 'a2sp-e25', conceptId: 'a2-superlative', type: 'verb_form', prompt: 'This is the (good) ___ coffee I have ever tasted.', points: 1, accepted: ['best'] },
+  { id: 'a2sp-e26', conceptId: 'a2-superlative', type: 'choose_word', prompt: 'She is one of the ___ people I know.', points: 1, options: ['kindest', 'kinder', 'most kind'], accepted: ['kindest'] },
+  { id: 'a2sp-e27', conceptId: 'a2-superlative', type: 'choose_word', prompt: 'Today was the ___ day of the year.', points: 1, options: ['hottest', 'hotest', 'most hot'], accepted: ['hottest'] },
+  { id: 'a2sp-e28', conceptId: 'a2-superlative', type: 'word_order', prompt: 'Соберите: «Это один из лучших дней в моей жизни»', points: 1, bank: ['this', 'is', 'one', 'of', 'the', 'best', 'days', 'of', 'my', 'life'], accepted: ['this is one of the best days of my life'] },
+  { id: 'a2sp-e29', conceptId: 'a2-superlative', type: 'word_order', prompt: 'Соберите: «Он самый молодой в группе»', points: 1, bank: ['he', 'is', 'the', 'youngest', 'in', 'the', 'group'], accepted: ['he is the youngest in the group'] },
+  { id: 'a2sp-e30', conceptId: 'a2-superlative', type: 'multi_gap', prompt: 'Anna is the ___ (young) in the family, and Tom is the ___ (old).', points: 1, gaps: [{ accepted: ['youngest'] }, { accepted: ['oldest'] }] },
 ];

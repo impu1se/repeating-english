@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b1-passive',
   title: 'Пассивный залог: настоящее и прошедшее время',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b1-passive-present', 'b1-passive-past'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b1pv-e6', 'b1pv-e7', 'b1pv-e8', 'b1pv-e9', 'b1pv-e10',
       'b1pv-e11', 'b1pv-e12', 'b1pv-e13', 'b1pv-e14', 'b1pv-e15',
       'b1pv-e16', 'b1pv-e17', 'b1pv-e18', 'b1pv-e19', 'b1pv-e20',
+      'b1pv-e21', 'b1pv-e22', 'b1pv-e23', 'b1pv-e24', 'b1pv-e25', 'b1pv-e26', 'b1pv-e27', 'b1pv-e28', 'b1pv-e29', 'b1pv-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b1pw-e6', 'b1pw-e7', 'b1pw-e8', 'b1pw-e9', 'b1pw-e10',
       'b1pw-e11', 'b1pw-e12', 'b1pw-e13', 'b1pw-e14', 'b1pw-e15',
       'b1pw-e16', 'b1pw-e17', 'b1pw-e18', 'b1pw-e19', 'b1pw-e20',
+      'b1pw-e21', 'b1pw-e22', 'b1pw-e23', 'b1pw-e24', 'b1pw-e25', 'b1pw-e26', 'b1pw-e27', 'b1pw-e28', 'b1pw-e29', 'b1pw-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b1pw-e18', conceptId: 'b1-passive-past', type: 'multi_gap', prompt: 'This bridge ___ (build) in 1889, and these roads ___ (build) by the Romans.', points: 1, gaps: [{ accepted: ['was built'] }, { accepted: ['were built'] }] },
   { id: 'b1pw-e19', conceptId: 'b1-passive-past', type: 'multi_gap', prompt: '___ this castle built in the 15th century, or ___ it built later?', points: 1, gaps: [{ accepted: ['was'] }, { accepted: ['was'] }] },
   { id: 'b1pw-e20', conceptId: 'b1-passive-past', type: 'multi_gap', prompt: 'This house ___ (not build) last year — it ___ (build) a hundred years ago.', points: 1, gaps: [{ accepted: ["wasn't built", 'was not built'] }, { accepted: ['was built'] }] },
+  // ---- добор: b1-passive-present ----
+  { id: 'b1pv-e21', conceptId: 'b1-passive-present', type: 'translate_ru_en', prompt: 'Английский используют во всём мире.', points: 2, accepted: ['English is used all over the world', 'English is used around the world'] },
+  { id: 'b1pv-e22', conceptId: 'b1-passive-present', type: 'translate_ru_en', prompt: 'Эту проблему можно решить легко.', points: 2, accepted: ['This problem can be solved easily', 'This problem can easily be solved'] },
+  { id: 'b1pv-e23', conceptId: 'b1-passive-present', type: 'fill_gap', prompt: 'The room ___ cleaned every morning by the staff.', points: 1, accepted: ['is'] },
+  { id: 'b1pv-e24', conceptId: 'b1-passive-present', type: 'fill_gap', prompt: 'The soup is made ___ fresh vegetables.', points: 1, accepted: ['with', 'from', 'of'] },
+  { id: 'b1pv-e25', conceptId: 'b1-passive-present', type: 'verb_form', prompt: 'These reports (check) ___ by the manager every week.', points: 1, accepted: ['are checked'] },
+  { id: 'b1pv-e26', conceptId: 'b1-passive-present', type: 'choose_word', prompt: 'The letters ___ delivered every morning at eight.', points: 1, options: ['are', 'is', 'have'], accepted: ['are'] },
+  { id: 'b1pv-e27', conceptId: 'b1-passive-present', type: 'choose_word', prompt: 'This machine ___ be repaired — it is too old.', points: 1, options: ["can't", 'not can', 'is not can'], accepted: ["can't"] },
+  { id: 'b1pv-e28', conceptId: 'b1-passive-present', type: 'word_order', prompt: 'Соберите: «Английский используют во всём мире»', points: 1, bank: ['English', 'is', 'used', 'all', 'over', 'the', 'world'], accepted: ['English is used all over the world'] },
+  { id: 'b1pv-e29', conceptId: 'b1-passive-present', type: 'word_order', prompt: 'Соберите: «Комнату убирают каждое утро»', points: 1, bank: ['the', 'room', 'is', 'cleaned', 'every', 'morning'], accepted: ['the room is cleaned every morning'] },
+  { id: 'b1pv-e30', conceptId: 'b1-passive-present', type: 'multi_gap', prompt: 'The office ___ (clean) every evening, and the windows ___ (wash) once a month.', points: 1, gaps: [{ accepted: ['is cleaned'] }, { accepted: ['are washed'] }] },
+
+  // ---- добор: b1-passive-past ----
+  { id: 'b1pw-e21', conceptId: 'b1-passive-past', type: 'translate_ru_en', prompt: 'Мой велосипед украли на прошлой неделе.', points: 2, accepted: ['My bike was stolen last week', 'My bicycle was stolen last week'] },
+  { id: 'b1pw-e22', conceptId: 'b1-passive-past', type: 'translate_ru_en', prompt: 'Кем была написана эта книга?', points: 2, accepted: ['Who was this book written by?', 'By whom was this book written?'] },
+  { id: 'b1pw-e23', conceptId: 'b1-passive-past', type: 'fill_gap', prompt: 'The windows ___ broken during the storm.', points: 1, accepted: ['were'] },
+  { id: 'b1pw-e24', conceptId: 'b1-passive-past', type: 'fill_gap', prompt: 'The letter was sent ___ my colleague, not by me.', points: 1, accepted: ['by'] },
+  { id: 'b1pw-e25', conceptId: 'b1-passive-past', type: 'verb_form', prompt: 'The city (destroy) ___ by an earthquake in 1906.', points: 1, accepted: ['was destroyed'] },
+  { id: 'b1pw-e26', conceptId: 'b1-passive-past', type: 'choose_word', prompt: 'The keys ___ found in the garden yesterday.', points: 1, options: ['were', 'was', 'are'], accepted: ['were'] },
+  { id: 'b1pw-e27', conceptId: 'b1-passive-past', type: 'choose_word', prompt: 'The museum ___ opened until last year.', points: 1, options: ["wasn't", 'not was', 'was not be'], accepted: ["wasn't"] },
+  { id: 'b1pw-e28', conceptId: 'b1-passive-past', type: 'word_order', prompt: 'Соберите: «Мой велосипед украли на прошлой неделе»', points: 1, bank: ['my', 'bike', 'was', 'stolen', 'last', 'week'], accepted: ['my bike was stolen last week'] },
+  { id: 'b1pw-e29', conceptId: 'b1-passive-past', type: 'word_order', prompt: 'Соберите: «Кем была написана эта книга?»', points: 1, bank: ['who', 'was', 'this', 'book', 'written', 'by'], accepted: ['who was this book written by'] },
+  { id: 'b1pw-e30', conceptId: 'b1-passive-past', type: 'multi_gap', prompt: 'The letter ___ (send) yesterday, and the parcels ___ (deliver) this morning.', points: 1, gaps: [{ accepted: ['was sent'] }, { accepted: ['were delivered'] }] },
 ];

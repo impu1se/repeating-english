@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b1-past-tenses',
   title: 'Прошедшие времена 2: Past Continuous, used to, Past Perfect',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b1-past-continuous', 'b1-used-to', 'b1-past-perfect'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b1pc-e6', 'b1pc-e7', 'b1pc-e8', 'b1pc-e9', 'b1pc-e10',
       'b1pc-e11', 'b1pc-e12', 'b1pc-e13', 'b1pc-e14', 'b1pc-e15',
       'b1pc-e16', 'b1pc-e17', 'b1pc-e18', 'b1pc-e19', 'b1pc-e20',
+      'b1pc-e21', 'b1pc-e22', 'b1pc-e23', 'b1pc-e24', 'b1pc-e25', 'b1pc-e26', 'b1pc-e27', 'b1pc-e28', 'b1pc-e29', 'b1pc-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b1ut-e6', 'b1ut-e7', 'b1ut-e8', 'b1ut-e9', 'b1ut-e10',
       'b1ut-e11', 'b1ut-e12', 'b1ut-e13', 'b1ut-e14', 'b1ut-e15',
       'b1ut-e16', 'b1ut-e17', 'b1ut-e18', 'b1ut-e19', 'b1ut-e20',
+      'b1ut-e21', 'b1ut-e22', 'b1ut-e23', 'b1ut-e24', 'b1ut-e25', 'b1ut-e26', 'b1ut-e27', 'b1ut-e28', 'b1ut-e29', 'b1ut-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'b1pp-e6', 'b1pp-e7', 'b1pp-e8', 'b1pp-e9', 'b1pp-e10',
       'b1pp-e11', 'b1pp-e12', 'b1pp-e13', 'b1pp-e14', 'b1pp-e15',
       'b1pp-e16', 'b1pp-e17', 'b1pp-e18', 'b1pp-e19', 'b1pp-e20',
+      'b1pp-e21', 'b1pp-e22', 'b1pp-e23', 'b1pp-e24', 'b1pp-e25', 'b1pp-e26', 'b1pp-e27', 'b1pp-e28', 'b1pp-e29', 'b1pp-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'b1pp-e18', conceptId: 'b1-past-perfect', type: 'multi_gap', prompt: 'When we ___ (arrive), the train had already ___ (leave).', points: 1, gaps: [{ accepted: ['arrived'] }, { accepted: ['left'] }] },
   { id: 'b1pp-e19', conceptId: 'b1-past-perfect', type: 'multi_gap', prompt: 'By the time she ___ (call) me, I had already ___ (leave) the office.', points: 1, gaps: [{ accepted: ['called'] }, { accepted: ['left'] }] },
   { id: 'b1pp-e20', conceptId: 'b1-past-perfect', type: 'multi_gap', prompt: 'He was upset because he ___ (not pass) the exam, even though he ___ (study) hard.', points: 1, gaps: [{ accepted: ["hadn't passed", 'had not passed'] }, { accepted: ['had studied'] }] },
+  // ---- добор: b1-past-continuous ----
+  { id: 'b1pc-e21', conceptId: 'b1-past-continuous', type: 'translate_ru_en', prompt: 'Пока я вёл машину, она слушала музыку.', points: 2, accepted: ['While I was driving, she was listening to music'] },
+  { id: 'b1pc-e22', conceptId: 'b1-past-continuous', type: 'translate_ru_en', prompt: 'В восемь вечера мы всё ещё работали.', points: 2, accepted: ['At eight in the evening we were still working', 'At 8 pm we were still working'] },
+  { id: 'b1pc-e23', conceptId: 'b1-past-continuous', type: 'fill_gap', prompt: 'The sun ___ shining and the birds were singing.', points: 1, accepted: ['was'] },
+  { id: 'b1pc-e24', conceptId: 'b1-past-continuous', type: 'fill_gap', prompt: 'While she was cooking, he ___ the table.', points: 1, accepted: ['was setting', 'was laying'] },
+  { id: 'b1pc-e25', conceptId: 'b1-past-continuous', type: 'verb_form', prompt: 'I (drive) ___ home when I saw the accident.', points: 1, accepted: ['was driving'] },
+  { id: 'b1pc-e26', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: 'It ___ heavily, so we stayed inside all afternoon.', points: 1, options: ['was raining', 'rained', 'were raining'], accepted: ['was raining'] },
+  { id: 'b1pc-e27', conceptId: 'b1-past-continuous', type: 'choose_word', prompt: 'While they ___ football, their mother was cooking.', points: 1, options: ['were playing', 'was playing', 'played'], accepted: ['were playing'] },
+  { id: 'b1pc-e28', conceptId: 'b1-past-continuous', type: 'word_order', prompt: 'Соберите: «Пока я читал, она смотрела телевизор»', points: 1, bank: ['while', 'I', 'was', 'reading', 'she', 'was', 'watching', 'TV'], accepted: ['while I was reading she was watching TV'] },
+  { id: 'b1pc-e29', conceptId: 'b1-past-continuous', type: 'word_order', prompt: 'Соберите: «Светило солнце и пели птицы»', points: 1, bank: ['the', 'sun', 'was', 'shining', 'and', 'the', 'birds', 'were', 'singing'], accepted: ['the sun was shining and the birds were singing'] },
+  { id: 'b1pc-e30', conceptId: 'b1-past-continuous', type: 'multi_gap', prompt: 'While he ___ (drive), she ___ (sleep) in the back seat.', points: 1, gaps: [{ accepted: ['was driving'] }, { accepted: ['was sleeping'] }] },
+
+  // ---- добор: b1-used-to ----
+  { id: 'b1ut-e21', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Я привык вставать рано.', points: 2, accepted: ['I am used to getting up early', "I'm used to getting up early"] },
+  { id: 'b1ut-e22', conceptId: 'b1-used-to', type: 'translate_ru_en', prompt: 'Летом мы часто ходили на реку.', points: 2, accepted: ['In summer we would often go to the river', 'In summer we used to go to the river'] },
+  { id: 'b1ut-e23', conceptId: 'b1-used-to', type: 'fill_gap', prompt: 'Every summer we ___ go to the seaside with our grandparents.', points: 1, accepted: ['would', 'used to'] },
+  { id: 'b1ut-e24', conceptId: 'b1-used-to', type: 'fill_gap', prompt: 'She is not used ___ working at night.', points: 1, accepted: ['to'] },
+  { id: 'b1ut-e25', conceptId: 'b1-used-to', type: 'verb_form', prompt: "I can't get used to (live) ___ in such a big city.", points: 1, accepted: ['living'] },
+  { id: 'b1ut-e26', conceptId: 'b1-used-to', type: 'choose_word', prompt: 'He ___ live in Madrid, but now he lives in Rome.', points: 1, options: ['used to', 'use to', 'is used to'], accepted: ['used to'] },
+  { id: 'b1ut-e27', conceptId: 'b1-used-to', type: 'choose_word', prompt: 'After a month, she got used ___ the noise of the city.', points: 1, options: ['to', 'with', 'for'], accepted: ['to'] },
+  { id: 'b1ut-e28', conceptId: 'b1-used-to', type: 'word_order', prompt: 'Соберите: «Я не привык рано вставать»', points: 1, bank: ['I', 'am', 'not', 'used', 'to', 'getting', 'up', 'early'], accepted: ['I am not used to getting up early'] },
+  { id: 'b1ut-e29', conceptId: 'b1-used-to', type: 'word_order', prompt: 'Соберите: «Каждое лето мы ездили на море»', points: 1, bank: ['every', 'summer', 'we', 'used', 'to', 'go', 'to', 'the', 'sea'], accepted: ['every summer we used to go to the sea'] },
+  { id: 'b1ut-e30', conceptId: 'b1-used-to', type: 'multi_gap', prompt: 'He ___ live in Paris, and now he is used ___ living in London.', points: 1, gaps: [{ accepted: ['used to'] }, { accepted: ['to'] }] },
+
+  // ---- добор: b1-past-perfect ----
+  { id: 'b1pp-e21', conceptId: 'b1-past-perfect', type: 'translate_ru_en', prompt: 'Он устал, потому что работал весь день.', points: 2, accepted: ['He was tired because he had been working all day'] },
+  { id: 'b1pp-e22', conceptId: 'b1-past-perfect', type: 'translate_ru_en', prompt: 'Это был первый раз, когда я видел океан.', points: 2, accepted: ['It was the first time I had seen the ocean', 'It was the first time I had seen the sea'] },
+  { id: 'b1pp-e23', conceptId: 'b1-past-perfect', type: 'fill_gap', prompt: 'The ground was wet because it ___ been raining all night.', points: 1, accepted: ['had', "'d"] },
+  { id: 'b1pp-e24', conceptId: 'b1-past-perfect', type: 'fill_gap', prompt: 'She had been waiting ___ two hours when he finally arrived.', points: 1, accepted: ['for'] },
+  { id: 'b1pp-e25', conceptId: 'b1-past-perfect', type: 'verb_form', prompt: 'They (wait) ___ for an hour before the bus came.', points: 1, accepted: ['had been waiting', 'had waited'] },
+  { id: 'b1pp-e26', conceptId: 'b1-past-perfect', type: 'choose_word', prompt: 'He was out of breath because he ___ for the bus.', points: 1, options: ['had been running', 'had run', 'was running'], accepted: ['had been running'] },
+  { id: 'b1pp-e27', conceptId: 'b1-past-perfect', type: 'choose_word', prompt: 'It was the first time she ___ abroad.', points: 1, options: ['had travelled', 'travelled', 'has travelled'], accepted: ['had travelled'] },
+  { id: 'b1pp-e28', conceptId: 'b1-past-perfect', type: 'word_order', prompt: 'Соберите: «Земля была мокрой, потому что шёл дождь»', points: 1, bank: ['the', 'ground', 'was', 'wet', 'because', 'it', 'had', 'been', 'raining'], accepted: ['the ground was wet because it had been raining'] },
+  { id: 'b1pp-e29', conceptId: 'b1-past-perfect', type: 'word_order', prompt: 'Соберите: «Он устал, потому что работал весь день»', points: 1, bank: ['he', 'was', 'tired', 'because', 'he', 'had', 'been', 'working', 'all', 'day'], accepted: ['he was tired because he had been working all day'] },
+  { id: 'b1pp-e30', conceptId: 'b1-past-perfect', type: 'multi_gap', prompt: 'She ___ (wait) for an hour when he finally ___ (arrive).', points: 1, gaps: [{ accepted: ['had been waiting', 'had waited'] }, { accepted: ['arrived'] }] },
 ];

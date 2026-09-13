@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Training } from './Training';
 import type { Content } from '../types';
@@ -120,5 +120,32 @@ describe('Training', () => {
     render(<Training moduleId="m" onExit={vi.fn()} onSummary={vi.fn()} content={multiConcept} rng={first} />);
     // c2 слабее (1 < 3) — показан первым: «1 / 2»
     expect(screen.getByText(/— 1 \/ 2$/)).toBeInTheDocument();
+  });
+
+  it('shows module-wide progress that survives leaving and re-entering', async () => {
+    const view = render(<Training moduleId="m" onExit={vi.fn()} onSummary={vi.fn()} content={multiConcept} rng={first} />);
+    // порог 2 на концепт, два концепта -> модуль целиком это 4 очка
+    expect(screen.getByText('Модуль: 0 / 4')).toBeInTheDocument();
+    await userEvent.type(screen.getByRole('textbox'), 'a');
+    await userEvent.click(screen.getByRole('button', { name: 'Проверить' }));
+    expect(screen.getByText('Модуль: 1 / 4')).toBeInTheDocument();
+
+    // выход из тренировки и повторный вход — прогресс на месте
+    view.unmount();
+    cleanup();
+    render(<Training moduleId="m" onExit={vi.fn()} onSummary={vi.fn()} content={multiConcept} rng={first} />);
+    expect(screen.getByText('Модуль: 1 / 4')).toBeInTheDocument();
+  });
+
+  it('caps a concept that overshot its threshold so the module bar cannot exceed 100%', () => {
+    localStorage.setItem('re:progress', JSON.stringify({
+      contentVersion: 'test-multi',
+      concepts: {
+        c1: { score: 9, mastered: true, recentExerciseIds: [], errorCount: 0 },
+        c2: { score: 2, mastered: true, recentExerciseIds: [], errorCount: 0 },
+      },
+    }));
+    render(<Training moduleId="m" onExit={vi.fn()} onSummary={vi.fn()} content={multiConcept} rng={first} />);
+    expect(screen.getByText('Модуль: 4 / 4')).toBeInTheDocument();
   });
 });

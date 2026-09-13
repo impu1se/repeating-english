@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b2-reported',
   title: 'Косвенная речь: утверждения, вопросы и просьбы',
   level: 'B2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b2-reported-statements', 'b2-reported-questions'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b2rs-e6', 'b2rs-e7', 'b2rs-e8', 'b2rs-e9', 'b2rs-e10',
       'b2rs-e11', 'b2rs-e12', 'b2rs-e13', 'b2rs-e14', 'b2rs-e15',
       'b2rs-e16', 'b2rs-e17', 'b2rs-e18', 'b2rs-e19', 'b2rs-e20',
+      'b2rs-e21', 'b2rs-e22', 'b2rs-e23', 'b2rs-e24', 'b2rs-e25', 'b2rs-e26', 'b2rs-e27', 'b2rs-e28', 'b2rs-e29', 'b2rs-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b2rq-e6', 'b2rq-e7', 'b2rq-e8', 'b2rq-e9', 'b2rq-e10',
       'b2rq-e11', 'b2rq-e12', 'b2rq-e13', 'b2rq-e14', 'b2rq-e15',
       'b2rq-e16', 'b2rq-e17', 'b2rq-e18', 'b2rq-e19', 'b2rq-e20',
+      'b2rq-e21', 'b2rq-e22', 'b2rq-e23', 'b2rq-e24', 'b2rq-e25', 'b2rq-e26', 'b2rq-e27', 'b2rq-e28', 'b2rq-e29', 'b2rq-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b2rq-e18', conceptId: 'b2-reported-questions', type: 'multi_gap', prompt: "'Do you speak French?' → He asked me ___ I ___ French.", points: 1, gaps: [{ accepted: ['if', 'whether'] }, { accepted: ['spoke', 'speak'] }] },
   { id: 'b2rq-e19', conceptId: 'b2-reported-questions', type: 'multi_gap', prompt: "'Where are you going?' → She asked me where I ___ going and told me ___ be careful.", points: 1, gaps: [{ accepted: ['was'] }, { accepted: ['to'] }] },
   { id: 'b2rq-e20', conceptId: 'b2-reported-questions', type: 'multi_gap', prompt: "'Can you wait here?' → He asked us ___ we could wait ___.", points: 1, gaps: [{ accepted: ['if', 'whether'] }, { accepted: ['there'] }] },
+  // ---- добор: b2-reported-statements ----
+  { id: 'b2rs-e21', conceptId: 'b2-reported-statements', type: 'translate_ru_en', prompt: 'Он признался, что разбил окно.', points: 2, accepted: ['He admitted breaking the window', 'He admitted that he had broken the window'] },
+  { id: 'b2rs-e22', conceptId: 'b2-reported-statements', type: 'translate_ru_en', prompt: 'Она предложила пойти в кино.', points: 2, accepted: ['She suggested going to the cinema', 'She suggested that we go to the cinema'] },
+  { id: 'b2rs-e23', conceptId: 'b2-reported-statements', type: 'fill_gap', prompt: 'He denied ___ anything about the missing money.', points: 1, accepted: ['knowing'] },
+  { id: 'b2rs-e24', conceptId: 'b2-reported-statements', type: 'fill_gap', prompt: 'She warned me ___ to touch the wire.', points: 1, accepted: ['not'] },
+  { id: 'b2rs-e25', conceptId: 'b2-reported-statements', type: 'verb_form', prompt: 'He promised (call) ___ me the next day.', points: 1, accepted: ['to call'] },
+  { id: 'b2rs-e26', conceptId: 'b2-reported-statements', type: 'choose_word', prompt: 'She ___ that we should leave early to avoid the traffic.', points: 1, options: ['suggested', 'told', 'said me'], accepted: ['suggested'] },
+  { id: 'b2rs-e27', conceptId: 'b2-reported-statements', type: 'choose_word', prompt: 'He ___ to carry my bags for me.', points: 1, options: ['offered', 'suggested', 'denied'], accepted: ['offered'] },
+  { id: 'b2rs-e28', conceptId: 'b2-reported-statements', type: 'word_order', prompt: 'Соберите: «Он признался, что опоздал»', points: 1, bank: ['he', 'admitted', 'that', 'he', 'had', 'been', 'late'], accepted: ['he admitted that he had been late'] },
+  { id: 'b2rs-e29', conceptId: 'b2-reported-statements', type: 'word_order', prompt: 'Соберите: «Она предложила подождать»', points: 1, bank: ['she', 'suggested', 'waiting'], accepted: ['she suggested waiting'] },
+  { id: 'b2rs-e30', conceptId: 'b2-reported-statements', type: 'multi_gap', prompt: 'He ___ (admit) taking the money, but he ___ (deny) spending it.', points: 1, gaps: [{ accepted: ['admitted'] }, { accepted: ['denied'] }] },
+
+  // ---- добор: b2-reported-questions ----
+  { id: 'b2rq-e21', conceptId: 'b2-reported-questions', type: 'translate_ru_en', prompt: 'Она спросила, сколько мне лет.', points: 2, accepted: ['She asked me how old I was', 'She asked how old I was'] },
+  { id: 'b2rq-e22', conceptId: 'b2-reported-questions', type: 'translate_ru_en', prompt: 'Он поинтересовался, приду ли я.', points: 2, accepted: ['He asked whether I would come', 'He asked if I would come'] },
+  { id: 'b2rq-e23', conceptId: 'b2-reported-questions', type: 'fill_gap', prompt: 'She asked me ___ I had finished the report.', points: 1, accepted: ['if', 'whether'] },
+  { id: 'b2rq-e24', conceptId: 'b2-reported-questions', type: 'fill_gap', prompt: 'He wanted to know what time the meeting ___ start.', points: 1, accepted: ['would'] },
+  { id: 'b2rq-e25', conceptId: 'b2-reported-questions', type: 'verb_form', prompt: 'She asked me where I (live) ___ at that time.', points: 1, accepted: ['lived'] },
+  { id: 'b2rq-e26', conceptId: 'b2-reported-questions', type: 'choose_word', prompt: 'He asked me ___ the office was.', points: 1, options: ['where', 'where was', 'that where'], accepted: ['where'] },
+  { id: 'b2rq-e27', conceptId: 'b2-reported-questions', type: 'choose_word', prompt: 'She asked me ___ I was feeling better.', points: 1, options: ['whether', 'that', 'what'], accepted: ['whether'] },
+  { id: 'b2rq-e28', conceptId: 'b2-reported-questions', type: 'word_order', prompt: 'Соберите: «Он спросил, сколько мне лет»', points: 1, bank: ['he', 'asked', 'how', 'old', 'I', 'was'], accepted: ['he asked how old I was'] },
+  { id: 'b2rq-e29', conceptId: 'b2-reported-questions', type: 'word_order', prompt: 'Соберите: «Она спросила, закончил ли я работу»', points: 1, bank: ['she', 'asked', 'if', 'I', 'had', 'finished', 'the', 'work'], accepted: ['she asked if I had finished the work'] },
+  { id: 'b2rq-e30', conceptId: 'b2-reported-questions', type: 'multi_gap', prompt: 'She asked me ___ I was going, and ___ I would be back.', points: 1, gaps: [{ accepted: ['where'] }, { accepted: ['when'] }] },
 ];

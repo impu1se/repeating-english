@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b1-relative',
   title: 'Относительные придаточные: who / which / where / whose',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b1-relative-who-which', 'b1-relative-where-whose'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b1rw-e6', 'b1rw-e7', 'b1rw-e8', 'b1rw-e9', 'b1rw-e10',
       'b1rw-e11', 'b1rw-e12', 'b1rw-e13', 'b1rw-e14', 'b1rw-e15',
       'b1rw-e16', 'b1rw-e17', 'b1rw-e18', 'b1rw-e19', 'b1rw-e20',
+      'b1rw-e21', 'b1rw-e22', 'b1rw-e23', 'b1rw-e24', 'b1rw-e25', 'b1rw-e26', 'b1rw-e27', 'b1rw-e28', 'b1rw-e29', 'b1rw-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b1rx-e6', 'b1rx-e7', 'b1rx-e8', 'b1rx-e9', 'b1rx-e10',
       'b1rx-e11', 'b1rx-e12', 'b1rx-e13', 'b1rx-e14', 'b1rx-e15',
       'b1rx-e16', 'b1rx-e17', 'b1rx-e18', 'b1rx-e19', 'b1rx-e20',
+      'b1rx-e21', 'b1rx-e22', 'b1rx-e23', 'b1rx-e24', 'b1rx-e25', 'b1rx-e26', 'b1rx-e27', 'b1rx-e28', 'b1rx-e29', 'b1rx-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b1rx-e18', conceptId: 'b1-relative-where-whose', type: 'multi_gap', prompt: "This is the town ___ I was born, and that's the school ___ I studied as a child.", points: 1, gaps: [{ accepted: ['where'] }, { accepted: ['where'] }] },
   { id: 'b1rx-e19', conceptId: 'b1-relative-where-whose', type: 'multi_gap', prompt: "That's the man ___ car was stolen, and this is the woman ___ house was robbed.", points: 1, gaps: [{ accepted: ['whose'] }, { accepted: ['whose'] }] },
   { id: 'b1rx-e20', conceptId: 'b1-relative-where-whose', type: 'multi_gap', prompt: "This is the café ___ we first met, and that's the waiter ___ name I always forget.", points: 1, gaps: [{ accepted: ['where'] }, { accepted: ['whose'] }] },
+  // ---- добор: b1-relative-who-which ----
+  { id: 'b1rw-e21', conceptId: 'b1-relative-who-which', type: 'translate_ru_en', prompt: 'Фильм, который мы посмотрели вчера, был скучным.', points: 2, accepted: ['The film we watched yesterday was boring', 'The film that we watched yesterday was boring', 'The film which we watched yesterday was boring'] },
+  { id: 'b1rw-e22', conceptId: 'b1-relative-who-which', type: 'translate_ru_en', prompt: 'Люди, которые живут здесь, очень дружелюбные.', points: 2, accepted: ['The people who live here are very friendly', 'The people that live here are very friendly'] },
+  { id: 'b1rw-e23', conceptId: 'b1-relative-who-which', type: 'fill_gap', prompt: 'The book ___ I am reading now is fascinating.', points: 1, accepted: ['that', 'which'] },
+  { id: 'b1rw-e24', conceptId: 'b1-relative-who-which', type: 'fill_gap', prompt: 'My sister, ___ works in Berlin, is coming home for Christmas.', points: 1, accepted: ['who'] },
+  { id: 'b1rw-e25', conceptId: 'b1-relative-who-which', type: 'verb_form', prompt: 'The students who (study) ___ hard usually pass the exam.', points: 1, accepted: ['study'] },
+  { id: 'b1rw-e26', conceptId: 'b1-relative-who-which', type: 'choose_word', prompt: 'This is the film ___ won the Oscar last year.', points: 1, options: ['that', 'who', 'where'], accepted: ['that'] },
+  { id: 'b1rw-e27', conceptId: 'b1-relative-who-which', type: 'choose_word', prompt: 'My father, ___ is 70, still plays tennis every week.', points: 1, options: ['who', 'that', 'which'], accepted: ['who'] },
+  { id: 'b1rw-e28', conceptId: 'b1-relative-who-which', type: 'word_order', prompt: 'Соберите: «Фильм, который мы посмотрели, был скучным»', points: 1, bank: ['the', 'film', 'that', 'we', 'watched', 'was', 'boring'], accepted: ['the film that we watched was boring'] },
+  { id: 'b1rw-e29', conceptId: 'b1-relative-who-which', type: 'word_order', prompt: 'Соберите: «Люди, которые здесь работают, очень дружелюбные»', points: 1, bank: ['the', 'people', 'who', 'work', 'here', 'are', 'very', 'friendly'], accepted: ['the people who work here are very friendly'] },
+  { id: 'b1rw-e30', conceptId: 'b1-relative-who-which', type: 'multi_gap', prompt: 'The woman ___ lives next door has a dog ___ barks all night.', points: 1, gaps: [{ accepted: ['who', 'that'] }, { accepted: ['that', 'which', 'who'] }] },
+
+  // ---- добор: b1-relative-where-whose ----
+  { id: 'b1rx-e21', conceptId: 'b1-relative-where-whose', type: 'translate_ru_en', prompt: 'Я помню день, когда мы познакомились.', points: 2, accepted: ['I remember the day when we met', 'I remember the day we met'] },
+  { id: 'b1rx-e22', conceptId: 'b1-relative-where-whose', type: 'translate_ru_en', prompt: 'Это причина, почему я ушёл.', points: 2, accepted: ['That is the reason why I left', "That's the reason why I left", 'This is the reason why I left'] },
+  { id: 'b1rx-e23', conceptId: 'b1-relative-where-whose', type: 'fill_gap', prompt: 'I will never forget the day ___ I first saw the sea.', points: 1, accepted: ['when'] },
+  { id: 'b1rx-e24', conceptId: 'b1-relative-where-whose', type: 'fill_gap', prompt: 'That is the reason ___ she resigned.', points: 1, accepted: ['why'] },
+  { id: 'b1rx-e25', conceptId: 'b1-relative-where-whose', type: 'verb_form', prompt: 'This is the hotel where we (stay) ___ last summer.', points: 1, accepted: ['stayed'] },
+  { id: 'b1rx-e26', conceptId: 'b1-relative-where-whose', type: 'choose_word', prompt: 'This is the company ___ products are sold worldwide.', points: 1, options: ['whose', "who's", 'which'], accepted: ['whose'] },
+  { id: 'b1rx-e27', conceptId: 'b1-relative-where-whose', type: 'choose_word', prompt: 'Summer is the season ___ I feel happiest.', points: 1, options: ['when', 'where', 'which'], accepted: ['when'] },
+  { id: 'b1rx-e28', conceptId: 'b1-relative-where-whose', type: 'word_order', prompt: 'Соберите: «Я помню день, когда мы познакомились»', points: 1, bank: ['I', 'remember', 'the', 'day', 'when', 'we', 'met'], accepted: ['I remember the day when we met'] },
+  { id: 'b1rx-e29', conceptId: 'b1-relative-where-whose', type: 'word_order', prompt: 'Соберите: «Это причина, почему он ушёл»', points: 1, bank: ['this', 'is', 'the', 'reason', 'why', 'he', 'left'], accepted: ['this is the reason why he left'] },
+  { id: 'b1rx-e30', conceptId: 'b1-relative-where-whose', type: 'multi_gap', prompt: 'This is the town ___ I was born, and 2019 is the year ___ my parents moved here.', points: 1, gaps: [{ accepted: ['where'] }, { accepted: ['when'] }] },
 ];

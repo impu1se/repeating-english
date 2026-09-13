@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { emptyConceptProgress, applyAnswer, isModuleComplete } from './scoring';
+import { emptyConceptProgress, applyAnswer, isModuleComplete, moduleProgress } from './scoring';
 
 describe('applyAnswer', () => {
   it('adds points on correct with no cap', () => {
@@ -39,5 +39,23 @@ describe('isModuleComplete', () => {
     expect(isModuleComplete(['c1'], progress)).toBe(true);
     expect(isModuleComplete(['c1', 'c2'], progress)).toBe(false);
     expect(isModuleComplete(['c1', 'missing'], progress)).toBe(false);
+  });
+});
+
+describe('moduleProgress', () => {
+  const progress = {
+    c1: { score: 25, mastered: true, recentExerciseIds: [], errorCount: 0 },
+    c2: { score: 6, mastered: false, recentExerciseIds: [], errorCount: 0 },
+  };
+  it('sums concept scores capped at the threshold', () => {
+    // c1 переросла порог — в сумму идёт ровно 20, а не 25
+    expect(moduleProgress(['c1', 'c2'], progress, 20)).toEqual({ score: 26, total: 40 });
+  });
+  it('counts a missing concept as zero', () => {
+    expect(moduleProgress(['c1', 'missing'], progress, 20)).toEqual({ score: 20, total: 40 });
+  });
+  it('never exceeds the total', () => {
+    const { score, total } = moduleProgress(['c1'], progress, 20);
+    expect(score).toBe(total);
   });
 });

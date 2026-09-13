@@ -25,8 +25,20 @@ describe('seed content', () => {
       expect(c.theory, `concept ${c.id}`).toBeTruthy();
     }
   });
-  it('uses version 2 and threshold 50 everywhere', () => {
+  it('uses version 2 and threshold 20 everywhere', () => {
     expect(content.version).toBe('2');
-    for (const m of content.modules) expect(m.masteryThreshold, `module ${m.id}`).toBe(50);
+    for (const m of content.modules) expect(m.masteryThreshold, `module ${m.id}`).toBe(20);
+  });
+  it('gives every concept a pool big enough to clear the threshold without repeats', () => {
+    // порог берётся из модуля концепта; сумма очков пула должна покрывать его,
+    // иначе карточки начнут повторяться до освоения
+    const thresholdOf = new Map<string, number>();
+    for (const m of content.modules) for (const cid of m.conceptIds) thresholdOf.set(cid, m.masteryThreshold);
+    for (const c of content.concepts) {
+      const points = content.exercises
+        .filter((e) => e.conceptId === c.id)
+        .reduce((sum, e) => sum + e.points, 0);
+      expect(points, `concept ${c.id}`).toBeGreaterThanOrEqual(thresholdOf.get(c.id)!);
+    }
   });
 });

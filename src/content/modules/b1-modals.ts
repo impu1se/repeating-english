@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b1-modals',
   title: 'Модальные глаголы: обязанность и вероятность',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b1-modals-obligation', 'b1-modals-possibility'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b1mo-e6', 'b1mo-e7', 'b1mo-e8', 'b1mo-e9', 'b1mo-e10',
       'b1mo-e11', 'b1mo-e12', 'b1mo-e13', 'b1mo-e14', 'b1mo-e15',
       'b1mo-e16', 'b1mo-e17', 'b1mo-e18', 'b1mo-e19', 'b1mo-e20',
+      'b1mo-e21', 'b1mo-e22', 'b1mo-e23', 'b1mo-e24', 'b1mo-e25', 'b1mo-e26', 'b1mo-e27', 'b1mo-e28', 'b1mo-e29', 'b1mo-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b1mp-e6', 'b1mp-e7', 'b1mp-e8', 'b1mp-e9', 'b1mp-e10',
       'b1mp-e11', 'b1mp-e12', 'b1mp-e13', 'b1mp-e14', 'b1mp-e15',
       'b1mp-e16', 'b1mp-e17', 'b1mp-e18', 'b1mp-e19', 'b1mp-e20',
+      'b1mp-e21', 'b1mp-e22', 'b1mp-e23', 'b1mp-e24', 'b1mp-e25', 'b1mp-e26', 'b1mp-e27', 'b1mp-e28', 'b1mp-e29', 'b1mp-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b1mp-e18', conceptId: 'b1-modals-possibility', type: 'multi_gap', prompt: 'It ___ rain later, so take an umbrella, but it ___ be sunny too — who knows.', points: 1, gaps: [{ accepted: ['may', 'might', 'could'] }, { accepted: ['may', 'might', 'could'] }] },
   { id: 'b1mp-e19', conceptId: 'b1-modals-possibility', type: 'multi_gap', prompt: "He ___ be at home — I just saw him at work, but she ___ be there, I'm not sure.", points: 1, gaps: [{ accepted: ["can't", 'cannot', 'can not'] }, { accepted: ['may', 'might', 'could'] }] },
   { id: 'b1mp-e20', conceptId: 'b1-modals-possibility', type: 'multi_gap', prompt: '___, she forgot about the meeting, or she ___ be stuck in traffic.', points: 1, gaps: [{ accepted: ['maybe'] }, { accepted: ['may', 'might', 'could'] }] },
+  // ---- добор: b1-modals-obligation ----
+  { id: 'b1mo-e21', conceptId: 'b1-modals-obligation', type: 'translate_ru_en', prompt: 'Тебе лучше выйти сейчас, иначе опоздаешь.', points: 2, accepted: ["You'd better leave now, or you'll be late", 'You had better leave now, or you will be late'] },
+  { id: 'b1mo-e22', conceptId: 'b1-modals-obligation', type: 'translate_ru_en', prompt: 'Нам не нужно бронировать столик.', points: 2, accepted: ["We don't need to book a table", "We needn't book a table", 'We do not need to book a table'] },
+  { id: 'b1mo-e23', conceptId: 'b1-modals-obligation', type: 'fill_gap', prompt: 'You ___ better see a doctor about that cough.', points: 1, accepted: ['had', "'d"] },
+  { id: 'b1mo-e24', conceptId: 'b1-modals-obligation', type: 'fill_gap', prompt: 'Students are not ___ to use phones during the exam.', points: 1, accepted: ['allowed', 'permitted'] },
+  { id: 'b1mo-e25', conceptId: 'b1-modals-obligation', type: 'verb_form', prompt: 'She (have to) ___ work last Saturday because of the deadline.', points: 1, accepted: ['had to'] },
+  { id: 'b1mo-e26', conceptId: 'b1-modals-obligation', type: 'choose_word', prompt: 'You ___ to be more careful with your money.', points: 1, options: ['ought', 'should', 'must'], accepted: ['ought'] },
+  { id: 'b1mo-e27', conceptId: 'b1-modals-obligation', type: 'choose_word', prompt: 'We ___ book a table — the restaurant is never full.', points: 1, options: ["don't need to", "mustn't", 'should not to'], accepted: ["don't need to"] },
+  { id: 'b1mo-e28', conceptId: 'b1-modals-obligation', type: 'word_order', prompt: 'Соберите: «Тебе лучше поторопиться»', points: 1, bank: ['you', 'had', 'better', 'hurry', 'up'], accepted: ['you had better hurry up'] },
+  { id: 'b1mo-e29', conceptId: 'b1-modals-obligation', type: 'word_order', prompt: 'Соберите: «Здесь нельзя парковаться»', points: 1, bank: ['you', "mustn't", 'park', 'here'], accepted: ["you mustn't park here"] },
+  { id: 'b1mo-e30', conceptId: 'b1-modals-obligation', type: 'multi_gap', prompt: 'You ___ better hurry, but you ___ have to run — there is still time.', points: 1, gaps: [{ accepted: ['had', "'d"] }, { accepted: ["don't", 'do not'] }] },
+
+  // ---- добор: b1-modals-possibility ----
+  { id: 'b1mp-e21', conceptId: 'b1-modals-possibility', type: 'translate_ru_en', prompt: 'Должно быть, он дома — его машина у подъезда.', points: 2, accepted: ['He must be at home — his car is outside', 'He must be home — his car is outside'] },
+  { id: 'b1mp-e22', conceptId: 'b1-modals-possibility', type: 'translate_ru_en', prompt: 'Возможно, она знает ответ.', points: 2, accepted: ['She may know the answer', 'She might know the answer', 'She could know the answer'] },
+  { id: 'b1mp-e23', conceptId: 'b1-modals-possibility', type: 'fill_gap', prompt: 'The lights are on, so they ___ be at home.', points: 1, accepted: ['must'] },
+  { id: 'b1mp-e24', conceptId: 'b1-modals-possibility', type: 'fill_gap', prompt: 'That ___ be Tom — he is on holiday in Spain this week.', points: 1, accepted: ["can't", 'cannot', 'can not'] },
+  { id: 'b1mp-e25', conceptId: 'b1-modals-possibility', type: 'verb_form', prompt: 'Look at his house — he (must be) ___ very rich.', points: 1, accepted: ['must be'] },
+  { id: 'b1mp-e26', conceptId: 'b1-modals-possibility', type: 'choose_word', prompt: 'She is not answering — she ___ be in a meeting.', points: 1, options: ['might', 'must not', 'can'], accepted: ['might'] },
+  { id: 'b1mp-e27', conceptId: 'b1-modals-possibility', type: 'choose_word', prompt: 'They ___ be hungry — they have just had lunch.', points: 1, options: ["can't", 'must', 'may'], accepted: ["can't"] },
+  { id: 'b1mp-e28', conceptId: 'b1-modals-possibility', type: 'word_order', prompt: 'Соберите: «Должно быть, она очень устала»', points: 1, bank: ['she', 'must', 'be', 'very', 'tired'], accepted: ['she must be very tired'] },
+  { id: 'b1mp-e29', conceptId: 'b1-modals-possibility', type: 'word_order', prompt: 'Соберите: «Этого не может быть»', points: 1, bank: ['it', "can't", 'be', 'true'], accepted: ["it can't be true"] },
+  { id: 'b1mp-e30', conceptId: 'b1-modals-possibility', type: 'multi_gap', prompt: 'The lights are on, so they ___ be at home; but that ___ be Tom — he is abroad.', points: 1, gaps: [{ accepted: ['must'] }, { accepted: ["can't", 'cannot', 'can not'] }] },
 ];

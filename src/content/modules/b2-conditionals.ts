@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b2-conditionals',
   title: 'Условные предложения: третий тип, смешанный, wish',
   level: 'B2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b2-third-conditional', 'b2-mixed-conditional', 'b2-wish'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b2tc-e6', 'b2tc-e7', 'b2tc-e8', 'b2tc-e9', 'b2tc-e10',
       'b2tc-e11', 'b2tc-e12', 'b2tc-e13', 'b2tc-e14', 'b2tc-e15',
       'b2tc-e16', 'b2tc-e17', 'b2tc-e18', 'b2tc-e19', 'b2tc-e20',
+      'b2tc-e21', 'b2tc-e22', 'b2tc-e23', 'b2tc-e24', 'b2tc-e25', 'b2tc-e26', 'b2tc-e27', 'b2tc-e28', 'b2tc-e29', 'b2tc-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b2mc-e6', 'b2mc-e7', 'b2mc-e8', 'b2mc-e9', 'b2mc-e10',
       'b2mc-e11', 'b2mc-e12', 'b2mc-e13', 'b2mc-e14', 'b2mc-e15',
       'b2mc-e16', 'b2mc-e17', 'b2mc-e18', 'b2mc-e19', 'b2mc-e20',
+      'b2mc-e21', 'b2mc-e22', 'b2mc-e23', 'b2mc-e24', 'b2mc-e25', 'b2mc-e26', 'b2mc-e27', 'b2mc-e28', 'b2mc-e29', 'b2mc-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'b2wi-e6', 'b2wi-e7', 'b2wi-e8', 'b2wi-e9', 'b2wi-e10',
       'b2wi-e11', 'b2wi-e12', 'b2wi-e13', 'b2wi-e14', 'b2wi-e15',
       'b2wi-e16', 'b2wi-e17', 'b2wi-e18', 'b2wi-e19', 'b2wi-e20',
+      'b2wi-e21', 'b2wi-e22', 'b2wi-e23', 'b2wi-e24', 'b2wi-e25', 'b2wi-e26', 'b2wi-e27', 'b2wi-e28', 'b2wi-e29', 'b2wi-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'b2wi-e18', conceptId: 'b2-wish', type: 'multi_gap', prompt: 'I wish I ___ (have) more free time, and I wish my job ___ (be) less stressful.', points: 1, gaps: [{ accepted: ['had'] }, { accepted: ['was', 'were'] }] },
   { id: 'b2wi-e19', conceptId: 'b2-wish', type: 'multi_gap', prompt: 'I wish I ___ (not say) that, and I wish she ___ (not hear) it.', points: 1, gaps: [{ accepted: ["hadn't said", 'had not said'] }, { accepted: ["hadn't heard", 'had not heard'] }] },
   { id: 'b2wi-e20', conceptId: 'b2-wish', type: 'multi_gap', prompt: 'I wish you ___ (stop) shouting, and I wish the neighbours ___ (turn) down the music.', points: 1, gaps: [{ accepted: ['would stop'] }, { accepted: ['would turn'] }] },
+  // ---- добор: b2-third-conditional ----
+  { id: 'b2tc-e21', conceptId: 'b2-third-conditional', type: 'translate_ru_en', prompt: 'Знай я об этом раньше, я бы помог.', points: 2, accepted: ['Had I known about it earlier, I would have helped', 'If I had known about it earlier, I would have helped'] },
+  { id: 'b2tc-e22', conceptId: 'b2-third-conditional', type: 'translate_ru_en', prompt: 'Если бы не твоя помощь, я бы не справился.', points: 2, accepted: ["If it hadn't been for your help, I wouldn't have managed", 'If it had not been for your help, I would not have managed'] },
+  { id: 'b2tc-e23', conceptId: 'b2-third-conditional', type: 'fill_gap', prompt: '___ I known you were ill, I would have visited you.', points: 1, accepted: ['had'] },
+  { id: 'b2tc-e24', conceptId: 'b2-third-conditional', type: 'fill_gap', prompt: "If it hadn't been ___ the rain, the picnic would have been perfect.", points: 1, accepted: ['for'] },
+  { id: 'b2tc-e25', conceptId: 'b2-third-conditional', type: 'verb_form', prompt: 'If she had left earlier, she (not miss) ___ the flight.', points: 1, accepted: ["wouldn't have missed", 'would not have missed'] },
+  { id: 'b2tc-e26', conceptId: 'b2-third-conditional', type: 'choose_word', prompt: '___ we booked earlier, the tickets would have been cheaper.', points: 1, options: ['Had', 'If', 'Would'], accepted: ['Had'] },
+  { id: 'b2tc-e27', conceptId: 'b2-third-conditional', type: 'choose_word', prompt: 'They would have won if the goalkeeper ___ injured.', points: 1, options: ["hadn't been", 'was not', "wouldn't be"], accepted: ["hadn't been"] },
+  { id: 'b2tc-e28', conceptId: 'b2-third-conditional', type: 'word_order', prompt: 'Соберите: «Знай я об этом, я бы тебе помог»', points: 1, bank: ['had', 'I', 'known', 'about', 'it', 'I', 'would', 'have', 'helped', 'you'], accepted: ['had I known about it I would have helped you'] },
+  { id: 'b2tc-e29', conceptId: 'b2-third-conditional', type: 'word_order', prompt: 'Соберите: «Если бы не дождь, мы бы поехали»', points: 1, bank: ['if', 'it', "hadn't", 'been', 'for', 'the', 'rain', 'we', 'would', 'have', 'gone'], accepted: ["if it hadn't been for the rain we would have gone"] },
+  { id: 'b2tc-e30', conceptId: 'b2-third-conditional', type: 'multi_gap', prompt: 'If they ___ (leave) earlier, they ___ (not get) stuck in traffic.', points: 1, gaps: [{ accepted: ['had left'] }, { accepted: ["wouldn't have got", "wouldn't have gotten", 'would not have got', 'would not have gotten'] }] },
+
+  // ---- добор: b2-mixed-conditional ----
+  { id: 'b2mc-e21', conceptId: 'b2-mixed-conditional', type: 'translate_ru_en', prompt: 'Если бы я не забыл паспорт, я был бы сейчас в Париже.', points: 2, accepted: ["If I hadn't forgotten my passport, I would be in Paris now", 'If I had not forgotten my passport, I would be in Paris now'] },
+  { id: 'b2mc-e22', conceptId: 'b2-mixed-conditional', type: 'translate_ru_en', prompt: 'Если бы она не была такой упрямой, она бы вчера согласилась.', points: 2, accepted: ["If she weren't so stubborn, she would have agreed yesterday", 'If she was not so stubborn, she would have agreed yesterday'] },
+  { id: 'b2mc-e23', conceptId: 'b2-mixed-conditional', type: 'fill_gap', prompt: 'If I had accepted that offer, I ___ working in London now.', points: 1, accepted: ['would be', "'d be"] },
+  { id: 'b2mc-e24', conceptId: 'b2-mixed-conditional', type: 'fill_gap', prompt: 'If he were more careful, he ___ have broken the vase.', points: 1, accepted: ["wouldn't", 'would not'] },
+  { id: 'b2mc-e25', conceptId: 'b2-mixed-conditional', type: 'verb_form', prompt: 'If we had bought that flat, we (not pay) ___ rent now.', points: 1, accepted: ["wouldn't be paying", 'would not be paying', "wouldn't pay", 'would not pay'] },
+  { id: 'b2mc-e26', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: 'If I had studied medicine, I ___ a doctor now.', points: 1, options: ['would be', 'would have been', 'will be'], accepted: ['would be'] },
+  { id: 'b2mc-e27', conceptId: 'b2-mixed-conditional', type: 'choose_word', prompt: 'If she ___ afraid of flying, she would have come with us last year.', points: 1, options: ["weren't", "hadn't been", "wouldn't be"], accepted: ["weren't"] },
+  { id: 'b2mc-e28', conceptId: 'b2-mixed-conditional', type: 'word_order', prompt: 'Соберите: «Если бы я выучил язык, я бы сейчас работал за границей»', points: 1, bank: ['if', 'I', 'had', 'learned', 'the', 'language', 'I', 'would', 'be', 'working', 'abroad', 'now'], accepted: ['if I had learned the language I would be working abroad now'] },
+  { id: 'b2mc-e29', conceptId: 'b2-mixed-conditional', type: 'word_order', prompt: 'Соберите: «Если бы он не был занят, он бы пришёл вчера»', points: 1, bank: ['if', 'he', "weren't", 'busy', 'he', 'would', 'have', 'come', 'yesterday'], accepted: ["if he weren't busy he would have come yesterday"] },
+  { id: 'b2mc-e30', conceptId: 'b2-mixed-conditional', type: 'multi_gap', prompt: 'If I ___ (not spend) all my money last year, I ___ (be) able to travel now.', points: 1, gaps: [{ accepted: ["hadn't spent", 'had not spent'] }, { accepted: ['would be'] }] },
+
+  // ---- добор: b2-wish ----
+  { id: 'b2wi-e21', conceptId: 'b2-wish', type: 'translate_ru_en', prompt: 'Хотел бы я уметь играть на пианино.', points: 2, accepted: ['I wish I could play the piano'] },
+  { id: 'b2wi-e22', conceptId: 'b2-wish', type: 'translate_ru_en', prompt: 'Если бы только я не потерял её номер.', points: 2, accepted: ["If only I hadn't lost her number", 'If only I had not lost her number'] },
+  { id: 'b2wi-e23', conceptId: 'b2-wish', type: 'fill_gap', prompt: 'If only I ___ listened to your advice!', points: 1, accepted: ['had', "'d"] },
+  { id: 'b2wi-e24', conceptId: 'b2-wish', type: 'fill_gap', prompt: 'I wish he ___ stop interrupting me all the time.', points: 1, accepted: ['would', "'d"] },
+  { id: 'b2wi-e25', conceptId: 'b2-wish', type: 'verb_form', prompt: 'I wish I (can) ___ speak Chinese fluently.', points: 1, accepted: ['could'] },
+  { id: 'b2wi-e26', conceptId: 'b2-wish', type: 'choose_word', prompt: 'I wish it ___ raining — I want to go out.', points: 1, options: ['would stop', 'stops', 'stopped'], accepted: ['would stop'] },
+  { id: 'b2wi-e27', conceptId: 'b2-wish', type: 'choose_word', prompt: 'I would rather you ___ tell anyone about this.', points: 1, options: ["didn't", 'not', 'will not'], accepted: ["didn't"] },
+  { id: 'b2wi-e28', conceptId: 'b2-wish', type: 'word_order', prompt: 'Соберите: «Хотел бы я уметь играть на гитаре»', points: 1, bank: ['I', 'wish', 'I', 'could', 'play', 'the', 'guitar'], accepted: ['I wish I could play the guitar'] },
+  { id: 'b2wi-e29', conceptId: 'b2-wish', type: 'word_order', prompt: 'Соберите: «Если бы только я знал раньше»', points: 1, bank: ['if', 'only', 'I', 'had', 'known', 'earlier'], accepted: ['if only I had known earlier'] },
+  { id: 'b2wi-e30', conceptId: 'b2-wish', type: 'multi_gap', prompt: 'I wish I ___ (can) help you now, and I wish I ___ (not promise) so much yesterday.', points: 1, gaps: [{ accepted: ['could'] }, { accepted: ["hadn't promised", 'had not promised'] }] },
 ];

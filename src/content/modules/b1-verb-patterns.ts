@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b1-verb-patterns',
   title: 'Герундий и инфинитив: глагольные конструкции',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b1-gerund-infinitive', 'b1-verb-prepositions'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b1gi-e6', 'b1gi-e7', 'b1gi-e8', 'b1gi-e9', 'b1gi-e10',
       'b1gi-e11', 'b1gi-e12', 'b1gi-e13', 'b1gi-e14', 'b1gi-e15',
       'b1gi-e16', 'b1gi-e17', 'b1gi-e18', 'b1gi-e19', 'b1gi-e20',
+      'b1gi-e21', 'b1gi-e22', 'b1gi-e23', 'b1gi-e24', 'b1gi-e25', 'b1gi-e26', 'b1gi-e27', 'b1gi-e28', 'b1gi-e29', 'b1gi-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b1vp-e6', 'b1vp-e7', 'b1vp-e8', 'b1vp-e9', 'b1vp-e10',
       'b1vp-e11', 'b1vp-e12', 'b1vp-e13', 'b1vp-e14', 'b1vp-e15',
       'b1vp-e16', 'b1vp-e17', 'b1vp-e18', 'b1vp-e19', 'b1vp-e20',
+      'b1vp-e21', 'b1vp-e22', 'b1vp-e23', 'b1vp-e24', 'b1vp-e25', 'b1vp-e26', 'b1vp-e27', 'b1vp-e28', 'b1vp-e29', 'b1vp-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b1vp-e18', conceptId: 'b1-verb-prepositions', type: 'multi_gap', prompt: "I'm interested ___ learning French, but I'm not very good ___ speaking it yet.", points: 1, gaps: [{ accepted: ['in'] }, { accepted: ['at'] }] },
   { id: 'b1vp-e19', conceptId: 'b1-verb-prepositions', type: 'multi_gap', prompt: "We're really looking forward ___ seeing you, and we're also interested ___ visiting the new museum while we're there.", points: 1, gaps: [{ accepted: ['to'] }, { accepted: ['in'] }] },
   { id: 'b1vp-e20', conceptId: 'b1-verb-prepositions', type: 'multi_gap', prompt: 'Before ___ (leave) the office, please turn off your computer, and after ___ (lock) the door, drop the key at reception.', points: 1, gaps: [{ accepted: ['leaving'] }, { accepted: ['locking'] }] },
+  // ---- добор: b1-gerund-infinitive ----
+  { id: 'b1gi-e21', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'Я помню, как встретил её в Париже.', points: 2, accepted: ['I remember meeting her in Paris'] },
+  { id: 'b1gi-e22', conceptId: 'b1-gerund-infinitive', type: 'translate_ru_en', prompt: 'Не забудь закрыть окно.', points: 2, accepted: ["Don't forget to close the window", 'Do not forget to close the window'] },
+  { id: 'b1gi-e23', conceptId: 'b1-gerund-infinitive', type: 'fill_gap', prompt: 'She made me ___ the whole story again.', points: 1, accepted: ['tell', 'repeat'] },
+  { id: 'b1gi-e24', conceptId: 'b1-gerund-infinitive', type: 'fill_gap', prompt: 'My parents let me ___ out late at weekends.', points: 1, accepted: ['stay', 'go'] },
+  { id: 'b1gi-e25', conceptId: 'b1-gerund-infinitive', type: 'verb_form', prompt: 'I remember (lock) ___ the door before I left.', points: 1, accepted: ['locking'] },
+  { id: 'b1gi-e26', conceptId: 'b1-gerund-infinitive', type: 'choose_word', prompt: 'He forgot ___ the tickets, so we could not get in.', points: 1, options: ['to bring', 'bringing', 'bring'], accepted: ['to bring'] },
+  { id: 'b1gi-e27', conceptId: 'b1-gerund-infinitive', type: 'choose_word', prompt: 'Try ___ the window — maybe the room will get cooler.', points: 1, options: ['opening', 'to open', 'open'], accepted: ['opening'] },
+  { id: 'b1gi-e28', conceptId: 'b1-gerund-infinitive', type: 'word_order', prompt: 'Соберите: «Я помню, как встретил её в Париже»', points: 1, bank: ['I', 'remember', 'meeting', 'her', 'in', 'Paris'], accepted: ['I remember meeting her in Paris'] },
+  { id: 'b1gi-e29', conceptId: 'b1-gerund-infinitive', type: 'word_order', prompt: 'Соберите: «Родители разрешают мне гулять допоздна»', points: 1, bank: ['my', 'parents', 'let', 'me', 'stay', 'out', 'late'], accepted: ['my parents let me stay out late'] },
+  { id: 'b1gi-e30', conceptId: 'b1-gerund-infinitive', type: 'multi_gap', prompt: 'I remember ___ (lock) the door, but I forgot ___ (turn) off the lights.', points: 1, gaps: [{ accepted: ['locking'] }, { accepted: ['to turn'] }] },
+
+  // ---- добор: b1-verb-prepositions ----
+  { id: 'b1vp-e21', conceptId: 'b1-verb-prepositions', type: 'translate_ru_en', prompt: 'Всё зависит от погоды.', points: 2, accepted: ['It all depends on the weather', 'Everything depends on the weather'] },
+  { id: 'b1vp-e22', conceptId: 'b1-verb-prepositions', type: 'translate_ru_en', prompt: 'Она интересуется современным искусством.', points: 2, accepted: ['She is interested in modern art', "She's interested in modern art"] },
+  { id: 'b1vp-e23', conceptId: 'b1-verb-prepositions', type: 'fill_gap', prompt: 'He insisted ___ paying for dinner.', points: 1, accepted: ['on'] },
+  { id: 'b1vp-e24', conceptId: 'b1-verb-prepositions', type: 'fill_gap', prompt: 'They complained ___ the noise from the street.', points: 1, accepted: ['about', 'of'] },
+  { id: 'b1vp-e25', conceptId: 'b1-verb-prepositions', type: 'verb_form', prompt: 'I am looking forward to (see) ___ you next week.', points: 1, accepted: ['seeing'] },
+  { id: 'b1vp-e26', conceptId: 'b1-verb-prepositions', type: 'choose_word', prompt: 'She succeeded ___ finding a new job in two weeks.', points: 1, options: ['in', 'on', 'at'], accepted: ['in'] },
+  { id: 'b1vp-e27', conceptId: 'b1-verb-prepositions', type: 'choose_word', prompt: 'It depends ___ how much time we have.', points: 1, options: ['on', 'of', 'from'], accepted: ['on'] },
+  { id: 'b1vp-e28', conceptId: 'b1-verb-prepositions', type: 'word_order', prompt: 'Соберите: «Всё зависит от погоды»', points: 1, bank: ['it', 'all', 'depends', 'on', 'the', 'weather'], accepted: ['it all depends on the weather'] },
+  { id: 'b1vp-e29', conceptId: 'b1-verb-prepositions', type: 'word_order', prompt: 'Соберите: «Он настоял на том, чтобы заплатить»', points: 1, bank: ['he', 'insisted', 'on', 'paying'], accepted: ['he insisted on paying'] },
+  { id: 'b1vp-e30', conceptId: 'b1-verb-prepositions', type: 'multi_gap', prompt: 'She is interested ___ art and she is very good ___ drawing.', points: 1, gaps: [{ accepted: ['in'] }, { accepted: ['at'] }] },
 ];

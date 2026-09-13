@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a2-continuous-future',
   title: 'Present Continuous и будущее: going to, will',
   level: 'A2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a2-present-continuous', 'a2-simple-vs-continuous', 'a2-going-to-will'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a2pc-e6', 'a2pc-e7', 'a2pc-e8', 'a2pc-e9', 'a2pc-e10',
       'a2pc-e11', 'a2pc-e12', 'a2pc-e13', 'a2pc-e14', 'a2pc-e15',
       'a2pc-e16', 'a2pc-e17', 'a2pc-e18', 'a2pc-e19', 'a2pc-e20',
+      'a2pc-e21', 'a2pc-e22', 'a2pc-e23', 'a2pc-e24', 'a2pc-e25', 'a2pc-e26', 'a2pc-e27', 'a2pc-e28', 'a2pc-e29', 'a2pc-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a2sc-e6', 'a2sc-e7', 'a2sc-e8', 'a2sc-e9', 'a2sc-e10',
       'a2sc-e11', 'a2sc-e12', 'a2sc-e13', 'a2sc-e14', 'a2sc-e15',
       'a2sc-e16', 'a2sc-e17', 'a2sc-e18', 'a2sc-e19', 'a2sc-e20',
+      'a2sc-e21', 'a2sc-e22', 'a2sc-e23', 'a2sc-e24', 'a2sc-e25', 'a2sc-e26', 'a2sc-e27', 'a2sc-e28', 'a2sc-e29', 'a2sc-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'a2gw-e6', 'a2gw-e7', 'a2gw-e8', 'a2gw-e9', 'a2gw-e10',
       'a2gw-e11', 'a2gw-e12', 'a2gw-e13', 'a2gw-e14', 'a2gw-e15',
       'a2gw-e16', 'a2gw-e17', 'a2gw-e18', 'a2gw-e19', 'a2gw-e20',
+      'a2gw-e21', 'a2gw-e22', 'a2gw-e23', 'a2gw-e24', 'a2gw-e25', 'a2gw-e26', 'a2gw-e27', 'a2gw-e28', 'a2gw-e29', 'a2gw-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'a2gw-e18', conceptId: 'a2-going-to-will', type: 'multi_gap', prompt: "I've decided — I ___ (go) to the gym tonight. But I'm hungry right now, so I ___ (make) a sandwich first.", points: 1, gaps: [{ accepted: ['am going'] }, { accepted: ['will make'] }] },
   { id: 'a2gw-e19', conceptId: 'a2-going-to-will', type: 'multi_gap', prompt: "I'm not sure about the weather, but I think it ___ rain tomorrow. Look outside now, though — it ___ rain any minute!", points: 1, gaps: [{ accepted: ['will'] }, { accepted: ['is going to'] }] },
   { id: 'a2gw-e20', conceptId: 'a2-going-to-will', type: 'multi_gap', prompt: "The phone's ringing — I ___ (answer) it! And remember, I ___ (visit) Paris next summer — I've already bought the tickets.", points: 1, gaps: [{ accepted: ['will answer'] }, { accepted: ['am going to visit'] }] },
+  // ---- добор: a2-present-continuous ----
+  { id: 'a2pc-e21', conceptId: 'a2-present-continuous', type: 'translate_ru_en', prompt: 'В этом месяце я живу у друга.', points: 2, accepted: ["This month I'm staying with a friend", 'This month I am staying with a friend'] },
+  { id: 'a2pc-e22', conceptId: 'a2-present-continuous', type: 'translate_ru_en', prompt: 'Почему ты смеёшься?', points: 2, accepted: ['Why are you laughing?'] },
+  { id: 'a2pc-e23', conceptId: 'a2-present-continuous', type: 'fill_gap', prompt: 'Be quiet! The baby ___ in the next room.', points: 1, accepted: ['is sleeping'] },
+  { id: 'a2pc-e24', conceptId: 'a2-present-continuous', type: 'fill_gap', prompt: 'What ___ you doing at the moment?', points: 1, accepted: ['are'] },
+  { id: 'a2pc-e25', conceptId: 'a2-present-continuous', type: 'verb_form', prompt: 'He is (sit) ___ next to the window.', points: 1, accepted: ['sitting'] },
+  { id: 'a2pc-e26', conceptId: 'a2-present-continuous', type: 'choose_word', prompt: 'She is ___ a letter to her friend.', points: 1, options: ['writing', 'writeing', 'writting'], accepted: ['writing'] },
+  { id: 'a2pc-e27', conceptId: 'a2-present-continuous', type: 'choose_word', prompt: 'They ___ dinner right now — call back later.', points: 1, options: ['are having', 'have', 'are haveing'], accepted: ['are having'] },
+  { id: 'a2pc-e28', conceptId: 'a2-present-continuous', type: 'word_order', prompt: 'Соберите: «Почему ты улыбаешься?»', points: 1, bank: ['why', 'are', 'you', 'smiling'], accepted: ['why are you smiling'] },
+  { id: 'a2pc-e29', conceptId: 'a2-present-continuous', type: 'word_order', prompt: 'Соберите: «Они сейчас не работают»', points: 1, bank: ['they', 'are', 'not', 'working', 'now'], accepted: ['they are not working now'] },
+  { id: 'a2pc-e30', conceptId: 'a2-present-continuous', type: 'multi_gap', prompt: 'He ___ (sit) in the garden and she ___ (run) in the park.', points: 1, gaps: [{ accepted: ['is sitting'] }, { accepted: ['is running'] }] },
+
+  // ---- добор: a2-simple-vs-continuous ----
+  { id: 'a2sc-e21', conceptId: 'a2-simple-vs-continuous', type: 'translate_ru_en', prompt: 'Эта книга принадлежит мне.', points: 2, accepted: ['This book belongs to me'] },
+  { id: 'a2sc-e22', conceptId: 'a2-simple-vs-continuous', type: 'translate_ru_en', prompt: 'Он всегда опаздывает.', points: 2, accepted: ['He is always late', "He's always late"] },
+  { id: 'a2sc-e23', conceptId: 'a2-simple-vs-continuous', type: 'fill_gap', prompt: 'She ___ she is right, but I disagree.', points: 1, accepted: ['believes', 'thinks'] },
+  { id: 'a2sc-e24', conceptId: 'a2-simple-vs-continuous', type: 'fill_gap', prompt: 'Sorry, I ___ understand you — say it again, please.', points: 1, accepted: ["don't", 'do not'] },
+  { id: 'a2sc-e25', conceptId: 'a2-simple-vs-continuous', type: 'verb_form', prompt: 'This bag (belong) ___ to my sister.', points: 1, accepted: ['belongs'] },
+  { id: 'a2sc-e26', conceptId: 'a2-simple-vs-continuous', type: 'choose_word', prompt: 'I ___ what you mean.', points: 1, options: ['see', 'am seeing', 'sees'], accepted: ['see'] },
+  { id: 'a2sc-e27', conceptId: 'a2-simple-vs-continuous', type: 'choose_word', prompt: 'She ___ a shower right now.', points: 1, options: ['is having', 'has', 'is haveing'], accepted: ['is having'] },
+  { id: 'a2sc-e28', conceptId: 'a2-simple-vs-continuous', type: 'word_order', prompt: 'Соберите: «Я предпочитаю чай кофе»', points: 1, bank: ['I', 'prefer', 'tea', 'to', 'coffee'], accepted: ['I prefer tea to coffee'] },
+  { id: 'a2sc-e29', conceptId: 'a2-simple-vs-continuous', type: 'word_order', prompt: 'Соберите: «Сейчас он думает о работе»', points: 1, bank: ['he', 'is', 'thinking', 'about', 'work', 'now'], accepted: ['he is thinking about work now'] },
+  { id: 'a2sc-e30', conceptId: 'a2-simple-vs-continuous', type: 'multi_gap', prompt: 'I ___ (need) help now, but she ___ (help) someone else at the moment.', points: 1, gaps: [{ accepted: ['need'] }, { accepted: ['is helping'] }] },
+
+  // ---- добор: a2-going-to-will ----
+  { id: 'a2gw-e21', conceptId: 'a2-going-to-will', type: 'translate_ru_en', prompt: 'Я встречаюсь с ней завтра в шесть.', points: 2, accepted: ["I'm meeting her tomorrow at six", 'I am meeting her tomorrow at six'] },
+  { id: 'a2gw-e22', conceptId: 'a2-going-to-will', type: 'translate_ru_en', prompt: 'Думаю, завтра будет солнечно.', points: 2, accepted: ['I think it will be sunny tomorrow', "I think it'll be sunny tomorrow"] },
+  { id: 'a2gw-e23', conceptId: 'a2-going-to-will', type: 'fill_gap', prompt: 'That bag looks heavy. I ___ help you with it.', points: 1, accepted: ['will', "'ll"] },
+  { id: 'a2gw-e24', conceptId: 'a2-going-to-will', type: 'fill_gap', prompt: 'We ___ flying to Paris on Monday — the tickets are booked.', points: 1, accepted: ['are'] },
+  { id: 'a2gw-e25', conceptId: 'a2-going-to-will', type: 'verb_form', prompt: 'I think she (pass) ___ the exam easily.', points: 1, accepted: ['will pass'] },
+  { id: 'a2gw-e26', conceptId: 'a2-going-to-will', type: 'choose_word', prompt: 'I have an appointment — I ___ the dentist at 3 pm.', points: 1, options: ['am seeing', 'will see', 'see'], accepted: ['am seeing'] },
+  { id: 'a2gw-e27', conceptId: 'a2-going-to-will', type: 'choose_word', prompt: '___ we go for a walk? The weather is lovely.', points: 1, options: ['Shall', 'Will', 'Are'], accepted: ['Shall'] },
+  { id: 'a2gw-e28', conceptId: 'a2-going-to-will', type: 'word_order', prompt: 'Соберите: «Мы летим в Париж в понедельник»', points: 1, bank: ['we', 'are', 'flying', 'to', 'Paris', 'on', 'Monday'], accepted: ['we are flying to Paris on Monday'] },
+  { id: 'a2gw-e29', conceptId: 'a2-going-to-will', type: 'word_order', prompt: 'Соберите: «Я думаю, тебе понравится этот фильм»', points: 1, bank: ['I', 'think', 'you', 'will', 'like', 'this', 'film'], accepted: ['I think you will like this film'] },
+  { id: 'a2gw-e30', conceptId: 'a2-going-to-will', type: 'multi_gap', prompt: "Look at that car — it ___ (hit) the tree! Don't worry, I ___ (call) an ambulance.", points: 1, gaps: [{ accepted: ['is going to hit'] }, { accepted: ['will call', "'ll call"] }] },
 ];

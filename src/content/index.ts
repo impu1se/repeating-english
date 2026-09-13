@@ -23,7 +23,10 @@ import * as b2Reported from './modules/b2-reported';
 import * as b2PastModals from './modules/b2-past-modals';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
-// bump on breaking-изменения; порог 5→50 — breaking.
+// бамп версии СТИРАЕТ прогресс пользователя, поэтому он оправдан лишь когда
+// старые записи стали бессмысленными (переименование/удаление концептов).
+// НЕ бампать при: изменении masteryThreshold, добавлении новых упражнений или
+// концептов, правке формулировок — loadProgress доживает такие изменения сам.
 export const content: Content = {
   version: '2',
   modules: [

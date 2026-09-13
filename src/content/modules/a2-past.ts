@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a2-past',
   title: 'Прошедшее время: to be, Past Simple, вопросы',
   level: 'A2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a2-was-were', 'a2-past-simple', 'a2-past-questions'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a2ww-e6', 'a2ww-e7', 'a2ww-e8', 'a2ww-e9', 'a2ww-e10',
       'a2ww-e11', 'a2ww-e12', 'a2ww-e13', 'a2ww-e14', 'a2ww-e15',
       'a2ww-e16', 'a2ww-e17', 'a2ww-e18', 'a2ww-e19', 'a2ww-e20',
+      'a2ww-e21', 'a2ww-e22', 'a2ww-e23', 'a2ww-e24', 'a2ww-e25', 'a2ww-e26', 'a2ww-e27', 'a2ww-e28', 'a2ww-e29', 'a2ww-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a2pt-e6', 'a2pt-e7', 'a2pt-e8', 'a2pt-e9', 'a2pt-e10',
       'a2pt-e11', 'a2pt-e12', 'a2pt-e13', 'a2pt-e14', 'a2pt-e15',
       'a2pt-e16', 'a2pt-e17', 'a2pt-e18', 'a2pt-e19', 'a2pt-e20',
+      'a2pt-e21', 'a2pt-e22', 'a2pt-e23', 'a2pt-e24', 'a2pt-e25', 'a2pt-e26', 'a2pt-e27', 'a2pt-e28', 'a2pt-e29', 'a2pt-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'a2pd-e6', 'a2pd-e7', 'a2pd-e8', 'a2pd-e9', 'a2pd-e10',
       'a2pd-e11', 'a2pd-e12', 'a2pd-e13', 'a2pd-e14', 'a2pd-e15',
       'a2pd-e16', 'a2pd-e17', 'a2pd-e18', 'a2pd-e19', 'a2pd-e20',
+      'a2pd-e21', 'a2pd-e22', 'a2pd-e23', 'a2pd-e24', 'a2pd-e25', 'a2pd-e26', 'a2pd-e27', 'a2pd-e28', 'a2pd-e29', 'a2pd-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'a2pd-e18', conceptId: 'a2-past-questions', type: 'multi_gap', prompt: '___ you call her yesterday? No, I ___.', points: 1, gaps: [{ accepted: ['did'] }, { accepted: ["didn't", 'did not'] }] },
   { id: 'a2pd-e19', conceptId: 'a2-past-questions', type: 'multi_gap', prompt: 'What ___ you buy, and where ___ she go after?', points: 1, gaps: [{ accepted: ['did'] }, { accepted: ['did'] }] },
   { id: 'a2pd-e20', conceptId: 'a2-past-questions', type: 'multi_gap', prompt: "___ didn't he call? Because he ___ his phone at home.", points: 1, gaps: [{ accepted: ['why'] }, { accepted: ['left', 'forgot'] }] },
+  // ---- добор: a2-was-were ----
+  { id: 'a2ww-e21', conceptId: 'a2-was-were', type: 'translate_ru_en', prompt: 'Я родился в Москве.', points: 2, accepted: ['I was born in Moscow'] },
+  { id: 'a2ww-e22', conceptId: 'a2-was-were', type: 'translate_ru_en', prompt: 'Погода была ужасной всю неделю.', points: 2, accepted: ['The weather was terrible all week', 'The weather was awful all week'] },
+  { id: 'a2ww-e23', conceptId: 'a2-was-were', type: 'fill_gap', prompt: 'There ___ a lot of people at the concert last night.', points: 1, accepted: ['were'] },
+  { id: 'a2ww-e24', conceptId: 'a2-was-were', type: 'fill_gap', prompt: 'Were you at school yesterday? — No, I ___.', points: 1, accepted: ["wasn't", 'was not'] },
+  { id: 'a2ww-e25', conceptId: 'a2-was-were', type: 'verb_form', prompt: 'My grandparents (be) ___ born in 1950.', points: 1, accepted: ['were'] },
+  { id: 'a2ww-e26', conceptId: 'a2-was-were', type: 'choose_word', prompt: 'The shops ___ closed when we arrived.', points: 1, options: ['were', 'was', 'are'], accepted: ['were'] },
+  { id: 'a2ww-e27', conceptId: 'a2-was-were', type: 'choose_word', prompt: 'Where ___ you last Sunday?', points: 1, options: ['were', 'was', 'did'], accepted: ['were'] },
+  { id: 'a2ww-e28', conceptId: 'a2-was-were', type: 'word_order', prompt: 'Соберите: «Он родился в Лондоне»', points: 1, bank: ['he', 'was', 'born', 'in', 'London'], accepted: ['he was born in London'] },
+  { id: 'a2ww-e29', conceptId: 'a2-was-were', type: 'word_order', prompt: 'Соберите: «Вчера в офисе никого не было»', points: 1, bank: ['there', 'was', 'nobody', 'in', 'the', 'office', 'yesterday'], accepted: ['there was nobody in the office yesterday'] },
+  { id: 'a2ww-e30', conceptId: 'a2-was-were', type: 'multi_gap', prompt: 'There ___ a table and there ___ four chairs in the old kitchen.', points: 1, gaps: [{ accepted: ['was'] }, { accepted: ['were'] }] },
+
+  // ---- добор: a2-past-simple ----
+  { id: 'a2pt-e21', conceptId: 'a2-past-simple', type: 'translate_ru_en', prompt: 'Он написал письмо и отправил его.', points: 2, accepted: ['He wrote a letter and sent it'] },
+  { id: 'a2pt-e22', conceptId: 'a2-past-simple', type: 'translate_ru_en', prompt: 'Мы остановились у маленького отеля.', points: 2, accepted: ['We stopped at a small hotel'] },
+  { id: 'a2pt-e23', conceptId: 'a2-past-simple', type: 'fill_gap', prompt: 'I ___ my keys on the table and forgot them.', points: 1, accepted: ['left'] },
+  { id: 'a2pt-e24', conceptId: 'a2-past-simple', type: 'fill_gap', prompt: 'They ___ a taxi because it was raining.', points: 1, accepted: ['took', 'caught'] },
+  { id: 'a2pt-e25', conceptId: 'a2-past-simple', type: 'verb_form', prompt: 'He (bring) ___ a cake to the party.', points: 1, accepted: ['brought'] },
+  { id: 'a2pt-e26', conceptId: 'a2-past-simple', type: 'choose_word', prompt: 'We ___ our holiday very carefully last year.', points: 1, options: ['planned', 'planed', 'planing'], accepted: ['planned'] },
+  { id: 'a2pt-e27', conceptId: 'a2-past-simple', type: 'choose_word', prompt: 'She ___ hard and passed the exam.', points: 1, options: ['studied', 'studyed', 'studies'], accepted: ['studied'] },
+  { id: 'a2pt-e28', conceptId: 'a2-past-simple', type: 'word_order', prompt: 'Соберите: «Он оставил телефон дома»', points: 1, bank: ['he', 'left', 'his', 'phone', 'at', 'home'], accepted: ['he left his phone at home'] },
+  { id: 'a2pt-e29', conceptId: 'a2-past-simple', type: 'word_order', prompt: 'Соберите: «Мы приехали два часа назад»', points: 1, bank: ['we', 'arrived', 'two', 'hours', 'ago'], accepted: ['we arrived two hours ago'] },
+  { id: 'a2pt-e30', conceptId: 'a2-past-simple', type: 'multi_gap', prompt: 'She ___ (write) the email and ___ (send) it immediately.', points: 1, gaps: [{ accepted: ['wrote'] }, { accepted: ['sent'] }] },
+
+  // ---- добор: a2-past-questions ----
+  { id: 'a2pd-e21', conceptId: 'a2-past-questions', type: 'translate_ru_en', prompt: 'Кто разбил окно?', points: 2, accepted: ['Who broke the window?'] },
+  { id: 'a2pd-e22', conceptId: 'a2-past-questions', type: 'translate_ru_en', prompt: 'Как долго ты там жил?', points: 2, accepted: ['How long did you live there?'] },
+  { id: 'a2pd-e23', conceptId: 'a2-past-questions', type: 'fill_gap', prompt: 'Who ___ you this book? — My sister did.', points: 1, accepted: ['gave'] },
+  { id: 'a2pd-e24', conceptId: 'a2-past-questions', type: 'fill_gap', prompt: 'Did they enjoy the trip? — Yes, they ___.', points: 1, accepted: ['did'] },
+  { id: 'a2pd-e25', conceptId: 'a2-past-questions', type: 'verb_form', prompt: 'How long did the meeting (last) ___?', points: 1, accepted: ['last'] },
+  { id: 'a2pd-e26', conceptId: 'a2-past-questions', type: 'choose_word', prompt: 'Who ___ the door? — Tom did.', points: 1, options: ['opened', 'did open', 'did opened'], accepted: ['opened'] },
+  { id: 'a2pd-e27', conceptId: 'a2-past-questions', type: 'choose_word', prompt: 'How many people ___ to the party?', points: 1, options: ['came', 'did come', 'did came'], accepted: ['came'] },
+  { id: 'a2pd-e28', conceptId: 'a2-past-questions', type: 'word_order', prompt: 'Соберите: «Кто тебе это сказал?»', points: 1, bank: ['who', 'told', 'you', 'that'], accepted: ['who told you that'] },
+  { id: 'a2pd-e29', conceptId: 'a2-past-questions', type: 'word_order', prompt: 'Соберите: «Во сколько ты вчера лёг спать?»', points: 1, bank: ['what', 'time', 'did', 'you', 'go', 'to', 'bed', 'yesterday'], accepted: ['what time did you go to bed yesterday'] },
+  { id: 'a2pd-e30', conceptId: 'a2-past-questions', type: 'multi_gap', prompt: 'Who ___ (break) the window? And why ___ nobody tell us about it?', points: 1, gaps: [{ accepted: ['broke'] }, { accepted: ['did'] }] },
 ];

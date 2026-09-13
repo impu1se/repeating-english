@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'past-vs-perfect',
   title: 'Past Simple vs Present Perfect',
   level: 'B1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['psp-past-simple', 'psp-contrast'],
 };
 
@@ -19,6 +19,7 @@ export const concepts: Concept[] = [
       'psp-e1', 'psp-e2', 'psp-e3', 'psp-e4', 'psp-e5', 'psp-e6', 'psp-e7',
       'psp-e8', 'psp-e9', 'psp-e10', 'psp-e11', 'psp-e12', 'psp-e13', 'psp-e14',
       'psp-e15', 'psp-e16', 'psp-e17', 'psp-e18', 'psp-e19', 'psp-e20',
+      'psp-e21', 'psp-e22', 'psp-e23', 'psp-e24', 'psp-e25', 'psp-e26', 'psp-e27', 'psp-e28', 'psp-e29', 'psp-e30',
     ],
   },
   {
@@ -31,6 +32,7 @@ export const concepts: Concept[] = [
       'psc-e1', 'psc-e2', 'psc-e3', 'psc-e4', 'psc-e5', 'psc-e6', 'psc-e7',
       'psc-e8', 'psc-e9', 'psc-e10', 'psc-e11', 'psc-e12', 'psc-e13', 'psc-e14',
       'psc-e15', 'psc-e16', 'psc-e17', 'psc-e18', 'psc-e19', 'psc-e20',
+      'psc-e21', 'psc-e22', 'psc-e23', 'psc-e24', 'psc-e25', 'psc-e26', 'psc-e27', 'psc-e28', 'psc-e29', 'psc-e30',
     ],
   },
 ];
@@ -81,4 +83,27 @@ export const exercises: Exercise[] = [
   { id: 'psc-e18', conceptId: 'psp-contrast', type: 'word_order', prompt: 'Соберите: «Она купила новый телефон вчера»', points: 1, bank: ['she', 'bought', 'a', 'new', 'phone', 'yesterday'], accepted: ['she bought a new phone yesterday'] },
   { id: 'psc-e19', conceptId: 'psp-contrast', type: 'multi_gap', prompt: 'I ___ (call) him twice today, but he ___ (not answer) yet.', points: 1, gaps: [{ accepted: ['have called', "'ve called"] }, { accepted: ["hasn't answered", 'has not answered'] }] },
   { id: 'psc-e20', conceptId: 'psp-contrast', type: 'multi_gap', prompt: 'Yesterday I ___ (see) three films, but this week I ___ (see) only one.', points: 1, gaps: [{ accepted: ['saw'] }, { accepted: ['have seen', "'ve seen"] }] },
+  // ---- добор: psp-past-simple ----
+  { id: 'psp-e21', conceptId: 'psp-past-simple', type: 'translate_ru_en', prompt: 'Я закончил школу в 2010 году.', points: 2, accepted: ['I finished school in 2010', 'I left school in 2010'] },
+  { id: 'psp-e22', conceptId: 'psp-past-simple', type: 'translate_ru_en', prompt: 'Вчера утром она опоздала на автобус.', points: 2, accepted: ['She missed the bus yesterday morning', 'Yesterday morning she missed the bus'] },
+  { id: 'psp-e23', conceptId: 'psp-past-simple', type: 'fill_gap', prompt: 'Shakespeare ___ many famous plays.', points: 1, accepted: ['wrote'] },
+  { id: 'psp-e24', conceptId: 'psp-past-simple', type: 'fill_gap', prompt: 'When ___ you last see her?', points: 1, accepted: ['did'] },
+  { id: 'psp-e25', conceptId: 'psp-past-simple', type: 'verb_form', prompt: 'They (leave) ___ the party at midnight.', points: 1, accepted: ['left'] },
+  { id: 'psp-e26', conceptId: 'psp-past-simple', type: 'choose_word', prompt: 'I ___ my homework two hours ago.', points: 1, options: ['did', 'have done', 'do'], accepted: ['did'] },
+  { id: 'psp-e27', conceptId: 'psp-past-simple', type: 'choose_word', prompt: 'She ___ in this company from 2015 to 2019.', points: 1, options: ['worked', 'has worked', 'works'], accepted: ['worked'] },
+  { id: 'psp-e28', conceptId: 'psp-past-simple', type: 'word_order', prompt: 'Соберите: «Он ушёл с работы в прошлом году»', points: 1, bank: ['he', 'left', 'his', 'job', 'last', 'year'], accepted: ['he left his job last year'] },
+  { id: 'psp-e29', conceptId: 'psp-past-simple', type: 'word_order', prompt: 'Соберите: «Когда ты видел её в последний раз?»', points: 1, bank: ['when', 'did', 'you', 'last', 'see', 'her'], accepted: ['when did you last see her'] },
+  { id: 'psp-e30', conceptId: 'psp-past-simple', type: 'multi_gap', prompt: 'She ___ (leave) at six and ___ (arrive) home at eight.', points: 1, gaps: [{ accepted: ['left'] }, { accepted: ['arrived'] }] },
+
+  // ---- добор: psp-contrast ----
+  { id: 'psc-e21', conceptId: 'psp-contrast', type: 'translate_ru_en', prompt: 'Сегодня я прочитал две книги.', points: 2, accepted: ['I have read two books today', "I've read two books today"] },
+  { id: 'psc-e22', conceptId: 'psp-contrast', type: 'translate_ru_en', prompt: 'Вчера я прочитал две книги.', points: 2, accepted: ['I read two books yesterday', 'Yesterday I read two books'] },
+  { id: 'psc-e23', conceptId: 'psp-contrast', type: 'fill_gap', prompt: 'I ___ lost my keys — I cannot open the door.', points: 1, accepted: ['have', "'ve"] },
+  { id: 'psc-e24', conceptId: 'psp-contrast', type: 'fill_gap', prompt: 'We ___ this film last night and loved it.', points: 1, accepted: ['watched', 'saw'] },
+  { id: 'psc-e25', conceptId: 'psp-contrast', type: 'verb_form', prompt: 'He (live) ___ in Berlin since 2018.', points: 1, accepted: ['has lived'] },
+  { id: 'psc-e26', conceptId: 'psp-contrast', type: 'choose_word', prompt: 'I ___ him at the conference last March.', points: 1, options: ['met', 'have met', 'meet'], accepted: ['met'] },
+  { id: 'psc-e27', conceptId: 'psp-contrast', type: 'choose_word', prompt: 'She ___ her homework — she can go out now.', points: 1, options: ['has finished', 'finished', 'finishes'], accepted: ['has finished'] },
+  { id: 'psc-e28', conceptId: 'psp-contrast', type: 'word_order', prompt: 'Соберите: «Я потерял паспорт»', points: 1, bank: ['I', 'have', 'lost', 'my', 'passport'], accepted: ['I have lost my passport'] },
+  { id: 'psc-e29', conceptId: 'psp-contrast', type: 'word_order', prompt: 'Соберите: «Она купила эту машину в 2020 году»', points: 1, bank: ['she', 'bought', 'this', 'car', 'in', '2020'], accepted: ['she bought this car in 2020'] },
+  { id: 'psc-e30', conceptId: 'psp-contrast', type: 'multi_gap', prompt: 'I ___ (see) that film last week, but I ___ (not see) the new one yet.', points: 1, gaps: [{ accepted: ['saw'] }, { accepted: ["haven't seen", 'have not seen'] }] },
 ];

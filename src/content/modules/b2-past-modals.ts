@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'b2-past-modals',
   title: 'Модальные глаголы в прошлом: must have, should have',
   level: 'B2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['b2-deduction-past', 'b2-should-have'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'b2dp-e6', 'b2dp-e7', 'b2dp-e8', 'b2dp-e9', 'b2dp-e10',
       'b2dp-e11', 'b2dp-e12', 'b2dp-e13', 'b2dp-e14', 'b2dp-e15',
       'b2dp-e16', 'b2dp-e17', 'b2dp-e18', 'b2dp-e19', 'b2dp-e20',
+      'b2dp-e21', 'b2dp-e22', 'b2dp-e23', 'b2dp-e24', 'b2dp-e25', 'b2dp-e26', 'b2dp-e27', 'b2dp-e28', 'b2dp-e29', 'b2dp-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'b2sh-e6', 'b2sh-e7', 'b2sh-e8', 'b2sh-e9', 'b2sh-e10',
       'b2sh-e11', 'b2sh-e12', 'b2sh-e13', 'b2sh-e14', 'b2sh-e15',
       'b2sh-e16', 'b2sh-e17', 'b2sh-e18', 'b2sh-e19', 'b2sh-e20',
+      'b2sh-e21', 'b2sh-e22', 'b2sh-e23', 'b2sh-e24', 'b2sh-e25', 'b2sh-e26', 'b2sh-e27', 'b2sh-e28', 'b2sh-e29', 'b2sh-e30',
     ],
   },
 ];
@@ -95,4 +97,27 @@ export const exercises: Exercise[] = [
   { id: 'b2sh-e18', conceptId: 'b2-should-have', type: 'multi_gap', prompt: "I regret it now — I should ___ (listen) to you, and I shouldn't ___ (ignore) your warnings.", points: 1, gaps: [{ accepted: ['have listened'] }, { accepted: ['have ignored'] }] },
   { id: 'b2sh-e19', conceptId: 'b2-should-have', type: 'multi_gap', prompt: 'You could ___ (become) a doctor — you were the best student — but you should ___ (apply) to university back then.', points: 1, gaps: [{ accepted: ['have become'] }, { accepted: ['have applied'] }] },
   { id: 'b2sh-e20', conceptId: 'b2-should-have', type: 'multi_gap', prompt: "We shouldn't ___ (leave) so late, and we should ___ (check) the traffic before setting off.", points: 1, gaps: [{ accepted: ['have left'] }, { accepted: ['have checked'] }] },
+  // ---- добор: b2-deduction-past ----
+  { id: 'b2dp-e21', conceptId: 'b2-deduction-past', type: 'translate_ru_en', prompt: 'Он, должно быть, ждал нас всё утро.', points: 2, accepted: ['He must have been waiting for us all morning'] },
+  { id: 'b2dp-e22', conceptId: 'b2-deduction-past', type: 'translate_ru_en', prompt: 'Возможно, она не получила сообщение.', points: 2, accepted: ['She may not have received the message', 'She might not have received the message', 'She might not have got the message'] },
+  { id: 'b2dp-e23', conceptId: 'b2-deduction-past', type: 'fill_gap', prompt: 'The floor is muddy — someone ___ have walked in with dirty shoes.', points: 1, accepted: ['must'] },
+  { id: 'b2dp-e24', conceptId: 'b2-deduction-past', type: 'fill_gap', prompt: 'He ___ have seen us — he was looking the other way.', points: 1, accepted: ["can't", 'cannot', 'can not'] },
+  { id: 'b2dp-e25', conceptId: 'b2-deduction-past', type: 'verb_form', prompt: 'She looks exhausted — she (work) ___ all night.', points: 1, accepted: ['must have been working', 'must have worked'] },
+  { id: 'b2dp-e26', conceptId: 'b2-deduction-past', type: 'choose_word', prompt: 'They are not here yet — they ___ have missed the train.', points: 1, options: ['might', 'must not', 'should'], accepted: ['might'] },
+  { id: 'b2dp-e27', conceptId: 'b2-deduction-past', type: 'choose_word', prompt: 'She ___ have written this — her handwriting is completely different.', points: 1, options: ["can't", 'must', 'may'], accepted: ["can't"] },
+  { id: 'b2dp-e28', conceptId: 'b2-deduction-past', type: 'word_order', prompt: 'Соберите: «Должно быть, он ждал нас всё утро»', points: 1, bank: ['he', 'must', 'have', 'been', 'waiting', 'for', 'us', 'all', 'morning'], accepted: ['he must have been waiting for us all morning'] },
+  { id: 'b2dp-e29', conceptId: 'b2-deduction-past', type: 'word_order', prompt: 'Соберите: «Она не могла этого сказать»', points: 1, bank: ['she', "can't", 'have', 'said', 'that'], accepted: ["she can't have said that"] },
+  { id: 'b2dp-e30', conceptId: 'b2-deduction-past', type: 'multi_gap', prompt: 'Nobody is answering — they ___ have gone out, or they ___ have forgotten about our meeting.', points: 1, gaps: [{ accepted: ['must', 'might', 'may'] }, { accepted: ['might', 'may', 'could'] }] },
+
+  // ---- добор: b2-should-have ----
+  { id: 'b2sh-e21', conceptId: 'b2-should-have', type: 'translate_ru_en', prompt: 'Не нужно было покупать столько еды.', points: 2, accepted: ["You needn't have bought so much food", 'You did not need to buy so much food'] },
+  { id: 'b2sh-e22', conceptId: 'b2-should-have', type: 'translate_ru_en', prompt: 'Ему следовало бы извиниться.', points: 2, accepted: ['He ought to have apologised', 'He should have apologised', 'He ought to have apologized'] },
+  { id: 'b2sh-e23', conceptId: 'b2-should-have', type: 'fill_gap', prompt: 'You ___ have bought a ticket — the entry was free.', points: 1, accepted: ["needn't", 'need not'] },
+  { id: 'b2sh-e24', conceptId: 'b2-should-have', type: 'fill_gap', prompt: 'I would have helped you, but you ___ ask me.', points: 1, accepted: ["didn't", 'did not'] },
+  { id: 'b2sh-e25', conceptId: 'b2-should-have', type: 'verb_form', prompt: 'She ought to (apologise) ___ for what she said yesterday.', points: 1, accepted: ['have apologised', 'have apologized'] },
+  { id: 'b2sh-e26', conceptId: 'b2-should-have', type: 'choose_word', prompt: 'We ___ have hurried — the train was delayed by an hour.', points: 1, options: ["needn't", 'should', "mustn't"], accepted: ["needn't"] },
+  { id: 'b2sh-e27', conceptId: 'b2-should-have', type: 'choose_word', prompt: 'You ___ have told me — I would have come with you.', points: 1, options: ['should', 'need', 'might not'], accepted: ['should'] },
+  { id: 'b2sh-e28', conceptId: 'b2-should-have', type: 'word_order', prompt: 'Соберите: «Не нужно было так спешить»', points: 1, bank: ['you', "needn't", 'have', 'hurried'], accepted: ["you needn't have hurried"] },
+  { id: 'b2sh-e29', conceptId: 'b2-should-have', type: 'word_order', prompt: 'Соберите: «Ему следовало извиниться»', points: 1, bank: ['he', 'ought', 'to', 'have', 'apologised'], accepted: ['he ought to have apologised'] },
+  { id: 'b2sh-e30', conceptId: 'b2-should-have', type: 'multi_gap', prompt: 'You ___ have hurried — there was plenty of time; but you ___ have called to warn me.', points: 1, gaps: [{ accepted: ["needn't", 'need not'] }, { accepted: ['should', 'ought to'] }] },
 ];

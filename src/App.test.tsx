@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import { content } from './content';
 
 beforeEach(() => localStorage.clear());
 
@@ -27,5 +28,23 @@ describe('App', () => {
     await userEvent.click(screen.getByRole('button', { name: '← К списку' }));
     // мы внутри папки B1, а не в корне
     expect(screen.getByRole('button', { name: /^Present Perfect —/ })).toBeInTheDocument();
+  });
+
+  it('shows stored module progress in the list and inside training', async () => {
+    // прогресс из «прошлой сессии»: два концепта Present Perfect по 6 очков
+    localStorage.setItem('re:progress', JSON.stringify({
+      contentVersion: content.version,
+      concepts: {
+        'pp-experience': { score: 6, mastered: false, recentExerciseIds: [], errorCount: 0 },
+        'pp-just-already-yet': { score: 6, mastered: false, recentExerciseIds: [], errorCount: 0 },
+      },
+    }));
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /^B1 —/ }));
+    // порог 20, три концепта -> модуль это 60 очков, из них набрано 12
+    const card = screen.getByRole('button', { name: /^Present Perfect —/ });
+    expect(card).toHaveTextContent('12/60');
+    await userEvent.click(card);
+    expect(screen.getByText('Модуль: 12 / 60')).toBeInTheDocument();
   });
 });

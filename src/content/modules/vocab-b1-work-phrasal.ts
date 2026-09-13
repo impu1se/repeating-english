@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'vocab-b1-work-phrasal',
   title: 'Слова B1-B2: работа и фразовые глаголы',
   level: 'B1-B2',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['vb1-work', 'vb1-phrasal'],
 };
 
@@ -17,6 +17,7 @@ export const concepts: Concept[] = [
     exerciseIds: [
       'vw-e1', 'vw-e2', 'vw-e3', 'vw-e4', 'vw-e5', 'vw-e6', 'vw-e7',
       'vw-e8', 'vw-e9', 'vw-e10', 'vw-e11', 'vw-e12', 'vw-e13', 'vw-e14',
+      'vw-e15', 'vw-e16', 'vw-e17', 'vw-e18', 'vw-e19', 'vw-e20', 'vw-e21', 'vw-e22', 'vw-e23', 'vw-e24',
     ],
   },
   {
@@ -27,6 +28,7 @@ export const concepts: Concept[] = [
     exerciseIds: [
       'vp-e1', 'vp-e2', 'vp-e3', 'vp-e4', 'vp-e5', 'vp-e6', 'vp-e7',
       'vp-e8', 'vp-e9', 'vp-e10', 'vp-e11', 'vp-e12', 'vp-e13', 'vp-e14',
+      'vp-e15', 'vp-e16', 'vp-e17', 'vp-e18', 'vp-e19', 'vp-e20', 'vp-e21', 'vp-e22', 'vp-e23', 'vp-e24',
     ],
   },
 ];
@@ -63,4 +65,27 @@ export const exercises: Exercise[] = [
   { id: 'vp-e12', conceptId: 'vb1-phrasal', type: 'translate_ru_en', prompt: 'Не забудь надеть куртку, на улице холодно.', points: 2, accepted: ["Don't forget to put on your jacket — it's cold outside", "Don't forget to put on your jacket — it is cold outside", "Don't forget to put your jacket on — it's cold outside"] },
   { id: 'vp-e13', conceptId: 'vb1-phrasal', type: 'multi_gap', prompt: 'We always ___ of milk by Friday, so please ___ some up from the shop.', points: 1, gaps: [{ accepted: ['run out'] }, { accepted: ['pick'] }] },
   { id: 'vp-e14', conceptId: 'vb1-phrasal', type: 'word_order', prompt: 'Соберите: «Она успокоилась после разговора»', points: 1, bank: ['she', 'calmed', 'down', 'after', 'the', 'conversation'], accepted: ['she calmed down after the conversation', 'after the conversation she calmed down'] },
+  // ---- добор: vb1-work ----
+  { id: 'vw-e15', conceptId: 'vb1-work', type: 'match_pairs', prompt: 'Сопоставьте глаголы и переводы', points: 1, pairs: [{ en: 'to apply', ru: 'подавать заявку' }, { en: 'to resign', ru: 'уходить с должности' }, { en: 'to promote', ru: 'повышать' }, { en: 'to train', ru: 'обучать' }, { en: 'to negotiate', ru: 'вести переговоры' }] },
+  { id: 'vw-e16', conceptId: 'vb1-work', type: 'match_pairs', prompt: 'Сопоставьте слова и переводы', points: 1, pairs: [{ en: 'pay rise', ru: 'повышение зарплаты' }, { en: 'workload', ru: 'нагрузка' }, { en: 'overtime', ru: 'сверхурочные' }, { en: 'staff', ru: 'персонал' }, { en: 'department', ru: 'отдел' }] },
+  { id: 'vw-e17', conceptId: 'vb1-work', type: 'choose_word', prompt: 'He handed in his ___ after ten years in the company.', points: 1, options: ['resignation', 'promotion', 'application'], accepted: ['resignation'] },
+  { id: 'vw-e18', conceptId: 'vb1-work', type: 'choose_word', prompt: 'We need to ___ a new developer for the team.', points: 1, options: ['recruit', 'resign', 'retire'], accepted: ['recruit'] },
+  { id: 'vw-e19', conceptId: 'vb1-work', type: 'fill_gap', prompt: 'She is responsible ___ the marketing budget.', points: 1, accepted: ['for'] },
+  { id: 'vw-e20', conceptId: 'vb1-work', type: 'fill_gap', prompt: 'I have to work ___ this week to finish the project on time.', points: 1, accepted: ['overtime', 'late'] },
+  { id: 'vw-e21', conceptId: 'vb1-work', type: 'translate_ru_en', prompt: 'Он подал заявление об уходе на прошлой неделе.', points: 2, accepted: ['He handed in his resignation last week', 'He resigned last week'] },
+  { id: 'vw-e22', conceptId: 'vb1-work', type: 'translate_ru_en', prompt: 'Моя нагрузка сейчас слишком большая.', points: 2, accepted: ['My workload is too heavy at the moment', 'My workload is too big at the moment'] },
+  { id: 'vw-e23', conceptId: 'vb1-work', type: 'multi_gap', prompt: 'She is responsible ___ the team, and she reports ___ the director.', points: 1, gaps: [{ accepted: ['for'] }, { accepted: ['to'] }] },
+  { id: 'vw-e24', conceptId: 'vb1-work', type: 'word_order', prompt: 'Соберите: «Ей повысили зарплату в прошлом месяце»', points: 1, bank: ['she', 'got', 'a', 'pay', 'rise', 'last', 'month'], accepted: ['she got a pay rise last month'] },
+
+  // ---- добор: vb1-phrasal ----
+  { id: 'vp-e15', conceptId: 'vb1-phrasal', type: 'match_pairs', prompt: 'Сопоставьте фразовые глаголы и переводы', points: 1, pairs: [{ en: 'come across', ru: 'наткнуться' }, { en: 'get over', ru: 'оправиться' }, { en: 'look after', ru: 'заботиться' }, { en: 'bring up', ru: 'воспитывать' }, { en: 'take up', ru: 'начать заниматься' }] },
+  { id: 'vp-e16', conceptId: 'vb1-phrasal', type: 'match_pairs', prompt: 'Сопоставьте фразовые глаголы и переводы', points: 1, pairs: [{ en: 'put up with', ru: 'мириться с' }, { en: 'look forward to', ru: 'ждать с нетерпением' }, { en: 'run into', ru: 'случайно встретить' }, { en: 'set off', ru: 'отправляться в путь' }, { en: 'turn up', ru: 'появляться' }] },
+  { id: 'vp-e17', conceptId: 'vb1-phrasal', type: 'choose_word', prompt: 'I ___ an old photo while cleaning the attic.', points: 1, options: ['came across', 'came over', 'came up'], accepted: ['came across'] },
+  { id: 'vp-e18', conceptId: 'vb1-phrasal', type: 'choose_word', prompt: 'She ___ her grandmother whenever she is ill.', points: 1, options: ['looks after', 'looks for', 'looks up'], accepted: ['looks after'] },
+  { id: 'vp-e19', conceptId: 'vb1-phrasal', type: 'fill_gap', prompt: 'It took him months to get ___ the flu.', points: 1, accepted: ['over'] },
+  { id: 'vp-e20', conceptId: 'vb1-phrasal', type: 'fill_gap', prompt: 'We set ___ at six in the morning to avoid the traffic.', points: 1, accepted: ['off', 'out'] },
+  { id: 'vp-e21', conceptId: 'vb1-phrasal', type: 'translate_ru_en', prompt: 'Я случайно встретил старого друга вчера.', points: 2, accepted: ['I ran into an old friend yesterday', 'I bumped into an old friend yesterday'] },
+  { id: 'vp-e22', conceptId: 'vb1-phrasal', type: 'translate_ru_en', prompt: 'Она начала заниматься йогой в прошлом году.', points: 2, accepted: ['She took up yoga last year'] },
+  { id: 'vp-e23', conceptId: 'vb1-phrasal', type: 'multi_gap', prompt: 'I came ___ this book by chance, and now I cannot put it ___.', points: 1, gaps: [{ accepted: ['across'] }, { accepted: ['down'] }] },
+  { id: 'vp-e24', conceptId: 'vb1-phrasal', type: 'word_order', prompt: 'Соберите: «Я не могу мириться с этим шумом»', points: 1, bank: ['I', "can't", 'put', 'up', 'with', 'this', 'noise'], accepted: ["I can't put up with this noise"] },
 ];

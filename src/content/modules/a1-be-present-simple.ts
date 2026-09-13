@@ -4,7 +4,7 @@ export const module: Module = {
   id: 'a1-be-present-simple',
   title: 'Present Simple: to be и обычные глаголы',
   level: 'A1',
-  masteryThreshold: 50,
+  masteryThreshold: 20,
   conceptIds: ['a1-be', 'a1-present-simple', 'a1-ps-questions'],
 };
 
@@ -21,6 +21,7 @@ export const concepts: Concept[] = [
       'a1be-e6', 'a1be-e7', 'a1be-e8', 'a1be-e9', 'a1be-e10',
       'a1be-e11', 'a1be-e12', 'a1be-e13', 'a1be-e14', 'a1be-e15',
       'a1be-e16', 'a1be-e17', 'a1be-e18', 'a1be-e19', 'a1be-e20',
+      'a1be-e21', 'a1be-e22', 'a1be-e23', 'a1be-e24', 'a1be-e25', 'a1be-e26', 'a1be-e27', 'a1be-e28', 'a1be-e29', 'a1be-e30',
     ],
   },
   {
@@ -35,6 +36,7 @@ export const concepts: Concept[] = [
       'a1ps-e6', 'a1ps-e7', 'a1ps-e8', 'a1ps-e9', 'a1ps-e10',
       'a1ps-e11', 'a1ps-e12', 'a1ps-e13', 'a1ps-e14', 'a1ps-e15',
       'a1ps-e16', 'a1ps-e17', 'a1ps-e18', 'a1ps-e19', 'a1ps-e20',
+      'a1ps-e21', 'a1ps-e22', 'a1ps-e23', 'a1ps-e24', 'a1ps-e25', 'a1ps-e26', 'a1ps-e27', 'a1ps-e28', 'a1ps-e29', 'a1ps-e30',
     ],
   },
   {
@@ -49,6 +51,7 @@ export const concepts: Concept[] = [
       'a1pq-e6', 'a1pq-e7', 'a1pq-e8', 'a1pq-e9', 'a1pq-e10',
       'a1pq-e11', 'a1pq-e12', 'a1pq-e13', 'a1pq-e14', 'a1pq-e15',
       'a1pq-e16', 'a1pq-e17', 'a1pq-e18', 'a1pq-e19', 'a1pq-e20',
+      'a1pq-e21', 'a1pq-e22', 'a1pq-e23', 'a1pq-e24', 'a1pq-e25', 'a1pq-e26', 'a1pq-e27', 'a1pq-e28', 'a1pq-e29', 'a1pq-e30',
     ],
   },
 ];
@@ -137,4 +140,39 @@ export const exercises: Exercise[] = [
   { id: 'a1pq-e18', conceptId: 'a1-ps-questions', type: 'multi_gap', prompt: '___ you like tea, and ___ she like coffee?', points: 1, gaps: [{ accepted: ['do'] }, { accepted: ['does'] }] },
   { id: 'a1pq-e19', conceptId: 'a1-ps-questions', type: 'multi_gap', prompt: 'He ___ (not like) spicy food, but he ___ (love) sweet food.', points: 1, gaps: [{ accepted: ["doesn't like", 'does not like'] }, { accepted: ['loves'] }] },
   { id: 'a1pq-e20', conceptId: 'a1-ps-questions', type: 'multi_gap', prompt: 'Where ___ you live, and where ___ your husband work?', points: 1, gaps: [{ accepted: ['do'] }, { accepted: ['does'] }] },
+  // ---- добор: a1-be ----
+  { id: 'a1be-e21', conceptId: 'a1-be', type: 'translate_ru_en', prompt: 'Мне двадцать лет.', points: 2, accepted: ['I am twenty', "I'm twenty", 'I am twenty years old', "I'm twenty years old"] },
+  { id: 'a1be-e22', conceptId: 'a1-be', type: 'translate_ru_en', prompt: 'Их нет дома.', points: 2, accepted: ['They are not at home', "They aren't at home", "They're not at home", 'They are not home'] },
+  { id: 'a1be-e23', conceptId: 'a1-be', type: 'fill_gap', prompt: 'Where ___ your parents from?', points: 1, accepted: ['are'] },
+  { id: 'a1be-e24', conceptId: 'a1-be', type: 'fill_gap', prompt: 'It ___ cold today, take a jacket.', points: 1, accepted: ['is'] },
+  { id: 'a1be-e25', conceptId: 'a1-be', type: 'verb_form', prompt: 'I (be) ___ not ready yet.', points: 1, accepted: ['am'] },
+  { id: 'a1be-e26', conceptId: 'a1-be', type: 'choose_word', prompt: 'Are you a doctor? — Yes, ___.', points: 1, options: ['I am', "I'm", 'I are'], accepted: ['I am'] },
+  { id: 'a1be-e27', conceptId: 'a1-be', type: 'choose_word', prompt: 'Is she at work? — No, she ___.', points: 1, options: ["isn't", "amn't", 'not is'], accepted: ["isn't"] },
+  { id: 'a1be-e28', conceptId: 'a1-be', type: 'word_order', prompt: 'Соберите: «Сколько тебе лет?»', points: 1, bank: ['how', 'old', 'are', 'you'], accepted: ['how old are you'] },
+  { id: 'a1be-e29', conceptId: 'a1-be', type: 'word_order', prompt: 'Соберите: «Они из Италии»', points: 1, bank: ['they', 'are', 'from', 'Italy'], accepted: ['they are from Italy'] },
+  { id: 'a1be-e30', conceptId: 'a1-be', type: 'multi_gap', prompt: 'I ___ a teacher and my friends ___ engineers.', points: 1, gaps: [{ accepted: ['am'] }, { accepted: ['are'] }] },
+
+  // ---- добор: a1-present-simple ----
+  { id: 'a1ps-e21', conceptId: 'a1-present-simple', type: 'translate_ru_en', prompt: 'Она играет в теннис два раза в неделю.', points: 2, accepted: ['She plays tennis twice a week', 'She plays tennis two times a week'] },
+  { id: 'a1ps-e22', conceptId: 'a1-present-simple', type: 'translate_ru_en', prompt: 'У моей сестры две кошки.', points: 2, accepted: ['My sister has two cats'] },
+  { id: 'a1ps-e23', conceptId: 'a1-present-simple', type: 'fill_gap', prompt: 'My brother ___ his homework every evening.', points: 1, accepted: ['does'] },
+  { id: 'a1ps-e24', conceptId: 'a1-present-simple', type: 'fill_gap', prompt: 'Water ___ at 100 degrees.', points: 1, accepted: ['boils'] },
+  { id: 'a1ps-e25', conceptId: 'a1-present-simple', type: 'verb_form', prompt: 'He (fly) ___ to London once a month.', points: 1, accepted: ['flies'] },
+  { id: 'a1ps-e26', conceptId: 'a1-present-simple', type: 'choose_word', prompt: 'My sister ___ her hair every day.', points: 1, options: ['washes', 'washs', 'wash'], accepted: ['washes'] },
+  { id: 'a1ps-e27', conceptId: 'a1-present-simple', type: 'choose_word', prompt: 'We ___ go to the cinema on Fridays.', points: 1, options: ['usually', 'are usually', 'usually are'], accepted: ['usually'] },
+  { id: 'a1ps-e28', conceptId: 'a1-present-simple', type: 'word_order', prompt: 'Соберите: «Он летает в Лондон раз в месяц»', points: 1, bank: ['he', 'flies', 'to', 'London', 'once', 'a', 'month'], accepted: ['he flies to London once a month'] },
+  { id: 'a1ps-e29', conceptId: 'a1-present-simple', type: 'word_order', prompt: 'Соберите: «Мы часто ужинаем вместе»', points: 1, bank: ['we', 'often', 'have', 'dinner', 'together'], accepted: ['we often have dinner together'] },
+  { id: 'a1ps-e30', conceptId: 'a1-present-simple', type: 'multi_gap', prompt: 'He ___ (go) to the gym on Mondays, and she ___ (study) at home.', points: 1, gaps: [{ accepted: ['goes'] }, { accepted: ['studies'] }] },
+
+  // ---- добор: a1-ps-questions ----
+  { id: 'a1pq-e21', conceptId: 'a1-ps-questions', type: 'translate_ru_en', prompt: 'Как часто ты ходишь в спортзал?', points: 2, accepted: ['How often do you go to the gym?'] },
+  { id: 'a1pq-e22', conceptId: 'a1-ps-questions', type: 'translate_ru_en', prompt: 'Что она делает по выходным?', points: 2, accepted: ['What does she do at the weekend?', 'What does she do on weekends?', 'What does she do at weekends?'] },
+  { id: 'a1pq-e23', conceptId: 'a1-ps-questions', type: 'fill_gap', prompt: 'What time ___ the shop open?', points: 1, accepted: ['does'] },
+  { id: 'a1pq-e24', conceptId: 'a1-ps-questions', type: 'fill_gap', prompt: 'Do you play tennis? — No, I ___.', points: 1, accepted: ["don't", 'do not'] },
+  { id: 'a1pq-e25', conceptId: 'a1-ps-questions', type: 'verb_form', prompt: 'How often does she (visit) ___ her parents?', points: 1, accepted: ['visit'] },
+  { id: 'a1pq-e26', conceptId: 'a1-ps-questions', type: 'choose_word', prompt: 'Does he speak Spanish? — Yes, he ___.', points: 1, options: ['does', 'do', 'is'], accepted: ['does'] },
+  { id: 'a1pq-e27', conceptId: 'a1-ps-questions', type: 'choose_word', prompt: 'When ___ your lessons start?', points: 1, options: ['do', 'does', 'are'], accepted: ['do'] },
+  { id: 'a1pq-e28', conceptId: 'a1-ps-questions', type: 'word_order', prompt: 'Соберите: «Как часто он играет в футбол?»', points: 1, bank: ['how', 'often', 'does', 'he', 'play', 'football'], accepted: ['how often does he play football'] },
+  { id: 'a1pq-e29', conceptId: 'a1-ps-questions', type: 'word_order', prompt: 'Соберите: «Что ты обычно ешь на завтрак?»', points: 1, bank: ['what', 'do', 'you', 'usually', 'eat', 'for', 'breakfast'], accepted: ['what do you usually eat for breakfast'] },
+  { id: 'a1pq-e30', conceptId: 'a1-ps-questions', type: 'multi_gap', prompt: '___ she like coffee? — No, she ___.', points: 1, gaps: [{ accepted: ['does'] }, { accepted: ["doesn't", 'does not'] }] },
 ];

@@ -25,11 +25,24 @@ describe('loadProgress', () => {
     saveProgress({ contentVersion: '2', concepts: { c1: { score: 3, mastered: false, recentExerciseIds: [], errorCount: 1 } } });
     expect(loadProgress(content).concepts.c1.score).toBe(3);
   });
+  it('marks a concept mastered when a stored score already clears a lowered threshold', () => {
+    // порог модуля 5; сохранён счёт 7, но mastered=false (записано при старом пороге 50)
+    saveProgress({ contentVersion: '2', concepts: { c1: { score: 7, mastered: false, recentExerciseIds: [], errorCount: 0 } } });
+    expect(loadProgress(content).concepts.c1.mastered).toBe(true);
+  });
+  it('leaves a below-threshold score unmastered', () => {
+    saveProgress({ contentVersion: '2', concepts: { c1: { score: 4, mastered: false, recentExerciseIds: [], errorCount: 0 } } });
+    expect(loadProgress(content).concepts.c1.mastered).toBe(false);
+  });
 });
 
 describe('pushRecent', () => {
-  it('caps window at min(poolSize-1, 5)', () => {
-    expect(pushRecent(['a', 'b'], 'c', 3)).toEqual(['b', 'c']); // poolSize 3 -> window 2
-    expect(pushRecent([], 'a', 1)).toEqual([]);                 // poolSize 1 -> window 0
+  it('accumulates until the pool is exhausted, then starts a new bag', () => {
+    expect(pushRecent(['a'], 'b', 3)).toEqual(['a', 'b']);   // круг ещё не пройден
+    expect(pushRecent(['a', 'b'], 'c', 3)).toEqual(['c']);   // пул исчерпан -> новый мешок
+    expect(pushRecent([], 'a', 1)).toEqual([]);              // пул из одного упражнения
+  });
+  it('never lets the same exercise sit in the bag twice', () => {
+    expect(pushRecent(['a', 'b'], 'a', 4)).toEqual(['b', 'a']);
   });
 });
