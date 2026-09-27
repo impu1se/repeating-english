@@ -23,8 +23,9 @@ function trendOf(now: number, prev: number | null): ConceptErrorStat['trend'] {
 
 export function conceptErrorStats(content: Content, measurements: Measurement[]): ConceptErrorStat[] {
   if (measurements.length === 0) return [];
-  const last = measurements[measurements.length - 1];
-  const prev = measurements.length > 1 ? measurements[measurements.length - 2] : null;
+  const sorted = [...measurements].sort((a, b) => a.date.localeCompare(b.date));
+  const last = sorted[sorted.length - 1];
+  const prev = sorted.length > 1 ? sorted[sorted.length - 2] : null;
 
   // Концепт из предыдущего замера, исчезнувший в последнем, — это исправленная
   // ошибка. Её показываем нулём: иначе главное событие проходит молча.
@@ -51,6 +52,7 @@ export function conceptErrorStats(content: Content, measurements: Measurement[])
 
 export function unmappedErrorStats(measurements: Measurement[]): { label: string; last: number }[] {
   if (measurements.length === 0) return [];
-  const last = measurements[measurements.length - 1];
+  const sorted = [...measurements].sort((a, b) => a.date.localeCompare(b.date));
+  const last = sorted[sorted.length - 1];
   return last.unmapped.map((u) => ({ label: u.label, last: u.count }));
 }

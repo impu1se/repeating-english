@@ -63,4 +63,60 @@ describe('частоты ошибок речи', () => {
     ]);
     expect(stats).toEqual([{ label: 'предлоги места', last: 3 }]);
   });
+
+  it('игнорирует порядок массива и сортирует по дате', () => {
+    const stats1 = conceptErrorStats(content, [
+      m('2026-09-20', 100, { [a]: 12 }),
+      m('2026-09-27', 200, { [a]: 6 }),
+    ]);
+    const stats2 = conceptErrorStats(content, [
+      m('2026-09-27', 200, { [a]: 6 }),
+      m('2026-09-20', 100, { [a]: 12 }),
+    ]);
+    const row1 = stats1.find((s) => s.conceptId === a)!;
+    const row2 = stats2.find((s) => s.conceptId === a)!;
+    expect(row1.trend).toBe('down');
+    expect(row2.trend).toBe('down');
+    expect(row1.per100).toBe(row2.per100);
+    expect(row1.prevPer100).toBe(row2.prevPer100);
+  });
+
+  it('показывает тренд «вверх»', () => {
+    const stats = conceptErrorStats(content, [
+      m('2026-09-20', 200, { [a]: 6 }),
+      m('2026-09-27', 100, { [a]: 6 }),
+    ]);
+    const row = stats.find((s) => s.conceptId === a)!;
+    expect(row.per100).toBe(6);
+    expect(row.prevPer100).toBe(3);
+    expect(row.trend).toBe('up');
+  });
+
+  it('показывает тренд «плоский»', () => {
+    const stats = conceptErrorStats(content, [
+      m('2026-09-20', 100, { [a]: 3 }),
+      m('2026-09-27', 100, { [a]: 3 }),
+    ]);
+    const row = stats.find((s) => s.conceptId === a)!;
+    expect(row.per100).toBe(3);
+    expect(row.prevPer100).toBe(3);
+    expect(row.trend).toBe('flat');
+  });
+
+  it('не путает появившуюся ошибку с исчезнувшей', () => {
+    const stats = conceptErrorStats(content, [
+      m('2026-09-20', 100, { [a]: 4 }),
+      m('2026-09-27', 100, { [b]: 2 }),
+    ]);
+    const rowA = stats.find((s) => s.conceptId === a)!;
+    const rowB = stats.find((s) => s.conceptId === b)!;
+    // Исчезнувшая ошибка: было 4, стало 0 — стрелка вниз
+    expect(rowA.last).toBe(0);
+    expect(rowA.per100).toBe(0);
+    expect(rowA.trend).toBe('down');
+    // Появившаяся ошибка: было 0, стало 2 — не улучшение, а ухудшение
+    expect(rowB.last).toBe(2);
+    expect(rowB.per100).toBe(2);
+    expect(rowB.trend).toBe('up');
+  });
 });
