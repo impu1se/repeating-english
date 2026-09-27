@@ -73,11 +73,26 @@ export function loadProgress(content: Content): ProgressState {
   if (!raw) return freshState(content);
   try {
     const parsed = JSON.parse(raw) as Partial<ProgressState>;
-    if (parsed.contentVersion !== content.version) return freshState(content);
+    const measurements = Array.isArray(parsed.measurements) ? parsed.measurements : [];
+    if (parsed.contentVersion !== content.version) {
+      // Смена версии контента стирает счёт по концептам — он завязан на
+      // сборку (переименованные/убранные концепты делают старые числа
+      // бессмысленными). Замеры речи и состояние дня контентом не завязаны:
+      // каждый замер стоит пользователю недели реальной речи, а сравнивать
+      // замеры друг с другом — весь смысл фичи, поэтому они переживают
+      // бамп версии. Фокус переносится, только если концепт ещё существует
+      // в новом контенте — иначе тренировать его нечем.
+      const fresh = freshState(content);
+      fresh.measurements = measurements;
+      fresh.daily = parsed.daily ?? null;
+      const focus = parsed.focus ?? null;
+      fresh.focus = focus !== null && content.concepts.some((c) => c.id === focus.conceptId) ? focus : null;
+      return fresh;
+    }
     const merged = mergeConcepts(content, parsed.concepts ?? {});
     // mergeConcepts отвечает только за концепты; поля верхнего уровня
     // переносятся здесь, иначе они молча исчезнут при перезапуске
-    merged.measurements = Array.isArray(parsed.measurements) ? parsed.measurements : [];
+    merged.measurements = measurements;
     merged.focus = parsed.focus ?? null;
     merged.daily = parsed.daily ?? null;
     return merged;

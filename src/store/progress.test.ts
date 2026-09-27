@@ -78,3 +78,39 @@ describe('поля верхнего уровня переживают перез
     expect(loaded.focus).toBeNull();
   });
 });
+
+describe('бамп версии контента', () => {
+  const contentV3: Content = {
+    version: '3',
+    modules: [{ id: 'm', title: 'M', level: 'A1', masteryThreshold: 5, conceptIds: ['c1'] }],
+    concepts: [{ id: 'c1', moduleId: 'm', title: 'C', kind: 'grammar', exerciseIds: ['e1'] }],
+    exercises: [{ id: 'e1', conceptId: 'c1', type: 'fill_gap', prompt: 'p', points: 1, accepted: ['a'] }],
+  };
+  // Тот же номер версии, но концепт 'c1' в сборке уже не существует —
+  // проверяет, что фокус на пропавший концепт не переживает бамп.
+  const contentV3NoC1: Content = { version: '3', modules: [], concepts: [], exercises: [] };
+
+  it('стирает концепты, но не замеры речи и не состояние дня', () => {
+    const state = loadProgress(content);
+    state.concepts.c1.score = 9;
+    state.measurements = [{ date: '2026-09-27', wordCount: 100, errors: { c1: 2 }, unmapped: [] }];
+    state.daily = { date: '2026-09-27', listened: true, recorded: false, reviewed: false, focusDrills: 4 };
+    saveProgress(state);
+
+    const reloaded = loadProgress(contentV3);
+
+    expect(reloaded.contentVersion).toBe('3');
+    expect(reloaded.concepts.c1.score).toBe(0);
+    expect(reloaded.measurements).toEqual(state.measurements);
+    expect(reloaded.daily).toEqual(state.daily);
+  });
+
+  it('переносит фокус, только если концепт остался в новом контенте', () => {
+    const state = loadProgress(content);
+    state.focus = { conceptId: 'c1', startedAt: '2026-09-20' };
+    saveProgress(state);
+
+    expect(loadProgress(contentV3).focus).toEqual(state.focus);
+    expect(loadProgress(contentV3NoC1).focus).toBeNull();
+  });
+});
