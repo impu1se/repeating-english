@@ -3,15 +3,40 @@ import { emptyConceptProgress, type ConceptProgress } from '../engine/scoring';
 
 const KEY = 're:progress';
 
+// Один разбор расшифровки речи. Хранится целиком, а не числами на концептах:
+// иначе ошибкам без концепта (предлоги, произношение) не на чем висеть.
+export interface Measurement {
+  date: string; // YYYY-MM-DD
+  wordCount: number; // нужен, чтобы считать частоту на 100 слов
+  errors: Record<string, number>; // conceptId -> сколько раз ошибся
+  unmapped: { label: string; count: number }[]; // ошибки без концепта
+}
+
+export interface FocusState {
+  conceptId: string;
+  startedAt: string; // YYYY-MM-DD
+}
+
+export interface DailyState {
+  date: string; // YYYY-MM-DD
+  listened: boolean;
+  recorded: boolean;
+  reviewed: boolean;
+  focusDrills: number;
+}
+
 export interface ProgressState {
   contentVersion: string;
   concepts: Record<string, ConceptProgress>;
+  measurements: Measurement[];
+  focus: FocusState | null;
+  daily: DailyState | null;
 }
 
 function freshState(content: Content): ProgressState {
   const concepts: Record<string, ConceptProgress> = {};
   for (const c of content.concepts) concepts[c.id] = emptyConceptProgress();
-  return { contentVersion: content.version, concepts };
+  return { contentVersion: content.version, concepts, measurements: [], focus: null, daily: null };
 }
 
 // conceptId -> порог его модуля; нужен, чтобы пересчитать mastered при загрузке
@@ -47,9 +72,15 @@ export function loadProgress(content: Content): ProgressState {
   const raw = localStorage.getItem(KEY);
   if (!raw) return freshState(content);
   try {
-    const parsed = JSON.parse(raw) as ProgressState;
+    const parsed = JSON.parse(raw) as Partial<ProgressState>;
     if (parsed.contentVersion !== content.version) return freshState(content);
-    return mergeConcepts(content, parsed.concepts);
+    const merged = mergeConcepts(content, parsed.concepts ?? {});
+    // mergeConcepts отвечает только за концепты; поля верхнего уровня
+    // переносятся здесь, иначе они молча исчезнут при перезапуске
+    merged.measurements = Array.isArray(parsed.measurements) ? parsed.measurements : [];
+    merged.focus = parsed.focus ?? null;
+    merged.daily = parsed.daily ?? null;
+    return merged;
   } catch {
     return freshState(content);
   }
