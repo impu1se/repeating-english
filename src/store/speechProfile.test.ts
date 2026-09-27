@@ -85,4 +85,84 @@ describe('разбор профиля речи', () => {
       error: 'В разборе нет числа слов — без него не посчитать частоту',
     });
   });
+
+  it('отвергает дробное число повторов', () => {
+    const result = parseSpeechProfile(
+      profile([{ conceptId: known, label: 'артикли', count: 2.5 }]),
+      content,
+    );
+    expect(result).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: у ошибки «артикли» число повторов не целое положительное',
+    });
+  });
+
+  it('отвергает бесконечное число повторов', () => {
+    // 1e400 парсится в Infinity
+    const result = parseSpeechProfile(
+      `{"app":"english-gym","format":1,"recordedAt":"2026-09-27","wordCount":300,"contentVersion":"${content.version}","errors":[{"conceptId":"${known}","label":"артикли","count":1e400}]}`,
+      content,
+    );
+    expect(result).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: у ошибки «артикли» число повторов не целое положительное',
+    });
+  });
+
+  it('отвергает строку в поле count', () => {
+    const result = parseSpeechProfile(
+      profile([{ conceptId: known, label: 'артикли', count: '7' }]),
+      content,
+    );
+    expect(result).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: у ошибки «артикли» число повторов не целое положительное',
+    });
+  });
+
+  it('отвергает ошибку без названия', () => {
+    const result = parseSpeechProfile(
+      profile([{ conceptId: known, label: undefined, count: 5 }]),
+      content,
+    );
+    expect(result).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: у одной из ошибок нет названия',
+    });
+  });
+
+  it('отвергает плохую дату', () => {
+    expect(
+      parseSpeechProfile(profile([], { recordedAt: 'not-a-date' }), content),
+    ).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: дата записи должна быть в виде 2026-09-27',
+    });
+    expect(parseSpeechProfile(profile([], { recordedAt: '' }), content)).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: дата записи должна быть в виде 2026-09-27',
+    });
+    expect(parseSpeechProfile(profile([], { recordedAt: 123 }), content)).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: дата записи должна быть в виде 2026-09-27',
+    });
+  });
+
+  it('отвергает errors, если это не массив', () => {
+    const result = parseSpeechProfile(
+      JSON.stringify({
+        app: 'english-gym',
+        format: 1,
+        recordedAt: '2026-09-27',
+        wordCount: 300,
+        contentVersion: content.version,
+        errors: { some: 'object' },
+      }),
+      content,
+    );
+    expect(result).toEqual({
+      ok: false,
+      error: 'Файл не похож на разбор речи',
+    });
+  });
 });
