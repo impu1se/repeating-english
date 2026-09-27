@@ -7,8 +7,10 @@ import { content } from './content';
 beforeEach(() => localStorage.clear());
 
 describe('App', () => {
-  it('shows the level folders on start', () => {
+  it('starts on Today and can reach the level folders', async () => {
     render(<App />);
+    expect(screen.getByRole('heading', { name: 'Сегодня' })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Уровни и модули' }));
     for (const lv of ['A1', 'A2', 'B1', 'B1-B2', 'B2']) {
       expect(screen.getByRole('button', { name: new RegExp(`^${lv} —`) })).toBeInTheDocument();
     }
@@ -16,6 +18,7 @@ describe('App', () => {
 
   it('navigates level → module → training', async () => {
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Уровни и модули' }));
     await userEvent.click(screen.getByRole('button', { name: /^B1 —/ }));
     await userEvent.click(screen.getByRole('button', { name: /^Present Perfect —/ }));
     expect(screen.getByText(/Опыт: ever\/never/)).toBeInTheDocument();
@@ -23,6 +26,7 @@ describe('App', () => {
 
   it('returns to the same level folder after exiting training', async () => {
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Уровни и модули' }));
     await userEvent.click(screen.getByRole('button', { name: /^B1 —/ }));
     await userEvent.click(screen.getByRole('button', { name: /^Present Perfect —/ }));
     await userEvent.click(screen.getByRole('button', { name: '← К списку' }));
@@ -40,6 +44,7 @@ describe('App', () => {
       },
     }));
     render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: 'Уровни и модули' }));
     await userEvent.click(screen.getByRole('button', { name: /^B1 —/ }));
     // порог 20, три концепта -> модуль это 60 очков, из них набрано 12
     const card = screen.getByRole('button', { name: /^Present Perfect —/ });
