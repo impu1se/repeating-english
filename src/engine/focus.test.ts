@@ -7,6 +7,7 @@ import type { ProgressState } from '../store/progress';
 const grammar = content.concepts.filter((c) => c.kind === 'grammar');
 const a = grammar[0].id;
 const b = grammar[1].id;
+const vocab = content.concepts.find((c) => c.kind === 'vocab')!.id;
 
 function state(concepts: Record<string, Partial<ConceptProgress>>, measurements: ProgressState['measurements'] = []): ProgressState {
   const all: Record<string, ConceptProgress> = {};
@@ -33,6 +34,29 @@ describe('выбор фокуса', () => {
 
   it('не предлагает концепт, которого не касались', () => {
     expect(suggestFocus(content, state({}))).toBeNull();
+  });
+
+  it('когда профиль есть, но всё уже исправлено, не откатывается к errorCount', () => {
+    // errorCount у b говорит «слабое место», но профиль уже есть и в нём
+    // ошибка a полностью исчезла — предлагать нечего, откат не применяется.
+    const s = state(
+      { [b]: { errorCount: 9, score: 1 } },
+      [
+        { date: '2026-09-20', wordCount: 100, errors: { [a]: 4 }, unmapped: [] },
+        { date: '2026-09-27', wordCount: 100, errors: {}, unmapped: [] },
+      ],
+    );
+    expect(suggestFocus(content, s)).toBeNull();
+  });
+
+  it('не предлагает словарный концепт в фокус', () => {
+    const s = state({}, [{ date: '2026-09-27', wordCount: 100, errors: { [vocab]: 20 }, unmapped: [] }]);
+    expect(suggestFocus(content, s)).toBeNull();
+  });
+
+  it('пропускает словарный концепт и берёт следующий по частоте грамматический', () => {
+    const s = state({}, [{ date: '2026-09-27', wordCount: 100, errors: { [vocab]: 20, [a]: 3 }, unmapped: [] }]);
+    expect(suggestFocus(content, s)).toBe(a);
   });
 
   it('неделя истекает на седьмой день', () => {

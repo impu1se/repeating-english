@@ -25,9 +25,18 @@ function fallbackFocus(content: Content, progress: ProgressState): string | null
 }
 
 export function suggestFocus(content: Content, progress: ProgressState): string | null {
+  // Пока нет ни одного разбора речи, действует старый откат на errorCount
+  // (решение 18). Как только появился хотя бы один замер, откат больше не
+  // применяется, даже если в нём всё уже исправлено или размечено на
+  // лексику: профиль перебивает старый способ выбора насовсем.
+  if (progress.measurements.length === 0) return fallbackFocus(content, progress);
+  const grammarIds = new Set(content.concepts.filter((c) => c.kind === 'grammar').map((c) => c.id));
   const stats = conceptErrorStats(content, progress.measurements);
-  if (stats.length > 0) return stats[0].conceptId;
-  return fallbackFocus(content, progress);
+  // Только грамматика может стать фокусом: анализатор размечает только её
+  // (решение 3), и case словарного concept'а в профиле — не повод тренировать
+  // его как «ошибку недели».
+  const top = stats.find((s) => s.per100 > 0 && grammarIds.has(s.conceptId));
+  return top ? top.conceptId : null;
 }
 
 export function focusExpired(focus: FocusState | null, today: string): boolean {
