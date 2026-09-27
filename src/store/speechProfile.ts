@@ -25,10 +25,19 @@ export type ProfileParseResult =
   | { ok: true; measurement: Measurement; mapped: number; unmapped: number }
   | { ok: false; error: string };
 
-// Проверяет, что дата в формате YYYY-MM-DD.
+// Проверяет, что дата в формате YYYY-MM-DD и является корректной календарной датой.
+// Использует round-trip подход: парсит дату, создаёт Date, форматирует обратно и сравнивает.
+// Это отвергает некорректные даты вроде 2026-13-45 или 2026-02-30.
 function isValidDate(value: unknown): value is string {
   if (typeof value !== 'string') return false;
-  return /^\d{4}-\d{2}-\d{2}$/.test(value);
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return false;
+  const [, year, month, day] = match;
+  const date = new Date(`${year}-${month}-${day}T00:00:00Z`);
+  // Проверяем, что дата валидна (не Invalid Date) и форматируется обратно в исходную строку.
+  if (isNaN(date.getTime())) return false;
+  const formatted = date.toISOString().slice(0, 10);
+  return formatted === value;
 }
 
 export function parseSpeechProfile(raw: string, content: Content): ProfileParseResult {

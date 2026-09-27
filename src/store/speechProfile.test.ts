@@ -165,4 +165,28 @@ describe('разбор профиля речи', () => {
       error: 'Файл не похож на разбор речи',
     });
   });
+
+  it('отвергает некорректную календарную дату (месяц 13)', () => {
+    const result = parseSpeechProfile(profile([], { recordedAt: '2026-13-45' }), content);
+    expect(result).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: дата записи должна быть в виде 2026-09-27',
+    });
+  });
+
+  it('отвергает некорректную календарную дату (февраль 30)', () => {
+    const result = parseSpeechProfile(profile([], { recordedAt: '2026-02-30' }), content);
+    expect(result).toEqual({
+      ok: false,
+      error: 'Разбор испорчен: дата записи должна быть в виде 2026-09-27',
+    });
+  });
+
+  it('отвергает дробное число слов', () => {
+    const result = parseSpeechProfile(profile([], { wordCount: 300.5 }), content);
+    expect(result).toEqual({
+      ok: false,
+      error: 'В разборе нет числа слов — без него не посчитать частоту',
+    });
+  });
 });
