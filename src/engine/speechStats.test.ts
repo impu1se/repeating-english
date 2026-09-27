@@ -57,11 +57,20 @@ describe('частоты ошибок речи', () => {
   });
 
   it('отдаёт неразмеченные ошибки последнего замера', () => {
-    const stats = unmappedErrorStats([
+    const stats = unmappedErrorStats(content, [
       m('2026-09-20', 100, {}, [{ label: 'старое', count: 9 }]),
       m('2026-09-27', 100, {}, [{ label: 'предлоги места', count: 3 }]),
     ]);
     expect(stats).toEqual([{ label: 'предлоги места', last: 3 }]);
+  });
+
+  it('концепт, которого больше нет в контенте, попадает в неразмеченные под своим id', () => {
+    const stats = unmappedErrorStats(content, [
+      m('2026-09-27', 100, { [a]: 2, 'ушедший-концепт': 4 }),
+    ]);
+    expect(stats).toContainEqual({ label: 'ушедший-концепт', last: 4 });
+    // известный концепт в этот список не попадает — у него есть своя строка
+    expect(stats.some((s) => s.label === a)).toBe(false);
   });
 
   it('игнорирует порядок массива и сортирует по дате', () => {

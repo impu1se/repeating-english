@@ -72,6 +72,19 @@ describe('SpeechErrors', () => {
     expect(screen.queryByRole('button', { name: /предлоги места/ })).not.toBeInTheDocument();
   });
 
+  it('неразмеченные ошибки с одинаковой меткой показываются одной строкой', async () => {
+    render(<SpeechErrors onBack={() => {}} onDrill={() => {}} />);
+
+    await pasteProfile(profileJson([
+      { conceptId: null, label: 'предлоги места', count: 2 },
+      { conceptId: null, label: 'предлоги места', count: 3 },
+    ]));
+
+    const items = await screen.findAllByText(/предлоги места/);
+    expect(items).toHaveLength(1);
+    expect(items[0]).toHaveTextContent('предлоги места — 5');
+  });
+
   it('принимает разбор из загруженного файла', async () => {
     render(<SpeechErrors onBack={() => {}} onDrill={() => {}} />);
     const file = new File(

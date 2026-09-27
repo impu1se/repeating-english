@@ -46,7 +46,7 @@ export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
   }
 
   const rows = conceptErrorStats(content, progress.measurements);
-  const unmapped = unmappedErrorStats(progress.measurements);
+  const unmapped = unmappedErrorStats(content, progress.measurements);
 
   return (
     <div>

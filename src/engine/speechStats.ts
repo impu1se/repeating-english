@@ -50,9 +50,17 @@ export function conceptErrorStats(content: Content, measurements: Measurement[])
   return rows.sort((x, y) => y.per100 - x.per100);
 }
 
-export function unmappedErrorStats(measurements: Measurement[]): { label: string; last: number }[] {
+export function unmappedErrorStats(content: Content, measurements: Measurement[]): { label: string; last: number }[] {
   if (measurements.length === 0) return [];
   const sorted = [...measurements].sort((a, b) => a.date.localeCompare(b.date));
   const last = sorted[sorted.length - 1];
-  return last.unmapped.map((u) => ({ label: u.label, last: u.count }));
+  const rows = last.unmapped.map((u) => ({ label: u.label, last: u.count }));
+  const known = new Set(content.concepts.map((c) => c.id));
+  // Концепт, которого больше нет в текущей сборке (например, после бампа
+  // версии контента — см. loadProgress), не должен пропадать молча:
+  // показываем его тут же, под собственным id вместо названия.
+  for (const [id, count] of Object.entries(last.errors)) {
+    if (!known.has(id)) rows.push({ label: id, last: count });
+  }
+  return rows;
 }

@@ -96,15 +96,19 @@ describe('формат 2', () => {
     expect(parsed.daily).toEqual(state.daily);
   });
 
-  it('круг выгрузка → загрузка не теряет замеры', () => {
+  it('круг выгрузка → загрузка не теряет замеры, фокус и день', () => {
     const state = loadProgress(content);
     state.measurements = [{ date: '2026-09-27', wordCount: 200, errors: { x: 1 }, unmapped: [] }];
+    state.focus = { conceptId: content.concepts[0].id, startedAt: '2026-09-27' };
+    state.daily = { date: '2026-09-27', listened: true, recorded: false, reviewed: true, focusDrills: 5 };
 
     const result = parseBackup(serializeProgress(state), content);
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.state.measurements).toEqual(state.measurements);
+    expect(result.state.focus).toEqual(state.focus);
+    expect(result.state.daily).toEqual(state.daily);
   });
 
   it('отбрасывает испорченный замер, а не падает', () => {

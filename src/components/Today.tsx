@@ -13,8 +13,13 @@ export interface TodayProps {
 
 const isoToday = () => new Date().toISOString().slice(0, 10);
 
+// Инициализатор состояния всегда прогоняет daily через ensureToday, поэтому
+// внутри этого экрана daily гарантированно не null — тип фиксирует это, а не
+// комментарий.
+type TodayProgress = ProgressState & { daily: DailyState };
+
 export function Today({ today = isoToday(), onOpenErrors, onOpenLevels, onDrill }: TodayProps) {
-  const [progress, setProgress] = useState<ProgressState>(() => {
+  const [progress, setProgress] = useState<TodayProgress>(() => {
     const loaded = loadProgress(content);
     return { ...loaded, daily: ensureToday(loaded.daily, today) };
   });
@@ -23,12 +28,13 @@ export function Today({ today = isoToday(), onOpenErrors, onOpenLevels, onDrill 
     saveProgress(progress);
   }, [progress]);
 
-  const daily = progress.daily ?? ensureToday(null, today);
+  const daily = progress.daily;
   const focus = progress.focus;
   const expired = focusExpired(focus, today);
-  // suggestFocus проходит по всем замерам; пересчитывать его на каждый клик
-  // по галочке незачем.
-  const suggestion = useMemo(() => suggestFocus(content, progress), [progress]);
+  // suggestFocus зависит только от замеров (и от errorCount концептов, но их
+  // этот экран не меняет); progress — новый объект после каждой галочки,
+  // поэтому пересчитывать по нему смысла нет.
+  const suggestion = useMemo(() => suggestFocus(content, progress), [progress.measurements]); // eslint-disable-line react-hooks/exhaustive-deps
   const focusConcept = focus ? content.concepts.find((c) => c.id === focus.conceptId) : undefined;
   const suggestedConcept = suggestion ? content.concepts.find((c) => c.id === suggestion) : undefined;
 
