@@ -70,6 +70,20 @@ describe('разбор профиля речи', () => {
     expect(result.measurement.errors[known]).toBe(5);
   });
 
+  it('складывает повторы неразмеченных ошибок с одинаковой меткой', () => {
+    const result = parseSpeechProfile(
+      profile([
+        { conceptId: null, label: 'предлоги места', count: 2 },
+        { conceptId: null, label: 'предлоги места', count: 3 },
+      ]),
+      content,
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.measurement.unmapped).toEqual([{ label: 'предлоги места', count: 5 }]);
+  });
+
   it('объясняет, что файл не тот', () => {
     expect(parseSpeechProfile('не json', content)).toEqual({ ok: false, error: 'Это не JSON' });
     expect(parseSpeechProfile('{"hello":1}', content)).toEqual({

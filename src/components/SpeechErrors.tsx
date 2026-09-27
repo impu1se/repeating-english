@@ -2,21 +2,12 @@ import { useRef, useState } from 'react';
 import { content } from '../content';
 import { loadProgress, saveProgress, type ProgressState } from '../store/progress';
 import { parseSpeechProfile } from '../store/speechProfile';
+import { readTextFile } from '../store/readTextFile';
 import { conceptErrorStats, unmappedErrorStats } from '../engine/speechStats';
 
 export interface SpeechErrorsProps {
   onBack: () => void;
   onDrill: (conceptId: string) => void;
-}
-
-// jsdom в этом проекте не даёт Blob.text(), а FileReader есть и там, и в Safari.
-function readText(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result));
-    reader.onerror = () => reject(reader.error);
-    reader.readAsText(file);
-  });
 }
 
 const ARROW = { down: '↓', up: '↑', flat: '=', new: '·' } as const;
@@ -55,7 +46,9 @@ export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
         <p className="subtitle">частота в живой речи, на сто слов</p>
       </header>
 
-      {rows.length === 0 && <p>Замеров пока нет. Запиши две минуты речи, расшифруй и принеси разбор сюда.</p>}
+      {progress.measurements.length === 0 && (
+        <p>Замеров пока нет. Запиши две минуты речи, расшифруй и принеси разбор сюда.</p>
+      )}
 
       <ul className="modules">
         {rows.map((r) => (
@@ -82,7 +75,9 @@ export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
 
       <section className="backup">
         <button onClick={() => fileRef.current?.click()}>Загрузить файлом</button>
-        <button onClick={() => setPasting((v) => !v)}>Вставить текстом</button>
+        <button aria-expanded={pasting} onClick={() => setPasting((v) => !v)}>
+          Вставить текстом
+        </button>
         <input
           ref={fileRef}
           className="sr-only"
@@ -91,7 +86,11 @@ export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
           aria-label="файл разбора"
           onChange={(e) => {
             const chosen = e.target.files?.[0];
-            if (chosen) void readText(chosen).then(applyProfile);
+            if (chosen) {
+              void readTextFile(chosen)
+                .then(applyProfile)
+                .catch(() => setStatus('Не удалось прочитать файл'));
+            }
             e.target.value = '';
           }}
         />
@@ -106,7 +105,7 @@ export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
             <button onClick={() => applyProfile(draft)}>Загрузить разбор</button>
           </div>
         )}
-        {status && <p role="status">{status}</p>}
+        <p role="status">{status}</p>
       </section>
     </div>
   );

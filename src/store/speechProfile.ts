@@ -69,7 +69,10 @@ export function parseSpeechProfile(raw: string, content: Content): ProfileParseR
 
   const known = new Set(content.concepts.map((c) => c.id));
   const errors: Record<string, number> = {};
-  const unmapped: { label: string; count: number }[] = [];
+  // Записи без концепта складываем по label так же, как записи с концептом
+  // складываются по conceptId: иначе одна и та же метка, повторённая в
+  // разборе дважды, даёт на экране два элемента списка с одинаковым ключом.
+  const unmappedByLabel: Record<string, number> = {};
   let mapped = 0;
 
   for (const e of file.errors) {
@@ -90,9 +93,11 @@ export function parseSpeechProfile(raw: string, content: Content): ProfileParseR
       errors[e.conceptId] = (errors[e.conceptId] ?? 0) + e.count;
       mapped += 1;
     } else {
-      unmapped.push({ label: e.label, count: e.count });
+      unmappedByLabel[e.label] = (unmappedByLabel[e.label] ?? 0) + e.count;
     }
   }
+
+  const unmapped = Object.entries(unmappedByLabel).map(([label, count]) => ({ label, count }));
 
   const measurement: Measurement = {
     date: recordedAt,

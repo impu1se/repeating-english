@@ -64,6 +64,25 @@ describe('SpeechErrors', () => {
 
     expect(await screen.findByText(/предлоги места/)).toBeInTheDocument();
     expect(screen.getByText(/тренировать нечем/)).toBeInTheDocument();
+    // Замер уже есть, хотя все его ошибки без концепта: пустое состояние
+    // не должно перекрывать реальный (пусть и целиком неразмеченный) замер.
+    expect(screen.queryByText(/Замеров пока нет/)).not.toBeInTheDocument();
+    // У ошибки без концепта нет кнопки — тренировать её нечем.
+    expect(screen.queryByRole('button', { name: /предлоги места/ })).not.toBeInTheDocument();
+  });
+
+  it('принимает разбор из загруженного файла', async () => {
+    render(<SpeechErrors onBack={() => {}} onDrill={() => {}} />);
+    const file = new File(
+      [profileJson([{ conceptId: grammar[0].id, label: 'артикли', count: 6 }])],
+      'profile.json',
+      { type: 'application/json' },
+    );
+
+    await userEvent.upload(screen.getByLabelText('файл разбора'), file);
+
+    expect(await screen.findByText(new RegExp(grammar[0].title))).toBeInTheDocument();
+    expect(loadProgress(content).measurements).toHaveLength(1);
   });
 
   it('ведёт в тренировку концепта', async () => {
