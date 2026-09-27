@@ -64,6 +64,7 @@
 **Files:**
 - Modify: `src/store/progress.ts:6-9,46-56`
 - Modify: `src/store/progress.test.ts`
+- Modify: `src/engine/scheduler.test.ts:23,52` (два литерала `ProgressState`)
 
 **Interfaces:**
 - Consumes: ничего.
@@ -185,7 +186,27 @@ export function loadProgress(content: Content): ProgressState {
 }
 ```
 
-- [ ] **Step 5: Убедиться, что тесты проходят**
+- [ ] **Step 5: Починить литералы `ProgressState` в тестах планировщика**
+
+Три новых поля обязательны, поэтому объектные литералы, объявленные как
+`ProgressState`, перестают компилироваться. В репозитории таких два, оба в
+`src/engine/scheduler.test.ts` (строки 23 и 52). В каждый добавить три поля
+рядом с `concepts`:
+
+```ts
+    measurements: [],
+    focus: null,
+    daily: null,
+```
+
+Больше нигде править не нужно: `Training.tsx` собирает состояние через
+`{ ...progress }`, а литерал в `Training.test.tsx` не типизирован и уходит в
+`JSON.stringify`. Тесты `Training` этой волной не меняются.
+
+Run: `npx tsc --noEmit`
+Expected: ошибок нет.
+
+- [ ] **Step 6: Убедиться, что тесты проходят**
 
 Run: `npx vitest run src/store/progress.test.ts`
 Expected: все зелёные, включая прежние тесты файла без правок.
@@ -193,10 +214,10 @@ Expected: все зелёные, включая прежние тесты фай
 Run: `npm test && npm run build && npm run lint`
 Expected: 115 passed, сборка и линт чистые.
 
-- [ ] **Step 6: Закоммитить**
+- [ ] **Step 7: Закоммитить**
 
 ```bash
-git add src/store/progress.ts src/store/progress.test.ts
+git add src/store/progress.ts src/store/progress.test.ts src/engine/scheduler.test.ts
 git commit -m "feat: progress keeps measurements, focus and daily state"
 ```
 
@@ -1597,6 +1618,7 @@ git commit -m "feat: single-concept focus drill capped at the daily norm"
 - Create: `src/components/Today.test.tsx`
 - Modify: `src/App.tsx` (целиком)
 - Modify: `src/App.test.tsx`
+- Modify: `src/components/ModuleList.tsx` (проп `onBack` и кнопка «← Сегодня» в корне)
 - Modify: `src/index.css` (добавить блок в конец)
 
 **Interfaces:**
