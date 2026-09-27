@@ -13,4 +13,12 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
     },
   },
+  {
+    // node-скрипты сборки (например, генератор каталога концептов) —
+    // им нужны глобалы node, которых нет в браузерном коде приложения.
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      globals: { console: 'readonly' },
+    },
+  },
 );

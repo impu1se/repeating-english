@@ -3,15 +3,69 @@ import { emptyConceptProgress, type ConceptProgress } from '../engine/scoring';
 
 const KEY = 're:progress';
 
+// Один разбор расшифровки речи. Хранится целиком, а не числами на концептах:
+// иначе ошибкам без концепта (предлоги, произношение) не на чем висеть.
+export interface Measurement {
+  date: string; // YYYY-MM-DD
+  wordCount: number; // нужен, чтобы считать частоту на 100 слов
+  errors: Record<string, number>; // conceptId -> сколько раз ошибся
+  unmapped: { label: string; count: number }[]; // ошибки без концепта
+}
+
+export interface FocusState {
+  conceptId: string;
+  startedAt: string; // YYYY-MM-DD
+}
+
+export interface DailyState {
+  date: string; // YYYY-MM-DD
+  listened: boolean;
+  recorded: boolean;
+  reviewed: boolean;
+  focusDrills: number;
+}
+
 export interface ProgressState {
   contentVersion: string;
   concepts: Record<string, ConceptProgress>;
+  measurements: Measurement[];
+  focus: FocusState | null;
+  daily: DailyState | null;
+}
+
+const MEASUREMENT_DATE_SHAPE = /^\d{4}-\d{2}-\d{2}$/;
+
+function isPositiveInteger(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value > 0;
+}
+
+// Проверяет форму одного замера из чужого файла (бэкапа или уже лежащего в
+// localStorage): без неё один битый элемент валит speechStats изнутри, а
+// Today вызывает её при монтировании — значит белый экран при каждом
+// запуске, потому что плохие данные уже осели в хранилище.
+export function isMeasurement(value: unknown): value is Measurement {
+  if (typeof value !== 'object' || value === null) return false;
+  const m = value as Record<string, unknown>;
+  if (typeof m.date !== 'string' || !MEASUREMENT_DATE_SHAPE.test(m.date)) return false;
+  if (!isPositiveInteger(m.wordCount)) return false;
+  if (typeof m.errors !== 'object' || m.errors === null || Array.isArray(m.errors)) return false;
+  for (const count of Object.values(m.errors as Record<string, unknown>)) {
+    if (!isPositiveInteger(count)) return false;
+  }
+  if (!Array.isArray(m.unmapped)) return false;
+  for (const item of m.unmapped) {
+    if (typeof item !== 'object' || item === null) return false;
+    const u = item as Record<string, unknown>;
+    if (typeof u.label !== 'string' || u.label === '') return false;
+    if (!isPositiveInteger(u.count)) return false;
+  }
+  return true;
 }
 
 function freshState(content: Content): ProgressState {
   const concepts: Record<string, ConceptProgress> = {};
   for (const c of content.concepts) concepts[c.id] = emptyConceptProgress();
-  return { contentVersion: content.version, concepts };
+  return { contentVersion: content.version, concepts, measurements: [], focus: null, daily: null };
 }
 
 // conceptId -> порог его модуля; нужен, чтобы пересчитать mastered при загрузке
@@ -47,9 +101,31 @@ export function loadProgress(content: Content): ProgressState {
   const raw = localStorage.getItem(KEY);
   if (!raw) return freshState(content);
   try {
-    const parsed = JSON.parse(raw) as ProgressState;
-    if (parsed.contentVersion !== content.version) return freshState(content);
-    return mergeConcepts(content, parsed.concepts);
+    const parsed = JSON.parse(raw) as Partial<ProgressState>;
+    // Битый элемент не валит загрузку целиком — он просто выпадает из списка.
+    const measurements = (Array.isArray(parsed.measurements) ? parsed.measurements : []).filter(isMeasurement);
+    if (parsed.contentVersion !== content.version) {
+      // Смена версии контента стирает счёт по концептам — он завязан на
+      // сборку (переименованные/убранные концепты делают старые числа
+      // бессмысленными). Замеры речи и состояние дня контентом не завязаны:
+      // каждый замер стоит пользователю недели реальной речи, а сравнивать
+      // замеры друг с другом — весь смысл фичи, поэтому они переживают
+      // бамп версии. Фокус переносится, только если концепт ещё существует
+      // в новом контенте — иначе тренировать его нечем.
+      const fresh = freshState(content);
+      fresh.measurements = measurements;
+      fresh.daily = parsed.daily ?? null;
+      const focus = parsed.focus ?? null;
+      fresh.focus = focus !== null && content.concepts.some((c) => c.id === focus.conceptId) ? focus : null;
+      return fresh;
+    }
+    const merged = mergeConcepts(content, parsed.concepts ?? {});
+    // mergeConcepts отвечает только за концепты; поля верхнего уровня
+    // переносятся здесь, иначе они молча исчезнут при перезапуске
+    merged.measurements = measurements;
+    merged.focus = parsed.focus ?? null;
+    merged.daily = parsed.daily ?? null;
+    return merged;
   } catch {
     return freshState(content);
   }

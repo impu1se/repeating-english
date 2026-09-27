@@ -2,19 +2,10 @@ import { useRef, useState } from 'react';
 import { content } from '../content';
 import { loadProgress, saveProgress } from '../store/progress';
 import { serializeProgress, parseBackup, backupFileName } from '../store/backup';
+import { readTextFile } from '../store/readTextFile';
 
 export interface ProgressBackupProps {
   onImported: () => void;
-}
-
-// jsdom в этом проекте не даёт Blob.text(), а FileReader есть и там, и в Safari.
-function readText(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result));
-    reader.onerror = () => reject(reader.error);
-    reader.readAsText(file);
-  });
 }
 
 export function ProgressBackup({ onImported }: ProgressBackupProps) {
@@ -52,7 +43,14 @@ export function ProgressBackup({ onImported }: ProgressBackupProps) {
   }
 
   async function importProgress(file: File) {
-    const result = parseBackup(await readText(file), content);
+    let raw: string;
+    try {
+      raw = await readTextFile(file);
+    } catch {
+      setStatus('Не удалось прочитать файл');
+      return;
+    }
+    const result = parseBackup(raw, content);
     if (!result.ok) {
       setStatus(result.error);
       return;

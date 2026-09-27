@@ -26,6 +26,9 @@ function progressWith(overrides: Partial<Record<string, Partial<ProgressState['c
       c1: { score: 0, mastered: false, recentExerciseIds: [], errorCount: 0 },
       c2: { score: 0, mastered: false, recentExerciseIds: [], errorCount: 0 },
     },
+    measurements: [],
+    focus: null,
+    daily: null,
   };
   for (const [id, o] of Object.entries(overrides)) base.concepts[id] = { ...base.concepts[id], ...o };
   return base;
@@ -52,6 +55,9 @@ describe('pickNextConcept', () => {
     const progress: ProgressState = {
       contentVersion: '1',
       concepts: { c1: { score: 2, mastered: false, recentExerciseIds: [], errorCount: 0 } },
+      measurements: [],
+      focus: null,
+      daily: null,
     };
     expect(pickNextConcept(content, 'm', progress)).toBe('c2');
   });

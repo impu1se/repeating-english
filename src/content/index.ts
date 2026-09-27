@@ -23,8 +23,10 @@ import * as b2Reported from './modules/b2-reported';
 import * as b2PastModals from './modules/b2-past-modals';
 
 // version is bumped ONLY on breaking changes to existing concepts/exercises —
-// бамп версии СТИРАЕТ прогресс пользователя, поэтому он оправдан лишь когда
+// бамп версии стирает счёт по концептам, поэтому он оправдан лишь когда
 // старые записи стали бессмысленными (переименование/удаление концептов).
+// Замеры речи и дневную запись бамп не стирает; фокус переживает его, только
+// если концепт остался в контенте — это переносит loadProgress сам.
 // НЕ бампать при: изменении masteryThreshold, добавлении новых упражнений или
 // концептов, правке формулировок — loadProgress доживает такие изменения сам.
 export const content: Content = {

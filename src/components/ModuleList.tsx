@@ -12,10 +12,11 @@ const levelRank = (level: string) => {
 
 export interface ModuleListProps {
   onPick: (moduleId: string) => void;
+  onBack?: () => void;
   initialLevel?: string | null; // открыть сразу внутри уровня (возврат из тренировки)
 }
 
-export function ModuleList({ onPick, initialLevel = null }: ModuleListProps) {
+export function ModuleList({ onPick, onBack, initialLevel = null }: ModuleListProps) {
   const [progress, setProgress] = useState(() => loadProgress(content));
   const [level, setLevel] = useState<string | null>(initialLevel);
   const modules = [...content.modules].sort((a, b) => levelRank(a.level) - levelRank(b.level));
@@ -24,6 +25,11 @@ export function ModuleList({ onPick, initialLevel = null }: ModuleListProps) {
     const levels = [...new Set(modules.map((m) => m.level))]; // sorted above, so ranks ascend
     return (
       <div>
+        {onBack && (
+          <nav>
+            <button onClick={onBack}>← Сегодня</button>
+          </nav>
+        )}
         <h1>English Gym</h1>
         <p className="subtitle">тренажёрный зал английского</p>
         <ul className="modules levels">
