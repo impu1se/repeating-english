@@ -84,6 +84,23 @@ describe('разбор профиля речи', () => {
     expect(result.measurement.unmapped).toEqual([{ label: 'предлоги места', count: 5 }]);
   });
 
+  it('mapped и unmapped считают виды ошибок, а не строки разбора', () => {
+    const result = parseSpeechProfile(
+      profile([
+        { conceptId: known, label: 'артикли', count: 2 },
+        { conceptId: known, label: 'артикли снова', count: 3 },
+        { conceptId: null, label: 'предлоги места', count: 1 },
+        { conceptId: null, label: 'предлоги места', count: 4 },
+      ]),
+      content,
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.mapped).toBe(1);
+    expect(result.unmapped).toBe(1);
+  });
+
   it('объясняет, что файл не тот', () => {
     expect(parseSpeechProfile('не json', content)).toEqual({ ok: false, error: 'Это не JSON' });
     expect(parseSpeechProfile('{"hello":1}', content)).toEqual({

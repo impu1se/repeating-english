@@ -73,7 +73,6 @@ export function parseSpeechProfile(raw: string, content: Content): ProfileParseR
   // складываются по conceptId: иначе одна и та же метка, повторённая в
   // разборе дважды, даёт на экране два элемента списка с одинаковым ключом.
   const unmappedByLabel: Record<string, number> = {};
-  let mapped = 0;
 
   for (const e of file.errors) {
     // Проверяем, что label — непустая строка.
@@ -91,7 +90,6 @@ export function parseSpeechProfile(raw: string, content: Content): ProfileParseR
     // концепт не повод отвергать файл, но и тренировать его нечем.
     if (e.conceptId !== null && known.has(e.conceptId)) {
       errors[e.conceptId] = (errors[e.conceptId] ?? 0) + e.count;
-      mapped += 1;
     } else {
       unmappedByLabel[e.label] = (unmappedByLabel[e.label] ?? 0) + e.count;
     }
@@ -105,5 +103,8 @@ export function parseSpeechProfile(raw: string, content: Content): ProfileParseR
     errors,
     unmapped,
   };
-  return { ok: true, measurement, mapped, unmapped: unmapped.length };
+  // mapped/unmapped считают виды ошибок (концептов и меток), а не строк
+  // разбора: это то же, что показывает экран — один ряд на концепт, один на
+  // метку, — поэтому предложение статуса и список под ним согласованы.
+  return { ok: true, measurement, mapped: Object.keys(errors).length, unmapped: unmapped.length };
 }
