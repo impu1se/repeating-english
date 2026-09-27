@@ -29,6 +29,10 @@ export function FocusDrill({ conceptId, today, onExit, content = defaultContent,
 
   const concept = content.concepts.find((c) => c.id === conceptId)!;
   const mod = content.modules.find((m) => m.conceptIds.includes(conceptId))!;
+  // Дрилл засчитывается в блок фокуса, только когда открытый концепт и есть
+  // текущая ошибка недели: иначе «Мои ошибки» могли бы закрывать день в обход
+  // фокуса — а спека держит ровно одну ошибку недели за раз.
+  const isFocus = progress.focus?.conceptId === conceptId;
   const done = progress.daily?.focusDrills ?? 0;
 
   const exercise = useMemo(
@@ -45,6 +49,12 @@ export function FocusDrill({ conceptId, today, onExit, content = defaultContent,
     const poolSize = content.exercises.filter((e) => e.conceptId === conceptId).length;
     const updated = applyAnswer(progress.concepts[conceptId], correct, exercise.points, mod.masteryThreshold);
     updated.recentExerciseIds = pushRecent(progress.concepts[conceptId].recentExerciseIds, exercise.id, poolSize);
+    if (!isFocus) {
+      // Тренировка не из блока фокуса не считается в день: грамматика входит
+      // в дневной минимум только через ошибку недели (решение 15).
+      setProgress({ ...progress, concepts: { ...progress.concepts, [conceptId]: updated } });
+      return;
+    }
     const daily = ensureToday(progress.daily, today);
     setProgress({
       ...progress,
@@ -60,13 +70,15 @@ export function FocusDrill({ conceptId, today, onExit, content = defaultContent,
         <nav>
           <button onClick={onExit}>← Сегодня</button>
         </nav>
-        <h2>Ошибка недели: {concept.title}</h2>
-        <p className="module-score">
-          <span>{`${done} / ${FOCUS_DRILLS_PER_DAY}`}</span>
-          <span className="bar" aria-hidden="true">
-            <span className="bar-fill" style={{ width: `${(done / FOCUS_DRILLS_PER_DAY) * 100}%` }} />
-          </span>
-        </p>
+        <h2>{isFocus ? `Ошибка недели: ${concept.title}` : `Тренировка: ${concept.title}`}</h2>
+        {isFocus && (
+          <p className="module-score">
+            <span>{`${done} / ${FOCUS_DRILLS_PER_DAY}`}</span>
+            <span className="bar" aria-hidden="true">
+              <span className="bar-fill" style={{ width: `${(done / FOCUS_DRILLS_PER_DAY) * 100}%` }} />
+            </span>
+          </p>
+        )}
         {concept.theory && (
           <details key={'theory' + tick} className="theory">
             <summary>📖 Правило</summary>
@@ -75,7 +87,7 @@ export function FocusDrill({ conceptId, today, onExit, content = defaultContent,
         )}
       </header>
 
-      {done >= FOCUS_DRILLS_PER_DAY && !answered ? (
+      {isFocus && done >= FOCUS_DRILLS_PER_DAY && !answered ? (
         // Баннер закрывает блок только после того, как ответ на последнее
         // задание прочитан и отпущен «Дальше» — иначе фидбэк по восьмому
         // ответу исчезает мгновенно, не успев показаться.

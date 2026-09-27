@@ -6,7 +6,12 @@ import { loadProgress, saveProgress } from '../store/progress';
 import { FOCUS_DRILLS_PER_DAY } from '../engine/daily';
 import type { Content } from '../types';
 
-beforeEach(() => localStorage.clear());
+beforeEach(() => {
+  localStorage.clear();
+  // По умолчанию концепт 'c' — ошибка недели: так вело себя большинство
+  // существующих тестов ниже ещё до разделения на фокус/не-фокус.
+  saveProgress({ ...loadProgress(fixture), focus: { conceptId: 'c', startedAt: '2026-09-27' } });
+});
 
 // Фикстура вместо настоящего контента: один концепт и одно задание типа
 // choose_word. Выбор варианта сразу засчитывает ответ, поэтому проверка
@@ -132,5 +137,29 @@ describe('FocusDrill', () => {
       <FocusDrill conceptId="c" today="2026-09-27" onExit={() => {}} content={emptyFixture} rng={() => 0} />,
     );
     expect(screen.getByText('У этого концепта нет заданий.')).toBeInTheDocument();
+  });
+
+  it('дрилл не из фокуса не называется ошибкой недели и не трогает счётчик дня', async () => {
+    // концепт 'c' — не фокус: фокуса вообще нет
+    saveProgress({ ...loadProgress(fixture), focus: null });
+    renderDrill();
+
+    expect(screen.getByRole('heading', { name: 'Тренировка: Артикли' })).toBeInTheDocument();
+    expect(screen.queryByText(`0 / ${FOCUS_DRILLS_PER_DAY}`)).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'the' }));
+
+    expect(loadProgress(fixture).daily?.focusDrills ?? 0).toBe(0);
+  });
+
+  it('дрилл из фокуса называется ошибкой недели и засчитывается в день', async () => {
+    // фокус на 'c' выставлен в beforeEach
+    renderDrill();
+
+    expect(screen.getByRole('heading', { name: 'Ошибка недели: Артикли' })).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'the' }));
+
+    expect(loadProgress(fixture).daily?.focusDrills).toBe(1);
   });
 });
