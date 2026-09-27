@@ -25,9 +25,11 @@ export function ModuleList({ onPick, onBack, initialLevel = null }: ModuleListPr
     const levels = [...new Set(modules.map((m) => m.level))]; // sorted above, so ranks ascend
     return (
       <div>
-        <nav>
-          <button onClick={onBack}>← Сегодня</button>
-        </nav>
+        {onBack && (
+          <nav>
+            <button onClick={onBack}>← Сегодня</button>
+          </nav>
+        )}
         <h1>English Gym</h1>
         <p className="subtitle">тренажёрный зал английского</p>
         <ul className="modules levels">

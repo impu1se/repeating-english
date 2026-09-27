@@ -47,7 +47,7 @@ export function Today({ today = isoToday(), onOpenErrors, onOpenLevels, onDrill 
       <h1>Сегодня</h1>
       <p className="subtitle">минимум, который закрывается и в плохой день</p>
 
-      {isDayComplete(daily) && <p className="banner">Минимум на сегодня закрыт</p>}
+      {isDayComplete(daily) && <p className="banner today-done">Минимум на сегодня закрыт</p>}
 
       <section>
         <h2 className="level-header">Вне приложения</h2>
@@ -62,7 +62,9 @@ export function Today({ today = isoToday(), onOpenErrors, onOpenLevels, onDrill 
         <h2 className="level-header">Ошибка недели</h2>
         {expired && (
           <p className="banner" role="status">
-            Неделя прошла. Посмотри, изменилась ли частота, и выбери следующую.
+            {suggestedConcept
+              ? 'Неделя прошла. Посмотри, изменилась ли частота, и выбери следующую.'
+              : 'Неделя прошла. Принеси новый разбор речи, чтобы выбрать следующую ошибку.'}
           </p>
         )}
         {focusConcept ? (
