@@ -45,6 +45,24 @@ function renderDrill(onExit: () => void = () => {}) {
   );
 }
 
+// Концепт без единого задания: pickNextExercise возвращает null для пустого
+// пула, и это единственный способ проверить ветку «нет заданий», а не просто
+// прочитать код и поверить, что она сработает.
+const emptyFixture: Content = {
+  version: 'focus-drill-empty-test',
+  modules: [{ id: 'm', title: 'Тест', level: 'A1', masteryThreshold: 20, conceptIds: ['c'] }],
+  concepts: [
+    {
+      id: 'c',
+      moduleId: 'm',
+      title: 'Пустой концепт',
+      kind: 'grammar',
+      exerciseIds: [],
+    },
+  ],
+  exercises: [],
+};
+
 describe('FocusDrill', () => {
   it('показывает название концепта и счётчик дня', () => {
     renderDrill();
@@ -88,5 +106,31 @@ describe('FocusDrill', () => {
     renderDrill(onExit);
     await userEvent.click(screen.getByRole('button', { name: '← Сегодня' }));
     expect(onExit).toHaveBeenCalled();
+  });
+
+  it('после восьмого ответа сначала показывает результат, а блок закрывает только «Дальше»', async () => {
+    const state = loadProgress(fixture);
+    state.daily = { date: '2026-09-27', listened: false, recorded: false, reviewed: false, focusDrills: FOCUS_DRILLS_PER_DAY - 1 };
+    saveProgress(state);
+
+    renderDrill();
+    await userEvent.click(screen.getByRole('button', { name: 'the' }));
+
+    // Восьмой ответ уже засчитан, но фидбэк ответа ещё на экране — баннер
+    // не должен подменить его мгновенно.
+    expect(loadProgress(fixture).daily?.focusDrills).toBe(FOCUS_DRILLS_PER_DAY);
+    expect(screen.getByRole('status')).toHaveTextContent('Неверно');
+    expect(screen.queryByText(/Свободная тренировка/)).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Дальше' }));
+
+    expect(screen.getByRole('status')).toHaveTextContent('Блок фокуса закрыт');
+  });
+
+  it('показывает сообщение, если у концепта нет заданий', () => {
+    render(
+      <FocusDrill conceptId="c" today="2026-09-27" onExit={() => {}} content={emptyFixture} rng={() => 0} />,
+    );
+    expect(screen.getByText('У этого концепта нет заданий.')).toBeInTheDocument();
   });
 });

@@ -75,8 +75,11 @@ export function FocusDrill({ conceptId, today, onExit, content = defaultContent,
         )}
       </header>
 
-      {done >= FOCUS_DRILLS_PER_DAY ? (
-        <p className="banner" role="status">Блок фокуса закрыт на сегодня. Можно продолжать, но норма уже сделана.</p>
+      {done >= FOCUS_DRILLS_PER_DAY && !answered ? (
+        // Баннер закрывает блок только после того, как ответ на последнее
+        // задание прочитан и отпущен «Дальше» — иначе фидбэк по восьмому
+        // ответу исчезает мгновенно, не успев показаться.
+        <p className="banner" role="status">Блок фокуса закрыт на сегодня. Свободная тренировка есть в модулях.</p>
       ) : exercise && Renderer ? (
         <>
           {/* getRenderer отдаёт стабильную ссылку из статического реестра */}
