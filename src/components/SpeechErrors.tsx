@@ -1,0 +1,113 @@
+import { useRef, useState } from 'react';
+import { content } from '../content';
+import { loadProgress, saveProgress, type ProgressState } from '../store/progress';
+import { parseSpeechProfile } from '../store/speechProfile';
+import { conceptErrorStats, unmappedErrorStats } from '../engine/speechStats';
+
+export interface SpeechErrorsProps {
+  onBack: () => void;
+  onDrill: (conceptId: string) => void;
+}
+
+// jsdom в этом проекте не даёт Blob.text(), а FileReader есть и там, и в Safari.
+function readText(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(reader.error);
+    reader.readAsText(file);
+  });
+}
+
+const ARROW = { down: '↓', up: '↑', flat: '=', new: '·' } as const;
+
+export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [progress, setProgress] = useState<ProgressState>(() => loadProgress(content));
+  const [status, setStatus] = useState<string | null>(null);
+  const [pasting, setPasting] = useState(false);
+  const [draft, setDraft] = useState('');
+
+  function applyProfile(raw: string) {
+    const result = parseSpeechProfile(raw, content);
+    if (!result.ok) {
+      setStatus(result.error);
+      return;
+    }
+    const next: ProgressState = { ...progress, measurements: [...progress.measurements, result.measurement] };
+    saveProgress(next);
+    setProgress(next);
+    setPasting(false);
+    setDraft('');
+    setStatus(`Замер принят: размечено ${result.mapped}, без концепта ${result.unmapped}`);
+  }
+
+  const rows = conceptErrorStats(content, progress.measurements);
+  const unmapped = unmappedErrorStats(progress.measurements);
+
+  return (
+    <div>
+      <header>
+        <nav>
+          <button onClick={onBack}>← Сегодня</button>
+        </nav>
+        <h2>Мои ошибки</h2>
+        <p className="subtitle">частота в живой речи, на сто слов</p>
+      </header>
+
+      {rows.length === 0 && <p>Замеров пока нет. Запиши две минуты речи, расшифруй и принеси разбор сюда.</p>}
+
+      <ul className="modules">
+        {rows.map((r) => (
+          <li key={r.conceptId}>
+            <button onClick={() => onDrill(r.conceptId)}>
+              {r.title} — {r.per100} на 100 слов {ARROW[r.trend]}
+              {r.prevPer100 !== null && ` (было ${r.prevPer100})`}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {unmapped.length > 0 && (
+        <section>
+          <h3 className="level-header">Без концепта</h3>
+          <p className="subtitle">тренировать нечем, но видеть надо</p>
+          <ul className="gap-feedback">
+            {unmapped.map((u) => (
+              <li key={u.label}>{u.label} — {u.last}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section className="backup">
+        <button onClick={() => fileRef.current?.click()}>Загрузить файлом</button>
+        <button onClick={() => setPasting((v) => !v)}>Вставить текстом</button>
+        <input
+          ref={fileRef}
+          className="sr-only"
+          type="file"
+          accept="application/json,.json"
+          aria-label="файл разбора"
+          onChange={(e) => {
+            const chosen = e.target.files?.[0];
+            if (chosen) void readText(chosen).then(applyProfile);
+            e.target.value = '';
+          }}
+        />
+        {pasting && (
+          <div>
+            <textarea
+              aria-label="текст разбора"
+              value={draft}
+              rows={6}
+              onChange={(e) => setDraft(e.target.value)}
+            />
+            <button onClick={() => applyProfile(draft)}>Загрузить разбор</button>
+          </div>
+        )}
+        {status && <p role="status">{status}</p>}
+      </section>
+    </div>
+  );
+}
