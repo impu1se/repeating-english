@@ -733,7 +733,7 @@ Run: `npx vitest run src/store/speechProfile.test.ts`
 Expected: 5 passed.
 
 Run: `npm test && npm run build && npm run lint`
-Expected: 132 passed, чисто. (Раунд правок добавил шесть тестов проверки входа сверх изначальных пяти.)
+Expected: 135 passed, чисто. (Два раунда правок добавили девять тестов проверки входа сверх изначальных пяти.)
 
 - [ ] **Step 5: Закоммитить**
 
@@ -908,7 +908,7 @@ Run: `npx vitest run src/engine/speechStats.test.ts`
 Expected: 7 passed.
 
 Run: `npm test && npm run build && npm run lint`
-Expected: 139 passed, чисто.
+Expected: 142 passed, чисто.
 
 - [ ] **Step 5: Закоммитить**
 
@@ -1123,7 +1123,7 @@ Run: `npx vitest run src/engine/focus.test.ts src/engine/daily.test.ts`
 Expected: 11 passed.
 
 Run: `npm test && npm run build && npm run lint`
-Expected: 150 passed, чисто.
+Expected: 153 passed, чисто.
 
 - [ ] **Step 7: Закоммитить**
 
@@ -1364,7 +1364,7 @@ Run: `npx vitest run src/components/SpeechErrors.test.tsx`
 Expected: 5 passed.
 
 Run: `npm test && npm run build && npm run lint`
-Expected: 155 passed, чисто.
+Expected: 158 passed, чисто.
 
 - [ ] **Step 5: Закоммитить**
 
@@ -1600,7 +1600,7 @@ Run: `npx vitest run src/components/FocusDrill.test.tsx`
 Expected: 5 passed.
 
 Run: `npm test && npm run build && npm run lint`
-Expected: 160 passed, чисто.
+Expected: 163 passed, чисто.
 
 - [ ] **Step 5: Закоммитить**
 
@@ -1968,7 +1968,7 @@ Run: `npx vitest run src/components/Today.test.tsx src/App.test.tsx`
 Expected: все зелёные.
 
 Run: `npm test && npm run build && npm run lint`
-Expected: 167 passed, чисто.
+Expected: 170 passed, чисто.
 
 - [ ] **Step 8: Закоммитить**
 
