@@ -140,16 +140,20 @@ describe('FocusDrill', () => {
   });
 
   it('дрилл не из фокуса не называется ошибкой недели и не трогает счётчик дня', async () => {
-    // концепт 'c' — не фокус: фокуса вообще нет
-    saveProgress({ ...loadProgress(fixture), focus: null });
+    // концепт 'c' — не фокус: фокуса вообще нет. Счётчик дня уже ненулевой,
+    // чтобы проверить именно «не трогает», а не только «остался нулём».
+    const state = loadProgress(fixture);
+    state.focus = null;
+    state.daily = { date: '2026-09-27', listened: false, recorded: false, reviewed: false, focusDrills: 3 };
+    saveProgress(state);
     renderDrill();
 
     expect(screen.getByRole('heading', { name: 'Тренировка: Артикли' })).toBeInTheDocument();
-    expect(screen.queryByText(`0 / ${FOCUS_DRILLS_PER_DAY}`)).not.toBeInTheDocument();
+    expect(screen.queryByText(`3 / ${FOCUS_DRILLS_PER_DAY}`)).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole('button', { name: 'the' }));
 
-    expect(loadProgress(fixture).daily?.focusDrills ?? 0).toBe(0);
+    expect(loadProgress(fixture).daily?.focusDrills).toBe(3);
   });
 
   it('дрилл из фокуса называется ошибкой недели и засчитывается в день', async () => {

@@ -33,8 +33,8 @@ export function suggestFocus(content: Content, progress: ProgressState): string 
   const grammarIds = new Set(content.concepts.filter((c) => c.kind === 'grammar').map((c) => c.id));
   const stats = conceptErrorStats(content, progress.measurements);
   // Только грамматика может стать фокусом: анализатор размечает только её
-  // (решение 3), и case словарного concept'а в профиле — не повод тренировать
-  // его как «ошибку недели».
+  // (решение 3), а словарный концепт в профиле — не повод тренировать его
+  // как «ошибку недели».
   const top = stats.find((s) => s.per100 > 0 && grammarIds.has(s.conceptId));
   return top ? top.conceptId : null;
 }
