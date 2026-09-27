@@ -4,8 +4,12 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { createServer } from 'vite';
 
 const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
-const { content } = await server.ssrLoadModule('/src/content/index.ts');
-await server.close();
+let content;
+try {
+  ({ content } = await server.ssrLoadModule('/src/content/index.ts'));
+} finally {
+  await server.close();
+}
 
 const grammar = content.concepts.filter((c) => c.kind === 'grammar');
 const firstLine = (t) => (t ?? '').split('\n')[0].trim();
