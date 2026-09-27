@@ -25,12 +25,24 @@ export function SpeechErrors({ onBack, onDrill }: SpeechErrorsProps) {
       setStatus(result.error);
       return;
     }
-    const next: ProgressState = { ...progress, measurements: [...progress.measurements, result.measurement] };
+    // Повторная вставка того же разбора — обычное дело (например, после
+    // опечатки): замер с той же датой заменяет прежний, а не дублирует его —
+    // иначе два замера с одинаковой датой читаются статистикой как «последний
+    // и предыдущий» и любой тренд плющится в сравнение с самим собой.
+    const existingIndex = progress.measurements.findIndex((m) => m.date === result.measurement.date);
+    const measurements = existingIndex >= 0
+      ? progress.measurements.map((m, i) => (i === existingIndex ? result.measurement : m))
+      : [...progress.measurements, result.measurement];
+    const next: ProgressState = { ...progress, measurements };
     saveProgress(next);
     setProgress(next);
     setPasting(false);
     setDraft('');
-    setStatus(`Замер принят: размечено ${result.mapped}, без концепта ${result.unmapped}`);
+    setStatus(
+      existingIndex >= 0
+        ? `Замер за эту дату обновлён: размечено ${result.mapped}, без концепта ${result.unmapped}`
+        : `Замер принят: размечено ${result.mapped}, без концепта ${result.unmapped}`,
+    );
   }
 
   const rows = conceptErrorStats(content, progress.measurements);

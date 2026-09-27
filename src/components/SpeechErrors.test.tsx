@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { SpeechErrors } from './SpeechErrors';
 import { content } from '../content';
 import { loadProgress } from '../store/progress';
+import { conceptErrorStats } from '../engine/speechStats';
 
 beforeEach(() => localStorage.clear());
 
@@ -83,6 +84,27 @@ describe('SpeechErrors', () => {
 
     expect(await screen.findByText(new RegExp(grammar[0].title))).toBeInTheDocument();
     expect(loadProgress(content).measurements).toHaveLength(1);
+  });
+
+  it('повторная вставка того же профиля заменяет замер за эту дату, а не плющит тренд', async () => {
+    render(<SpeechErrors onBack={() => {}} onDrill={() => {}} />);
+
+    await pasteProfile(profileJson([{ conceptId: grammar[0].id, label: 'артикли', count: 6 }]));
+    await screen.findByText(new RegExp(grammar[0].title));
+
+    // Тот же день, другой разбор той же речи (например, поправили опечатку).
+    await pasteProfile(profileJson([{ conceptId: grammar[0].id, label: 'артикли', count: 2 }]));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Замер за эту дату обновлён');
+    const measurements = loadProgress(content).measurements;
+    expect(measurements).toHaveLength(1);
+    expect(measurements[0].errors[grammar[0].id]).toBe(2);
+
+    const stats = conceptErrorStats(content, measurements);
+    const row = stats.find((s) => s.conceptId === grammar[0].id)!;
+    // Один замер — предыдущего нет, тренд «новый», а не «плоский» сам с собой.
+    expect(row.trend).toBe('new');
+    expect(row.prevPer100).toBeNull();
   });
 
   it('ведёт в тренировку концепта', async () => {
