@@ -1,6 +1,6 @@
 import type { Content } from '../types';
 import type { ConceptProgress } from '../engine/scoring';
-import { mergeConcepts, type ProgressState, type Measurement, type FocusState, type DailyState } from './progress';
+import { mergeConcepts, isMeasurement, type ProgressState, type Measurement, type FocusState, type DailyState } from './progress';
 
 // Версия формата файла, а не версия контента. Вторая версия добавила замеры
 // речи, фокус недели и состояние дня.
@@ -64,7 +64,8 @@ export function parseBackup(raw: string, content: Content): ParseResult {
   const incoming = file.concepts as Record<string, ConceptProgress>;
   const state = mergeConcepts(content, incoming);
   // Файл первой версии не знает про замеры — подставляем пустые, а не падаем.
-  state.measurements = Array.isArray(file.measurements) ? file.measurements : [];
+  // Битый элемент (чужой файл, ручная правка) выпадает, а не валит импорт.
+  state.measurements = Array.isArray(file.measurements) ? file.measurements.filter(isMeasurement) : [];
   state.focus = file.focus ?? null;
   state.daily = file.daily ?? null;
   const restored = Object.keys(state.concepts).filter((id) => incoming[id] !== undefined).length;

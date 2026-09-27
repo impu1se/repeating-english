@@ -107,6 +107,29 @@ describe('формат 2', () => {
     expect(result.state.measurements).toEqual(state.measurements);
   });
 
+  it('отбрасывает испорченный замер, а не падает', () => {
+    const json = JSON.stringify({
+      app: 'english-gym',
+      format: 2,
+      exportedAt: '2026-09-13T10:00:00.000Z',
+      contentVersion: content.version,
+      concepts: {},
+      measurements: [
+        { date: '2026-09-27', wordCount: 100, errors: {}, unmapped: [] },
+        { date: '2026-09-28', wordCount: -5, errors: {}, unmapped: [] },
+      ],
+      focus: null,
+      daily: null,
+    });
+
+    const result = parseBackup(json, content);
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.state.measurements).toHaveLength(1);
+    expect(result.state.measurements[0].date).toBe('2026-09-27');
+  });
+
   it('принимает файл первой версии и подставляет пустые поля', () => {
     const old = JSON.stringify({
       app: 'english-gym',

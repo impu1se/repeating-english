@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { loadProgress, saveProgress, pushRecent } from './progress';
+import { loadProgress, saveProgress, pushRecent, isMeasurement } from './progress';
 import type { Content } from '../types';
 
 const content: Content = {
@@ -112,5 +112,60 @@ describe('бамп версии контента', () => {
 
     expect(loadProgress(contentV3).focus).toEqual(state.focus);
     expect(loadProgress(contentV3NoC1).focus).toBeNull();
+  });
+});
+
+describe('isMeasurement', () => {
+  const valid = { date: '2026-09-27', wordCount: 100, errors: { c1: 2 }, unmapped: [{ label: 'x', count: 1 }] };
+
+  it('принимает корректный замер', () => {
+    expect(isMeasurement(valid)).toBe(true);
+  });
+
+  it('отвергает не строку или не ту форму даты', () => {
+    expect(isMeasurement({ ...valid, date: '27-09-2026' })).toBe(false);
+    expect(isMeasurement({ ...valid, date: 123 })).toBe(false);
+  });
+
+  it('отвергает нецелый или неположительный wordCount', () => {
+    expect(isMeasurement({ ...valid, wordCount: 0 })).toBe(false);
+    expect(isMeasurement({ ...valid, wordCount: 1.5 })).toBe(false);
+  });
+
+  it('отвергает errors с нечисловым, неположительным значением или errors-массив', () => {
+    expect(isMeasurement({ ...valid, errors: { c1: 0 } })).toBe(false);
+    expect(isMeasurement({ ...valid, errors: { c1: 'два' } })).toBe(false);
+    expect(isMeasurement({ ...valid, errors: [] })).toBe(false);
+  });
+
+  it('отвергает unmapped без непустого label или положительного count', () => {
+    expect(isMeasurement({ ...valid, unmapped: [{ label: '', count: 1 }] })).toBe(false);
+    expect(isMeasurement({ ...valid, unmapped: [{ label: 'x', count: 0 }] })).toBe(false);
+    expect(isMeasurement({ ...valid, unmapped: 'нет' })).toBe(false);
+  });
+
+  it('отвергает не-объект', () => {
+    expect(isMeasurement(null)).toBe(false);
+    expect(isMeasurement('строка')).toBe(false);
+  });
+});
+
+describe('loadProgress отбрасывает испорченные замеры вместо падения', () => {
+  it('оставляет только валидный элемент', () => {
+    localStorage.setItem('re:progress', JSON.stringify({
+      contentVersion: content.version,
+      concepts: {},
+      measurements: [
+        { date: '2026-09-27', wordCount: 100, errors: { c1: 2 }, unmapped: [] },
+        { date: 'не дата', wordCount: 100, errors: {}, unmapped: [] },
+      ],
+      focus: null,
+      daily: null,
+    }));
+
+    const loaded = loadProgress(content);
+
+    expect(loaded.measurements).toHaveLength(1);
+    expect(loaded.measurements[0].date).toBe('2026-09-27');
   });
 });

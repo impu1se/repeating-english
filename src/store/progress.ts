@@ -33,6 +33,35 @@ export interface ProgressState {
   daily: DailyState | null;
 }
 
+const MEASUREMENT_DATE_SHAPE = /^\d{4}-\d{2}-\d{2}$/;
+
+function isPositiveInteger(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value > 0;
+}
+
+// Проверяет форму одного замера из чужого файла (бэкапа или уже лежащего в
+// localStorage): без неё один битый элемент валит speechStats изнутри, а
+// Today вызывает её при монтировании — значит белый экран при каждом
+// запуске, потому что плохие данные уже осели в хранилище.
+export function isMeasurement(value: unknown): value is Measurement {
+  if (typeof value !== 'object' || value === null) return false;
+  const m = value as Record<string, unknown>;
+  if (typeof m.date !== 'string' || !MEASUREMENT_DATE_SHAPE.test(m.date)) return false;
+  if (!isPositiveInteger(m.wordCount)) return false;
+  if (typeof m.errors !== 'object' || m.errors === null || Array.isArray(m.errors)) return false;
+  for (const count of Object.values(m.errors as Record<string, unknown>)) {
+    if (!isPositiveInteger(count)) return false;
+  }
+  if (!Array.isArray(m.unmapped)) return false;
+  for (const item of m.unmapped) {
+    if (typeof item !== 'object' || item === null) return false;
+    const u = item as Record<string, unknown>;
+    if (typeof u.label !== 'string' || u.label === '') return false;
+    if (!isPositiveInteger(u.count)) return false;
+  }
+  return true;
+}
+
 function freshState(content: Content): ProgressState {
   const concepts: Record<string, ConceptProgress> = {};
   for (const c of content.concepts) concepts[c.id] = emptyConceptProgress();
@@ -73,7 +102,8 @@ export function loadProgress(content: Content): ProgressState {
   if (!raw) return freshState(content);
   try {
     const parsed = JSON.parse(raw) as Partial<ProgressState>;
-    const measurements = Array.isArray(parsed.measurements) ? parsed.measurements : [];
+    // Битый элемент не валит загрузку целиком — он просто выпадает из списка.
+    const measurements = (Array.isArray(parsed.measurements) ? parsed.measurements : []).filter(isMeasurement);
     if (parsed.contentVersion !== content.version) {
       // Смена версии контента стирает счёт по концептам — он завязан на
       // сборку (переименованные/убранные концепты делают старые числа
