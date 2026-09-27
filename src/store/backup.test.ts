@@ -25,7 +25,7 @@ describe('резервная копия прогресса', () => {
   it('кладёт в файл версию формата и дату', () => {
     const parsed = JSON.parse(serializeProgress(loadProgress(content), new Date('2026-09-13T10:00:00Z')));
     expect(parsed.app).toBe('english-gym');
-    expect(parsed.format).toBe(1);
+    expect(parsed.format).toBe(2);
     expect(parsed.exportedAt).toBe('2026-09-13T10:00:00.000Z');
   });
 
@@ -78,5 +78,50 @@ describe('резервная копия прогресса', () => {
 
   it('называет файл по дате', () => {
     expect(backupFileName(new Date('2026-09-13T10:00:00Z'))).toBe('english-gym-progress-2026-09-13.json');
+  });
+});
+
+describe('формат 2', () => {
+  it('выгружает замеры, фокус и день', () => {
+    const state = loadProgress(content);
+    state.measurements = [{ date: '2026-09-27', wordCount: 200, errors: {}, unmapped: [] }];
+    state.focus = { conceptId: content.concepts[0].id, startedAt: '2026-09-27' };
+    state.daily = { date: '2026-09-27', listened: true, recorded: true, reviewed: false, focusDrills: 8 };
+
+    const parsed = JSON.parse(serializeProgress(state));
+
+    expect(parsed.format).toBe(2);
+    expect(parsed.measurements).toEqual(state.measurements);
+    expect(parsed.focus).toEqual(state.focus);
+    expect(parsed.daily).toEqual(state.daily);
+  });
+
+  it('круг выгрузка → загрузка не теряет замеры', () => {
+    const state = loadProgress(content);
+    state.measurements = [{ date: '2026-09-27', wordCount: 200, errors: { x: 1 }, unmapped: [] }];
+
+    const result = parseBackup(serializeProgress(state), content);
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.state.measurements).toEqual(state.measurements);
+  });
+
+  it('принимает файл первой версии и подставляет пустые поля', () => {
+    const old = JSON.stringify({
+      app: 'english-gym',
+      format: 1,
+      exportedAt: '2026-09-13T10:00:00.000Z',
+      contentVersion: content.version,
+      concepts: {},
+    });
+
+    const result = parseBackup(old, content);
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.state.measurements).toEqual([]);
+    expect(result.state.focus).toBeNull();
+    expect(result.state.daily).toBeNull();
   });
 });

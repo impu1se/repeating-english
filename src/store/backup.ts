@@ -1,10 +1,10 @@
 import type { Content } from '../types';
 import type { ConceptProgress } from '../engine/scoring';
-import { mergeConcepts, type ProgressState } from './progress';
+import { mergeConcepts, type ProgressState, type Measurement, type FocusState, type DailyState } from './progress';
 
-// Версия формата файла, а не версия контента. Растёт, когда в файл добавится
-// что-то несовместимое — например, несколько профилей из бэклога v3.
-export const BACKUP_FORMAT = 1;
+// Версия формата файла, а не версия контента. Вторая версия добавила замеры
+// речи, фокус недели и состояние дня.
+export const BACKUP_FORMAT = 2;
 
 export interface ProgressBackupFile {
   app: 'english-gym';
@@ -12,6 +12,9 @@ export interface ProgressBackupFile {
   exportedAt: string;
   contentVersion: string;
   concepts: Record<string, ConceptProgress>;
+  measurements: Measurement[];
+  focus: FocusState | null;
+  daily: DailyState | null;
 }
 
 export type ParseResult =
@@ -25,6 +28,9 @@ export function serializeProgress(state: ProgressState, now: Date = new Date()):
     exportedAt: now.toISOString(),
     contentVersion: state.contentVersion,
     concepts: state.concepts,
+    measurements: state.measurements,
+    focus: state.focus,
+    daily: state.daily,
   };
   return JSON.stringify(file, null, 2);
 }
@@ -57,6 +63,10 @@ export function parseBackup(raw: string, content: Content): ParseResult {
   }
   const incoming = file.concepts as Record<string, ConceptProgress>;
   const state = mergeConcepts(content, incoming);
+  // Файл первой версии не знает про замеры — подставляем пустые, а не падаем.
+  state.measurements = Array.isArray(file.measurements) ? file.measurements : [];
+  state.focus = file.focus ?? null;
+  state.daily = file.daily ?? null;
   const restored = Object.keys(state.concepts).filter((id) => incoming[id] !== undefined).length;
   return { ok: true, state, restored };
 }
