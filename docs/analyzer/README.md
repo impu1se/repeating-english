@@ -26,7 +26,7 @@
   "wordCount": 312,
   "contentVersion": "2",
   "errors": [
-    { "conceptId": "a1-nouns-articles", "label": "артикли", "count": 7,
+    { "conceptId": "a1-articles", "label": "артикли", "count": 7,
       "examples": ["I went to shop", "he is teacher"] },
     { "conceptId": null, "label": "предлоги места", "count": 3,
       "examples": ["in the weekend"] }
